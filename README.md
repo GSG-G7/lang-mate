@@ -6,7 +6,7 @@ People can not practice the language they want to learn with it's native speaker
 
 ## **Solution :**
 
-The application gives the users the ability to make match with other languages native speakers to practice their languages.
+The application gives the users the ability to make match with other languages native speakers to practice their languages .
 
 ## **User Journey :**
 
