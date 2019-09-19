@@ -10,7 +10,7 @@ The application gives the users the ability to make match with other languages n
 
 ## **User Journey :**
 
-The user can add information about himself,then views all people who match his interests to enable the user chats people to practice language, searches for other people and filter people by language and interests.Each user has his own profile and can edit his information.
+The user can add information about himself, then views all people who match his interests to enable the user chats people to practice language, searches for other people and filter people by language and interests. Each user has his own profile and can edit his information.
 
 ## **User Stories :**
 
