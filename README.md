@@ -40,6 +40,7 @@ The user can add information about himself, then views all people who match his 
 - Socketio
 - HTML
 - CSS
+- SASS
 
 ## **Database Schema :**
 
