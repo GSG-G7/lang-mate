@@ -1,3 +1,4 @@
+node_modules
 config.env
 node_modules
 .nyc_output

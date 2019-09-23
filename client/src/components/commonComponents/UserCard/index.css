@@ -1,0 +1,52 @@
+.userCard {
+    margin: 15px 30px;
+    background: #F9F9F9;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 381px;
+    height: 166px;
+    padding: 20px;
+}
+
+.userCard .userImage {
+    display: block;
+    width: 123.36px;
+    height: 137px;
+    border-radius: 5px;
+}
+
+.userCard .userCard-content {
+    padding-left:20px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.userCard .userCard-content h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.userCard .userCard-content p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.userCard .userCard-content .userCard-content-languages {
+    display: flex;
+    justify-content: space-between;
+}
+.userCard .userCard-content .userCard-content-languages .userCard-content-languages-native
+{
+
+}
+.userCard .userCard-content .userCard-content-languages .userCard-content-languages-native-learning
+{
+    
+}
+
