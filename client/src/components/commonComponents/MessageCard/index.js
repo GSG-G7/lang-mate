@@ -26,7 +26,7 @@ MessageCard.propTypes = {
     username: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     lastMessage: PropTypes.string.isRequired,
-    messageInfo: PropTypes.string.isRequired,
+    messageTime: PropTypes.string.isRequired,
   }).isRequired,
 };
 
