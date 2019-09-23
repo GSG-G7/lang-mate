@@ -1,0 +1,12 @@
+label{
+  padding: 10px;
+  background: #3873B3;
+  border-radius: 16px;
+}
+input[type="checkbox"]{
+  background: #FFFFFF;
+  border-radius: 16px;
+}
+span{
+  color: #ffffff;
+}
