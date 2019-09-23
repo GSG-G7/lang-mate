@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 const UserCard = ({
-  userInfo: { avatar, username, bio, nativeLang, learningLang },
+  userInfo: { avatar, username, nativeLang, learningLang },
 }) => (
-  <div className="userCard">
+  <div className="user-card">
     <img
       src={avatar || 'https://img.icons8.com/clouds/2x/user.png'}
       alt="userImage"
-      className="userCard-image"
+      className="user-card__image"
     />
-    <div className="userCard-content">
+    <div className="user-card__content">
       <h2>{username}</h2>
-      <div className="userCard-content-languages">
-        <div className="userCard-content-languages-native">
-          <h3>Native</h3>
-          <h4>{nativeLang}</h4>
+      <div className="user-card__content__languages">
+        <div className="user-card__content__languages-native">
+          <h4>Native</h4>
+          <h2>{nativeLang}</h2>
         </div>
-        <div className="userCard-content-languages-learning">
-          <h3>learning</h3>
-          <h4>{learningLang}</h4>
+        <div className="user-card__content__languages-learning">
+          <h4>learning</h4>
+          <h2>{learningLang}</h2>
         </div>
       </div>
     </div>
