@@ -8,7 +8,7 @@ const MessageCard = ({
   <div className="message-card">
     <img
       src={avatar || 'https://img.icons8.com/clouds/2x/user.png'}
-      alt="userImage"
+      alt={`${username} avatr`}
       className="message-card__image"
     />
     <div className="Message-card__content">
