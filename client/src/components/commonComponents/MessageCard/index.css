@@ -1,0 +1,19 @@
+.message-card {
+  width: 320px;
+  height: 80px;
+  margin: 30px auto;
+  border-bottom:1px solid gray;
+  display: flex; 
+}
+
+.message-card__image {
+  border-radius:50%;
+  border:1px solid wheat;
+  margin: 15px 30px;
+  width: 25%;
+  height: 25%;
+}
+
+.Message-card__content {
+  width: 65%;
+}
