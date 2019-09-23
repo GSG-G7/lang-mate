@@ -43,10 +43,10 @@
 }
 .userCard .userCard-content .userCard-content-languages .userCard-content-languages-native
 {
-
+box-sizing: border-box;
 }
 .userCard .userCard-content .userCard-content-languages .userCard-content-languages-native-learning
 {
-    
+box-sizing: border-box;    
 }
 
