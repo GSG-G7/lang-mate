@@ -21,6 +21,7 @@ module.exports = {
         "extensions": [".js", ".jsx"]
       }
     ],
+    "jsx-a11y/img-has-alt":0,
     "quotes": [
       2,
       "single",
