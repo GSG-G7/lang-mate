@@ -3,18 +3,20 @@ import './App.css';
 
 class App extends React.Component {
   state = {
-    text: ''
-  }
+    text: '',
+  };
+
   componentDidMount() {
     fetch('/api/v1/')
-    .then(res => res.json()) 
-    .then(result => this.setState({text: result.body}));
-  
+      .then(res => res.json())
+      .then(result => this.setState({ text: result.body }));
   }
+
   render() {
+    const { text } = this.state;
     return (
       <div>
-        <h1>{this.state.text}</h1>
+        <h1>{text}</h1>
       </div>
     );
   }
