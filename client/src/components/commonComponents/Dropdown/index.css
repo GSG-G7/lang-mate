@@ -1,15 +1,17 @@
-select, select option {
-  background-color: #ECECEC;
-  color: #322F2F;
+select,
+select option {
+  background-color: #ececec;
+  color: #322f2f;
   width: 70%;
   margin: 10px 0;
   padding: 10px 20px;
   border: none;
   outline: none;
+  border-radius: 8px;
 }
 
 select option {
-  background-color: #F1F1F1;
+  background-color: #f1f1f1 !important;
 }
 
 label {
@@ -18,4 +20,3 @@ label {
   font-size: 18px;
   text-transform: capitalize;
 }
-/*# sourceMappingURL=index.css.map */
