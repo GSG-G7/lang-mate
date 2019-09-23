@@ -31,10 +31,10 @@
 
 .message-time span {
   font-family: Roboto;
-font-style: normal;
-font-weight: 800;
-font-size: 16px;
-line-height: 16px;
-display: flex;
-align-items: center;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
 }
