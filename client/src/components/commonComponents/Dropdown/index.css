@@ -1,0 +1,21 @@
+select, select option {
+  background-color: #ECECEC;
+  color: #322F2F;
+  width: 70%;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+}
+
+select option {
+  background-color: #F1F1F1;
+}
+
+label {
+  display: block;
+  color: #484848;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+/*# sourceMappingURL=index.css.map */
