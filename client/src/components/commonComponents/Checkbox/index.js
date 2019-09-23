@@ -4,15 +4,15 @@ import './index.css';
 
 const Checkbox = ({ id, interest, checked = false, className, onClick }) => (
   <div className="interest__home">
-    <input
-      id={id}
-      type="checkbox"
-      value={interest}
-      className={className}
-      checked={checked}
-      onChange={onClick}
-    />
     <label htmlFor={id}>
+      <input
+        id={id}
+        type="checkbox"
+        value={interest}
+        className={className}
+        checked={checked}
+        onChange={onClick}
+      />
       <span></span>
       {interest}
     </label>
