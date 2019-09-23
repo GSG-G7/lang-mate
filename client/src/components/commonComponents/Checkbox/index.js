@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 const Checkbox = ({ id, interest, checked = false, className, onClick }) => (
-  <label htmlFor={id}>
+  <div className="interest__home">
     <input
       id={id}
       type="checkbox"
@@ -12,8 +12,11 @@ const Checkbox = ({ id, interest, checked = false, className, onClick }) => (
       checked={checked}
       onChange={onClick}
     />
-    <span>{interest}</span>
-  </label>
+    <label htmlFor={id}>
+      <span></span>
+      {interest}
+    </label>
+  </div>
 );
 
 Checkbox.propTypes = {

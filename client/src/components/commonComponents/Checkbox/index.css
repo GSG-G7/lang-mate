@@ -1,12 +1,36 @@
+.interest__home{
+  display: inline-flex;
+  margin: 10px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+span{
+  display: inline-block;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  vertical-align:middle;
+  margin:-2px 10px 0 0; 
+}
+
 label{
-  padding: 10px;
+  color: #ffffff;
+  padding: 10px 30px;
   background: #3873B3;
   border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-input[type="checkbox"]{
-  background: #FFFFFF;
-  border-radius: 16px;
+
+input[type="checkbox"]:checked + label{
+  background: #52DE97;
 }
-span{
-  color: #ffffff;
+
+input[type="checkbox"]:checked + label span{
+  background: #52DE97;
+  border: 1px solid #ffffff;
 }
