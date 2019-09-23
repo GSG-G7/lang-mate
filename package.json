@@ -9,12 +9,13 @@
   "scripts": {
     "start:server": "NODE_ENV=production node server",
     "start:client": "cd client && npm run start",
-    "dev": "NODE_ENV=development nodemon server",
+    "dev": "NODE_ENV=development  concurrently  \"npm run start:server\" \"npm run start:client\"",
     "test": "NODE_ENV=test node test/index.test.js | tap-spec",
-    "killport": "fuser -k 5000/tcp",
-    "killrun": "npm run killport && NODE_ENV=test npm run dev",
+    "kill": "fuser -k 5000/tcp",
+    "killrun": "npm run killport && NODE_ENV=development npm run dev",
     "coverage": "nyc npm run test",
-    "project-i": "npm install && cd client && npm install"
+    "project-i": "npm install && cd client && npm install",
+    "kill-both": "npm run kill && cd client && fuser -k 3000/tcp"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "compression": "^1.7.4",
+    "concurrently": "^4.1.2",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "env2": "^2.2.2",
