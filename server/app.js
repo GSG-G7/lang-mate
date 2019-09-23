@@ -1,11 +1,10 @@
-const { join } = require('path');
-
 const express = require('express');
-const router = require('./routes');
 // middlewares
 const cors = require('cors');
 const compression = require('compression');
 const morgan = require('morgan');
+
+const router = require('./routes');
 
 const app = express();
 
