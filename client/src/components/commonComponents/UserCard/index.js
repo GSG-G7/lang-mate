@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({
+const UserCard = ({
   userName,
   imageSrc,
   userBio,
@@ -25,3 +26,12 @@ export default ({
     </div>
   </div>
 );
+UserCard.propTypes = {
+  userName: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired,
+  userBio: PropTypes.string.isRequired,
+  nativeLanguage: PropTypes.string.isRequired,
+  learningLanguage: PropTypes.string.isRequired,
+};
+
+export default UserCard;
