@@ -1,10 +1,6 @@
 node_modules
-<<<<<<< HEAD
-=======
 config.env
-node_modules
 .nyc_output
 .vscode
 .env
 coverage
->>>>>>> d5ae29f2e0b6364199d405467c737eb3acbc8e33
