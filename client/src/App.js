@@ -1,13 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div>
-      hey
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    text: ''
+  }
+  componentDidMount() {
+    fetch('/api/v1/')
+    .then(res => res.json()) 
+    .then(result => this.setState({text: result.body}));
+  
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.text}</h1>
+      </div>
+    );
+  }
 }
 
 export default App;
