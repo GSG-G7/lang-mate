@@ -1,3 +1,4 @@
+const { join } = require('path');
 const express = require('express');
 // middlewares
 const cors = require('cors');
@@ -16,6 +17,12 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(cors());
 app.use(compression());
-app.use(router);
+app.use('/api/v1/', router);
+
+app.use(express.static(join(__dirname, '..', 'client', 'build')));
+
+app.get('*', (_req, res) => {
+  res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 module.exports = app;
