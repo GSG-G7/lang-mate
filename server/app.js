@@ -17,6 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(cors());
 app.use(compression());
-app.use(router);
+app.use('/api/v1/', router);
 
 module.exports = app;
