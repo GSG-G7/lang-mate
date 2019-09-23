@@ -1,3 +1,6 @@
+import React from 'react';
+import './index.css';
+
 const Input = ({type, name, class, label, placeholder, value, onChange }) => {
     return <input 
         type={type} 
