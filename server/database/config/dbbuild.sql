@@ -6,12 +6,10 @@ CREATE TABLE languages (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL
 );
-
 CREATE TABLE interests (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
