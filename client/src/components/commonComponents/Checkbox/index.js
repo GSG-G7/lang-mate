@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const Checkbox = ({ id, interest, checked = false, className, onClick }) => (
+const Checkbox = ({ id, interest, checked = false, onClick }) => (
   <div className="interest__home">
-    <label htmlFor={id}>
+    <label htmlFor={id} className="interest_label">
       <input
         id={id}
         type="checkbox"
         value={interest}
-        className={className}
+        className="interest__input"
         checked={checked}
-        onChange={onClick}
+        onClick={onClick}
       />
-      <span></span>
+      <span className="interest_span"></span>
       {interest}
     </label>
   </div>

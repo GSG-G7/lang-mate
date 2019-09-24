@@ -3,11 +3,11 @@
   margin: 10px;
 }
 
-input[type="checkbox"] {
+.interest__input[type="checkbox"] {
   display: none;
 }
 
-span{
+.interest_span{
   display: inline-block;
   background: #ffffff;
   width: 20px;
@@ -17,7 +17,7 @@ span{
   margin:-2px 10px 0 0; 
 }
 
-label{
+.interest_label{
   color: #ffffff;
   padding: 10px 30px;
   background: #3873B3;
@@ -26,11 +26,11 @@ label{
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-input[type="checkbox"]:checked + label{
+.interest_label .interest__input[type="checkbox"]:checked {
   background: #52DE97;
 }
 
-input[type="checkbox"]:checked + label span{
+.interest_label .interest_span .interest__input[type="checkbox"]:checked {
   background: #52DE97;
   border: 1px solid #ffffff;
 }
