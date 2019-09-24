@@ -3,3 +3,5 @@ config.env
 .vscode
 .env
 coverage
+node_modules
+    
