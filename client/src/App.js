@@ -1,6 +1,8 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ApiService from './services/api';
 import './App.css';
+import UserMenu from './components/common/UserMenu';
 
 class App extends React.Component {
   state = {
@@ -14,9 +16,13 @@ class App extends React.Component {
   render() {
     const { text } = this.state;
     return (
-      <div>
-        <h1>{text}</h1>
-      </div>
+      <BrowserRouter>
+        <div>
+          <h1>{text}</h1>
+          {/* tried the React Router so ill keep this line for a hint on how to use it */}
+          <UserMenu />
+        </div>
+      </BrowserRouter>
     );
   }
 }
