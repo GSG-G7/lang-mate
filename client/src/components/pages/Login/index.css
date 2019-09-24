@@ -1,0 +1,47 @@
+.loginPage {
+    background-image: linear-gradient(to bottom, rgba(22, 18, 18, 0.2), rgba(255, 247, 247, 0.2)), url('https://i.imgur.com/iF6tuWl.jpg');
+
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginBox {
+    background: rgb(255, 255, 255);
+    height: 70%;
+    width: 70%;
+ 
+}
+
+.login-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-inpputs {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    justify-content: center;
+}
+
+.password-input , .username-input{
+    margin-top: 30px;
+    background: #DADADA;
+border-radius: 15px;
+height: 50px;
+outline: none;
+border: none;
+
+}
+
+.password-input::placeholder , .username-input::placeholder {
+    font-size: 20px;
+    padding: 10px;
+}
