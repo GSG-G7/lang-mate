@@ -12,6 +12,11 @@ CREATE TABLE interests (
   name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE user_interest (
+  interest_id INTEGER NOT NULL REFERENCES interests (id),
+  user_id INTEGER NOT NULL REFERENCES users (id)
+);
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
@@ -27,11 +32,6 @@ CREATE TABLE users (
 CREATE TABLE channels (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE user_interest (
-  interest_id INTEGER NOT NULL REFERENCES interests (id),
-  user_id INTEGER NOT NULL REFERENCES users (id)
 );
 
 CREATE TABLE user_channel (
