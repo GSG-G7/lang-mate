@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
-import { profilePath, settingsPath, logoutPath } from './pathData';
+import { profilePath, settingsPath, logoutPath } from '../../assets/svgPaths';
 import './index.css';
 
 const renderSvg = (path, fill) => (

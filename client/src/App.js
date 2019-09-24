@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import ApiService from './services/api';
 import './App.css';
+import UserMenu from './components/common/UserMenu';
 
 class App extends React.Component {
   state = {
@@ -18,6 +19,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <h1>{text}</h1>
+          <UserMenu />
         </div>
       </BrowserRouter>
     );
