@@ -2,50 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const langs = [
-  {
-    id: 1,
-    language: 'Chinese',
-  },
-  {
-    id: 2,
-    language: 'Spanish',
-  },
-  {
-    id: 3,
-    language: 'English',
-  },
-  {
-    id: 4,
-    language: 'Hindi',
-  },
-  {
-    id: 5,
-    language: 'Russian',
-  },
-];
-
-const Dropdown = ({ label, name, languages = langs }) => {
+const Dropdown = ({ labelText, name, languages, value, onChange }) => {
   return (
     <div className="drop-down">
-      <label htmlFor="select">
-        {label}
-        <select name={name} id="select">
-          {languages.map(({ id, language }) => (
-            <option key={id} value={language}>
-              {language}
-            </option>
-          ))}
-        </select>
-      </label>
+      <span className="menu-desc">{labelText}</span>
+      <select
+        name={name}
+        aria-label={labelText}
+        id="select"
+        className="drop-down-menu"
+        value={value}
+        onChange={onChange}
+      >
+        {/* Creating an option for each language in the array */}
+        {languages.map(({ id, language }) => (
+          <option className="drop-down-item" key={id} value={language}>
+            {language}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
 
 Dropdown.propTypes = {
-  label: PropTypes.string.isRequired,
+  labelText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   languages: PropTypes.arrayOf.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Dropdown;
