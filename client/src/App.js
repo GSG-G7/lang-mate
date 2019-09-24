@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ApiService from './services/api';
 import './App.css';
 
@@ -14,9 +15,11 @@ class App extends React.Component {
   render() {
     const { text } = this.state;
     return (
-      <div>
-        <h1>{text}</h1>
-      </div>
+      <BrowserRouter>
+        <div>
+          <h1>{text}</h1>
+        </div>
+      </BrowserRouter>
     );
   }
 }
