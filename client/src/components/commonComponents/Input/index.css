@@ -1,12 +1,12 @@
-input {
+.custom-input {
   width: 70%;
   margin: 10px 0;
   padding: 10px 20px;
-  background-color: #DADADA;
+  background-color: #dadada;
   border: none;
   outline: none;
   font-size: 18px;
-  color: #8A8A8A;
+  color: #8a8a8a;
   text-transform: capitalize;
+  border-radius: 10px;
 }
-/*# sourceMappingURL=index.css.map */
