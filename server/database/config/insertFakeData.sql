@@ -7,6 +7,7 @@ VALUES
   ('spanish'),
   ('dutch'),
   ('japanese');
+
 INSERT INTO interests
   (name)
 VALUES
@@ -17,13 +18,15 @@ VALUES
   ('novels'),
   ('games'),
   ('swimming');
+
 INSERT INTO users
-  (username, email, password, isActive,native_lang_id, learning_lang_id)
+  (username, email, password, isActive, native_lang_id, learning_lang_id)
 VALUES
    ('amoodaa', 'amoodaa@gmail.com', 'something', true,1,6),
    ('amoodaa2', 'amoodaa2@gmail.com', 'something', true,1,5),
    ('amoodaa3', 'amoodaa3@gmail.com', 'something', true,2,4),
    ('amoodaa5', 'amoodaa5@gmail.com', 'something', true,4,6);
+
 INSERT INTO channels
   (name)
 VALUES
@@ -31,6 +34,7 @@ VALUES
   ('amoodaa'),
   ('amoodaa2'),
   ('yosef');
+
 INSERT INTO user_interest
   (interest_id, user_id)
 VALUES
@@ -40,6 +44,7 @@ VALUES
   (5,2),
   (3,4),
   (5,4);
+
 INSERT INTO user_channel
   (channel_id, user_id)
 VALUES
