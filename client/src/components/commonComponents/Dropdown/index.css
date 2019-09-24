@@ -1,5 +1,5 @@
-.drop-down-menu,
-.drop-down-menu .drop-down-item {
+.drop-down__menu,
+.drop-down__item {
   background-color: #ececec;
   color: #322f2f;
   width: 70%;
@@ -10,11 +10,11 @@
   border-radius: 8px;
 }
 
-.drop-down-menu .drop-down-item {
+.drop-down__item {
   background-color: #f1f1f1 !important;
 }
 
-.menu-desc {
+.drop-down__desc {
   display: block;
   color: #484848;
   font-size: 18px;
