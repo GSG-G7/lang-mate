@@ -1,4 +1,5 @@
 import React from 'react';
+import ApiService from './services/api';
 import './App.css';
 
 class App extends React.Component {
@@ -7,9 +8,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch('/api/v1/')
-      .then(res => res.json())
-      .then(result => this.setState({ text: result.body }));
+    ApiService.fetchData().then(result => this.setState({ text: result.body }));
   }
 
   render() {
