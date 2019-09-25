@@ -14,7 +14,6 @@ exports.getUserByUsername = (username) => {
   const sql = {
     text: 'SELECT * FROM users where username = $1',
     values: [username],
-<<<<<<< HEAD
   };
   return dbConnection.query(sql);
 };
@@ -23,8 +22,6 @@ exports.getUserByEmail = (email) => {
   const sql = {
     text: 'SELECT * FROM users where email = $1',
     values: [email],
-=======
->>>>>>> 85a38d0ec46e2539bdb0c9239025ab5d7b9a0e22
   };
   return dbConnection.query(sql);
 };
