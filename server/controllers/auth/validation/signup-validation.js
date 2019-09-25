@@ -10,7 +10,6 @@ const signupSchema = Joi.object().keys({
   password: Joi.string()
     .regex(/^[a-zA-Z0-9]{8,30}$/)
     .required(),
-  confirmPassword: Joi.ref('password'),
   email: Joi.string()
     .email({ minDomainSegments: 2 })
     .required(),
