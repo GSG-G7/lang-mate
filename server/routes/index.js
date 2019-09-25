@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { auth: { login, logout, signup } } = require('../controllers');
 const {
+  auth: { login, logout, signup },
   users: {
     changePassword,
     getUserChannels,
