@@ -9,6 +9,7 @@ test('Test /languages route', (t) => {
     .expect('Content-Type', 'application/json; charset=utf-8')
     .end((err, res) => {
       if (err) {
+        console.log('from lang', err);
         t.error(err);
         t.end();
       } else {

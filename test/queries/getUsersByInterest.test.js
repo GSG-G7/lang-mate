@@ -12,6 +12,7 @@ test('Testing for the users by interest query', (t) => {
   dbbuild()
     .then(() => getUsersByInterest(1))
     .then(({ rows }) => {
+      console.log(rows);
       t.deepEqual(rows, expected, 'We should get users data');
       t.end();
     })
