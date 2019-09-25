@@ -10,9 +10,10 @@
     "start:server": "NODE_ENV=production node server",
     "start:client": "cd client && npm run start",
     "dev": "NODE_ENV=development  concurrently  \"npm run start:server\" \"npm run start:client\"",
+    "dev:server": "NODE_ENV=development  nodemon server",
     "test": "NODE_ENV=test node test/index.test.js | tap-spec",
     "kill": "fuser -k 5000/tcp",
-    "killrun": "npm run killport && NODE_ENV=development npm run dev",
+    "kill-run": "npm run kill && NODE_ENV=development npm run dev",
     "kill-both": "npm run kill && cd client && fuser -k 3000/tcp",
     "coverage": "nyc npm run test",
     "project-i": "npm install && cd client && npm install"
