@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 exports.errors = (err, req, res, next) => {
   // eslint-disable-next-line no-console
-  console.log(err.message);
-  switch (err.message) {
+  console.log(err);
+  switch (err.code) {
     case 400:
-      res.status(400).send({ msg: 'bad request ... !' });
+      res.status(400).send({ msg: err.msg });
       break;
     case 401:
       res.status(401).send({ msg: 'Unauthorized' });
