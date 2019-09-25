@@ -3,7 +3,7 @@ const dbConnection = require('../../config/dbConnection');
 exports.getChannelMessages = () => {
   const sql = {
     text: '',
-    value: [],
+    values: [],
   };
   return dbConnection.query(sql);
 };

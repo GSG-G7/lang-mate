@@ -22,10 +22,17 @@ VALUES
 INSERT INTO users
   (username, email, password, isActive, native_lang_id, learning_lang_id)
 VALUES
+<<<<<<< HEAD
    ('amoodaa', 'amoodaa@gmail.com', '$2b$10$fZYS3UlVAzy7CuPv0sk7GOgYQeIT2A57UsgJPUFVliDyU4TxXPjRe', true,1,6),
    ('fadi', 'amoodaa2@gmail.com', '$2b$10$fZYS3UlVAzy7CuPv0sk7GOgYQeIT2A57UsgJPUFVliDyU4TxXPjRe', true,1,5),
    ('yosef', 'amoodaa3@gmail.com', '$2b$10$fZYS3UlVAzy7CuPv0sk7GOgYQeIT2A57UsgJPUFVliDyU4TxXPjRe', true,2,4),
    ('mai', 'amoodaa5@gmail.com', '$2b$10$fZYS3UlVAzy7CuPv0sk7GOgYQeIT2A57UsgJPUFVliDyU4TxXPjRe', true,4,6);
+=======
+   ('amoodaa', 'amoodaa@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,1,6),
+   ('fadi', 'amoodaa2@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,1,5),
+   ('yosef', 'amoodaa3@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,2,4),
+   ('mai', 'amoodaa5@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,4,6);
+>>>>>>> 85a38d0ec46e2539bdb0c9239025ab5d7b9a0e22
 
 INSERT INTO channels
   (name)
