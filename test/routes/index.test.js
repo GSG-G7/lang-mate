@@ -1,2 +1,2 @@
 exports.usersByInterest = require('./usersByInterest.test');
-exports.langaugesTest = require('./languages.test');
+exports.languagesTest = require('./languages.test');
