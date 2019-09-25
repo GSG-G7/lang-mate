@@ -1,7 +1,6 @@
 const dbConnection = require('../../config/dbConnection');
 
 exports.addUser = (userData) => {
-  console.log(userData)
   const {
     username, email, password, nativeLangId, learningLangId,
   } = userData;

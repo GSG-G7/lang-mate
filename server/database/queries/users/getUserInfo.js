@@ -11,7 +11,6 @@ exports.getUserById = (id) => {
 };
 
 exports.getUserByUsername = (username) => {
-  console.log(username);
   const sql = {
     text: 'SELECT * FROM users where username = $1',
     values: [username],

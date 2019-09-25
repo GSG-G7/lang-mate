@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const router = require('./routes');
 
 const app = express();
-
+app.use(express.json());
 app.set('port', process.env.PORT || 5000);
 
 if (process.env.NODE_ENV === 'development') {

@@ -1,7 +1,7 @@
 const yup = require('yup');
 
 const signupSchema = yup.object().shape({
-  username: yup.string().max(30).min(2).required,
+  username: yup.string().max(30).min(2).required(),
 
   password: yup.string()
     .matches(/^[a-zA-Z0-9]{8,30}$/)
@@ -9,9 +9,16 @@ const signupSchema = yup.object().shape({
   email: yup.string()
     .email({ minDomainSegments: 2 })
     .required(),
-  native_lang_id: yup.number(),
-  learning_lang_id: yup.number(),
+  nativeLangId: yup
+    .number()
+    .required()
+    .positive()
+    .integer(),
+  learningLangId: yup
+    .number()
+    .required()
+    .positive()
+    .integer(),
 });
 
-module.exports = { signupSchema }
-;
+module.exports = { signupSchema };

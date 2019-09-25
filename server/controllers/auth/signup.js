@@ -4,13 +4,14 @@ const { users: { getUserByUsername, getUserByEmail, addUser } } = require('../..
 
 
 exports.signup = (req, res, next) => {
-  res.send(' Hello from signup file');
+  // res.send(' Hello from signup file');
+  console.log(req.body);
   const {
-    username, email, password, native_lang_id, learning_lang_id,
+    username, email, password, nativeLangId, learningLangId,
   } = req.body;
 
   signupSchema.validate({
-    username, email, password, native_lang_id, learning_lang_id,
+    username, email, password, nativeLangId, learningLangId,
   })
     .then(() => getUserByUsername(username))
     .then((result) => {
@@ -22,13 +23,10 @@ exports.signup = (req, res, next) => {
     })
     .then(() => hash(password, 10))
     .then((hashed) => addUser({
-      username, email, password: hashed, native_lang_id, learning_lang_id,
+      username, email, password: hashed, nativeLangId, learningLangId,
     }))
-    .catch(({ err }) => {
-      if (err) {
-        next(err);
-      } else {
-        next();
-      }
-    });
+    .then(() => getUserByUsername(username))
+    .then(console.log)
+    .then((result) => res.send(result.rows[0]))
+    .catch(next);
 };
