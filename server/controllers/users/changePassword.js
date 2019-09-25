@@ -12,9 +12,10 @@ exports.changePassword = (req, res, next) => {
   }).then(([oldPasswordMatches, newPasswordMatches]) => {
     if (!oldPasswordMatches) throw new Error('You entered a wrong password');
     else if (newPasswordMatches) throw new Error('Your new password and old password are the same');
-    hash(newPassword, 10);
-    return changePassword(userId, newPassword);
-  }).then(() => res.send('Password is changed'))
+    return hash(newPassword, 10);
+  })
+    .then((hashedPassword) => changePassword(userId, hashedPassword))
+    .then(() => res.send('Password is changed'))
     .catch((err) => {
       if (err.message) next({ code: 400, msg: err.message });
       else next(err);
