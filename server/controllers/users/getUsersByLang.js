@@ -1,3 +1,3 @@
-exports.getUserByLang = (req, res, next) => {
+exports.getUsersByLang = (req, res) => {
   res.send('hi form native lang');
 };

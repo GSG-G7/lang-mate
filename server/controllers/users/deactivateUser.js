@@ -1,3 +1,3 @@
-exports.deactivateUser = (req, res, next) => {
+exports.deactivateUser = (req, res) => {
   res.send('Hi from deactivate file');
 };

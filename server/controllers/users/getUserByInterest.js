@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-exports.getUserByInterest = (req, res, next) => {
+exports.getUserByInterest = (req, res) => {
   res.send('Hi from interests file');
 };

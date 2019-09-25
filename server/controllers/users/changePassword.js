@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-exports.changePassword = (req, res, next) => {
+exports.changePassword = (req, res) => {
   res.send('hello from changePassword file');
 };
