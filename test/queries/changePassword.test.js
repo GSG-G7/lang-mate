@@ -8,7 +8,7 @@ test('test changePassword query', (t) => {
     .then(() => changePassword(passwordInfo.userId, passwordInfo.newPassword))
     .then(() => getUserById(passwordInfo.userId))
     .then((result) => {
-      t.equals(result.rows[0].password, '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', 'The password must me changed');
+      t.equals(result.rows[0].password, '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', 'The password must be changed');
       t.end();
     })
     .catch((err) => t.error(err))
