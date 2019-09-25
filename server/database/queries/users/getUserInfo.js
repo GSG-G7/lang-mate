@@ -5,7 +5,7 @@ const dbConnection = require('../../config/dbConnection');
 exports.getUserById = (id) => {
   const sql = {
     text: 'SELECT * FROM users where id = $1',
-    value: [id],
+    values: [id],
   };
   return dbConnection.query(sql);
 };
@@ -13,7 +13,7 @@ exports.getUserById = (id) => {
 exports.getUserByUsername = (username) => {
   const sql = {
     text: 'SELECT * FROM users where username = $1',
-    value: [username],
+    values: [username],
   };
   return dbConnection.query(sql);
 };
