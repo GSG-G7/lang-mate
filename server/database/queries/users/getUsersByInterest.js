@@ -3,7 +3,7 @@ const dbConnection = require('../../config/dbConnection');
 exports.getUsersByInterest = () => {
   const sql = {
     text: '',
-    value: [],
+    values: [],
   };
   return dbConnection.query(sql);
 };
