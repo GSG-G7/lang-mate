@@ -1,6 +1,6 @@
 const dbConnection = require('../../config/dbConnection');
 
-exports.changePassword = () => {
+exports.getUsersByInterest = () => {
   const sql = {
     text: '',
     value: [],
