@@ -1,5 +1,5 @@
 const test = require('tape');
-const { addUser } = require('./queries/index.test');
+
 
 test('Fake initial test', (t) => {
   t.equal(1, 1, 'should work');
