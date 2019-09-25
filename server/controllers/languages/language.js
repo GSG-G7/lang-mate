@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-exports.language = (req, res, next) => {
+exports.getAllLanguages = (req, res) => {
   res.send('hello from language file');
 };

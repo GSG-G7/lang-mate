@@ -1,3 +1,3 @@
-const language = require('./language');
+const { getAllLanguages } = require('./language');
 
-module.exports = language;
+module.exports = { getAllLanguages };
