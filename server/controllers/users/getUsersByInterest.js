@@ -13,16 +13,14 @@ exports.getUsersByInterest = (req, res, next) => {
   getUsers(id)
     .then((result) => {
       users = result.rows;
-      return users;
+      return users.map((user) => getLanguageById(user.native_lang_id));
     })
-    .then((result) => result.map((user) => getLanguageById(user.native_lang_id)))
     .then((promises) => Promise.all(promises))
     .then((langs) => formatLanguages(users, langs, 'native_lang_id'))
     .then((result) => {
       users = result;
-      return users;
+      return users.map((user) => getLanguageById(user.learning_lang_id));
     })
-    .then((result) => result.map((user) => getLanguageById(user.learning_lang_id)))
     .then((promises) => Promise.all(promises))
     .then((langs) => formatLanguages(users, langs, 'learning_lang_id'))
     .then((result) => {
