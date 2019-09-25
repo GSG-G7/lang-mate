@@ -3,7 +3,6 @@ node_js:
   - lts/*
 services:
   - postgresql
-
-before_script:
-  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
-  - psql -c "CREATE USER langmatetravis WITH PASSWORD '123';" -U postgres
+# before_script:
+#   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+#   - psql -c "CREATE USER langmatetravis WITH PASSWORD '123';" -U postgres
