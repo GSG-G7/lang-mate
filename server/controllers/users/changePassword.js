@@ -1,3 +1,9 @@
+const { users: { changePassword } } = require('../../database/queries');
+
 exports.changePassword = (req, res) => {
-  res.send('hello from changePassword file');
+  // const passwordInfo = req.body;
+  // changePassword(passwordInfo)
+  //   .then()
+  //   .catch();
+  // res.send('hello from changePassword file');
 };
