@@ -1,6 +1,7 @@
-const { getLanguages } = require('../../database/queries/languages/index');
+const { languages: { getLanguages } } = require('../../database/queries');
 
-exports.getAllLanguages = (req, res) => {
-  getLanguages().then((result) => console.log(result.rows)).catch((err) => console.log(err));
-  res.send('hello from language file');
+exports.getAllLanguages = (req, res, next) => {
+  getLanguages()
+    .then(({ rows }) => res.send({ data: rows }))
+    .catch((err) => next(err));
 };
