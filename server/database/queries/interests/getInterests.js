@@ -2,7 +2,7 @@ const dbConnection = require('../../config/dbConnection');
 
 exports.getInterests = () => {
   const sql = {
-    text: '',
+    text: 'SELECT * FROM interests',
     values: [],
   };
   return dbConnection.query(sql);
