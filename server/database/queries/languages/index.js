@@ -1,0 +1,1 @@
+exports.getAllLanguages = require('./language');
