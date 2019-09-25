@@ -23,3 +23,11 @@ exports.getUserByEmail = (email) => {
   };
   return dbConnection.query(sql);
 };
+
+exports.getUserByEmailOrUsername = (email, username) => {
+  const sql = {
+    text: 'SELECT * FROM users where email = $1 OR username = $2',
+    values: [email, username],
+  };
+  return dbConnection.query(sql);
+};
