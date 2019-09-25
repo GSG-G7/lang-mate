@@ -4,8 +4,6 @@ const { users: { getUserByUsername, getUserByEmail, addUser } } = require('../..
 
 
 exports.signup = (req, res, next) => {
-  // signupSchema.validate(userData).then(()=>)
-
   res.send(' Hello from signup file');
   const {
     username, email, password, native_lang_id, learning_lang_id,
@@ -16,11 +14,11 @@ exports.signup = (req, res, next) => {
   })
     .then(() => getUserByUsername(username))
     .then((result) => {
-      if (result.rows.length !== 0) throw Error({ err: 'username exists' });
+      if (result.rows.length !== 0) throw Error({ err: 'username exists', code: 400 });
     })
     .then(() => getUserByEmail(username))
     .then((result) => {
-      if (result.rows.length !== 0) throw Error('email exists');
+      if (result.rows.length !== 0) throw Error({ err: 'email exists', code: 400 });
     })
     .then(() => hash(password, 10))
     .then((hashed) => addUser({
