@@ -5,10 +5,10 @@ const { users: { changePassword, getUserById } } = require('../../server/databas
 test('test changePassword query', (t) => {
   const passwordInfo = { userId: 1, newPassword: 'Mai' };
   dbbuild()
-    .then(() => changePassword(passwordInfo.userId, passwordInfo.newPassword))
+    .then(() => changePassword(passwordInfo))
     .then(() => getUserById(passwordInfo.userId))
     .then((result) => {
-      t.equals(result.rows[0].password, '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', 'The password must be changed');
+      t.equals(result.rows[0].password, 'Mai', 'The password must be changed');
       t.end();
     })
     .catch((err) => t.error(err))
