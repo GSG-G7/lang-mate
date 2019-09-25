@@ -1,5 +1,5 @@
 const { hash } = require('bcrypt');
-const { sign } = require('jsonwebtoken');
+const { jwtSign } = require('../../helpers');
 const { signupSchema } = require('./validation/signup-validation');
 const { users: { getUserByEmailOrUsername, addUser } } = require('../../database/queries');
 
@@ -21,9 +21,9 @@ exports.signup = (req, res, next) => {
     .then((hashed) => addUser({
       username, email, password: hashed, nativeLangId, learningLangId,
     }))
-    .then(({ rows }) => {
-      const token = sign({ userInfo: { username: rows[0].username, Id: rows[0].id } }, key);
-      res.cookie('token', token, { maxAge: 86400000 });
+    .then(({ rows }) => jwtSign({ userInfo: { username: rows[0].username, Id: rows[0].id } }, key))
+    .then((sigendPayload) => {
+      res.cookie('token', sigendPayload, { maxAge: 86400000 });
       res.send('Signup success !!');
     })
     .catch((err) => {
