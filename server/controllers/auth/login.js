@@ -3,7 +3,6 @@ const { jwtSign } = require('../../helpers');
 const { getUserByUsername } = require('../../database/queries/users');
 
 exports.login = (req, res, next) => {
-  // res.send(' Hello from login file');
   const { username, password } = req.body;
   if (!username || !password) next({ code: 400, msg: 'bad request !!!!' });
 
