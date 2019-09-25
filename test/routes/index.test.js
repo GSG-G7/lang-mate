@@ -1,1 +1,2 @@
-exports.langaugesTest = require('./languages.test');
+exports.languagesTest = require('./languages.test');
+exports.deactivate = require('./deactivate.test');
