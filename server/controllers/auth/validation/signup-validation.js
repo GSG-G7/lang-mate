@@ -1,18 +1,17 @@
-const Joi = require('@hapi/joi');
+const yup = require('yup');
 
-const signupSchema = Joi.object().keys({
-  username: Joi.string()
-    .alphanum()
-    .min(2)
-    .max(30)
-    .required(),
+const signupSchema = yup.object().shape({
+  username: yup.string().max(30).min(2).required,
 
-  password: Joi.string()
-    .regex(/^[a-zA-Z0-9]{8,30}$/)
+  password: yup.string()
+    .matches(/^[a-zA-Z0-9]{8,30}$/)
     .required(),
-  email: Joi.string()
+  email: yup.string()
     .email({ minDomainSegments: 2 })
     .required(),
+  native_lang_id: yup.number(),
+  learning_lang_id: yup.number(),
 });
 
-exports.signupValidation = (userData) => Joi.validate(userData, signupSchema);
+module.exports = { signupSchema }
+;
