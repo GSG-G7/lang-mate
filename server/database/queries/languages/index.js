@@ -1,1 +1,3 @@
-exports.getAllLanguages = require('./language');
+const getLanguages = require('./getLanguages');
+
+module.exports = { getLanguages };

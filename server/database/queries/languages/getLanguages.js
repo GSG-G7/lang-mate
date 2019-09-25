@@ -1,9 +1,6 @@
 const dbConnection = require('../../config/dbConnection');
 
-exports.changePassword = () => {
-  const sql = {
-    text: '',
-    value: [],
-  };
+exports.getLanguages = () => {
+  const sql = 'SELECT * FROM languages';
   return dbConnection.query(sql);
 };
