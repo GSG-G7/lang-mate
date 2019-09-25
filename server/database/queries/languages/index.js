@@ -1,3 +1,4 @@
-const getLanguages = require('./getLanguages');
+const { getLanguages } = require('./getLanguages');
+const { getLanguageById } = require('./getLanguageById');
 
-module.exports = { getLanguages };
+module.exports = { getLanguages, getLanguageById };
