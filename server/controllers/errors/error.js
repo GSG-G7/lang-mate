@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 exports.errors = (err, req, res, next) => {
   // eslint-disable-next-line no-console
   console.log(err);
