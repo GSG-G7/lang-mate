@@ -22,10 +22,10 @@ VALUES
 INSERT INTO users
   (username, email, password, isActive, native_lang_id, learning_lang_id)
 VALUES
-   ('amoodaa', 'amoodaa@gmail.com', 'something', true,1,6),
-   ('fadi', 'amoodaa2@gmail.com', 'something', true,1,5),
-   ('yosef', 'amoodaa3@gmail.com', 'something', true,2,4),
-   ('mai', 'amoodaa5@gmail.com', 'something', true,4,6);
+   ('amoodaa', 'amoodaa@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,1,6),
+   ('fadi', 'amoodaa2@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,1,5),
+   ('yosef', 'amoodaa3@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,2,4),
+   ('mai', 'amoodaa5@gmail.com', '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO', true,4,6);
 
 INSERT INTO channels
   (name)
