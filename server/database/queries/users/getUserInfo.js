@@ -1,6 +1,4 @@
 const dbConnection = require('../../config/dbConnection');
-// do 2 queries
-// one to get user by username, and one by userId
 
 exports.getUserById = (id) => {
   const sql = {
