@@ -1,3 +1,3 @@
-exports.addChannel = (req, res, next) => {
+exports.addChannel = (req, res) => {
   res.send('Hi from posting channels');
 };
