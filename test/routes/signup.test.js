@@ -11,15 +11,17 @@ test('Test /signup route', (t) => {
       password: 'Fatma123',
       nativeLangId: '1',
       learningLangId: '2',
+      interestsId: [1, 2],
     })
     .expect(200)
-    .expect('Content-Type', 'text/html; charset=utf-8')
+    .expect('Content-Type', 'application/json; charset=utf-8')
     .end((err, res) => {
       if (err) {
         t.error(err);
         t.end();
       } else {
-        t.equals(res.text.includes('success'), true, 'test for signup result');
+        console.log('asdasdas', res.body);
+        t.equals(res.body.isSuccess, true, 'the login is Success');
         t.end();
       }
     });
