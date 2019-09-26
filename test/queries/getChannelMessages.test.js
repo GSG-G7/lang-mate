@@ -21,7 +21,7 @@ test('test Languages query', (t) => {
       const actual = rows;
       delete actual[0].sent_at;
       delete actual[1].sent_at;
-      t.deepEqual(actual, expected, 'The table should be languages');
+      t.deepEqual(actual, expected, 'The table should be 2 messages from channel with id : 1');
       t.end();
     })
     .catch(t.error);
