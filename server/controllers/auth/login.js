@@ -20,7 +20,7 @@ exports.login = (req, res, next) => {
       throw new Error(' username or password doesn\'t match our records ');
     })
     .then((token) => {
-      res.cookie('token', token, { maxAge: 8400000, httpInly: true });
+      res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
       res.send({ message: 'success' });
     })
     .catch((err) => {
