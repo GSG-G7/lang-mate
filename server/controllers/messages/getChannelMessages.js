@@ -1,3 +1,14 @@
-exports.getChannelMessages = (req, res) => {
-  res.send('Hi from getting messages for a channel');
+const { messages: { getChannelMessages } } = require('../../database/queries');
+
+exports.getChannelMessages = (req, res, next) => {
+  const { id } = req.params;
+  getChannelMessages(id)
+    .then(({ rows }) => res.json({
+      data:
+      {
+        channelId: id,
+        messages: rows,
+      },
+    }))
+    .catch(next);
 };
