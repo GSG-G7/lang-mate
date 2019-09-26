@@ -9,9 +9,9 @@ exports.login = (req, res, next) => {
   const key = process.env.KEY;
   let id;
   getUserByUsername(username)
-    .then(({ rows }) => {
-      id = rows[0].id;
-      return compare(password, rows[0].password);
+    .then(({ rows: [{ id: dbId, password: dbPassword }] }) => {
+      id = dbId;
+      return compare(password, dbPassword);
     })
     .then((isValid) => {
       if (isValid) {
