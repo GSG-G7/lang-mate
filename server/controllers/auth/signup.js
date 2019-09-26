@@ -24,7 +24,7 @@ exports.signup = (req, res, next) => {
     .then(({ rows }) => jwtSign({ userInfo: { username: rows[0].username, Id: rows[0].id } }, key))
     .then((sigendPayload) => {
       res.cookie('token', sigendPayload, { maxAge: 86400000 });
-      res.send('Signup success !!');
+      res.send({ signup: true });
     })
     .catch((err) => {
       if ((err.message === 'email exists') || (err.message === 'username exists')) {
