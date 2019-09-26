@@ -1,5 +1,5 @@
-const addChannel = require('./addChannel');
-const getChannelMessages = require('./getChannelMessages');
+const { addChannel } = require('./addChannel');
+const { getChannelMessages } = require('./getChannelMessages');
 
 module.exports = {
   addChannel,
