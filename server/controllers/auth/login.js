@@ -19,7 +19,7 @@ exports.login = (req, res, next) => {
       } throw new Error(' username or password doesn\'t match our records ');
     }).then((token) => {
       res.cookie('token', token);
-      res.send('Login success');
+      res.send({ Login: 'success' });
     })
     .catch((err) => {
       if (err.message === ' username or password doesn\'t match our records ') {
