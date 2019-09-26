@@ -1,5 +1,5 @@
 const test = require('tape');
-const dbbuild = require('../../server/database/config/dbbuild');
+const dbBuild = require('../../server/database/config/dbbuild');
 const { messages: { getChannelMessages } } = require('../../server/database/queries/');
 
 test('test Languages query', (t) => {
@@ -15,7 +15,7 @@ test('test Languages query', (t) => {
     channel_id: 1,
     content: 'hey4',
   }];
-  dbbuild()
+  dbBuild()
     .then(() => getChannelMessages(1, 2))
     .then(({ rows }) => {
       const actual = rows;
