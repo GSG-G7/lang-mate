@@ -15,7 +15,7 @@ exports.changePassword = (req, res, next) => {
     return hash(newPassword, 10);
   })
     .then((hashedPassword) => changePassword(userId, hashedPassword))
-    .then(() => res.send('Password is changed'))
+    .then(() => res.status(200).json({ message: 'Password is changed' }))
     .catch((err) => {
       if (err.message === 'You entered a wrong password' || err.message === 'Your new password and old password are the same') next({ code: 400, msg: err.message });
       else next(err);
