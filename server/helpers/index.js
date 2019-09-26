@@ -1,3 +1,3 @@
-const { jwtSign } = require('./jwtSignPromise');
+const { jwtSign } = require('./jwtVerifyPromise');
 
 module.exports = { jwtSign };
