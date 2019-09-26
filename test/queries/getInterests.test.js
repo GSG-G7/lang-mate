@@ -6,7 +6,8 @@ test('Testing for the interests query', (t) => {
   dbBuild()
     .then(() => getInterests())
     .then((res) => {
-      t.equal(JSON.stringify(res.rows).includes('name'), true, 'There is a name if we have interests');
+      const actual = res.rows[0].name;
+      t.equal(actual, 'music', 'First interest should be music');
       t.end();
     })
     .catch((err) => {
