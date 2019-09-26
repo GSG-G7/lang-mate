@@ -14,13 +14,13 @@ test('Test /users/change-password route', (t) => {
           oldPassword: 'Fatma123',
         })
         .expect(200)
-        .expect('Content-Type', /html/)
+        .expect('Content-Type', 'application/json; charset=utf-8')
         .end((err, res) => {
           if (err) {
             t.error(err);
             t.end();
           } else {
-            t.equals(res.text, 'Password is changed', 'Should return password is changed');
+            t.equals(res.body.message, 'Password is changed', 'Should return password is changed');
             t.end();
           }
         });
