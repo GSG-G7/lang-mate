@@ -1,9 +1,9 @@
 const dbConnection = require('../../config/dbConnection');
 
-exports.changePassword = () => {
+exports.changePassword = (userId, newPassword) => {
   const sql = {
-    text: '',
-    values: [],
+    text: 'UPDATE users SET password = $2 WHERE id = $1',
+    values: [userId, newPassword],
   };
   return dbConnection.query(sql);
 };
