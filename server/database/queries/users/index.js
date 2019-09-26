@@ -8,6 +8,7 @@ const { getUsersByLang } = require('./getUsersByLang');
 const { searchUsers } = require('./searchUsers');
 const { getUserChannels } = require('./getUserChannels');
 const { addUser } = require('./addUser');
+const { addUserInterests } = require('./addUserInterests');
 
 module.exports = {
   changePassword,
@@ -21,4 +22,5 @@ module.exports = {
   getUserByEmail,
   getUserByEmailOrUsername,
   addUser,
+  addUserInterests,
 };
