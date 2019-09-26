@@ -7,11 +7,11 @@ const { users: { getUserByEmailOrUsername, addUser } } = require('../../database
 exports.signup = (req, res, next) => {
   const key = process.env.KEY;
   const {
-    username, email, password, nativeLangId, learningLangId,
+    username, email, password, nativeLangId, learningLangId, interestsId,
   } = req.body;
 
   signupSchema.validate({
-    username, email, password, nativeLangId, learningLangId,
+    username, email, password, nativeLangId, learningLangId, interestsId,
   })
     .then(() => getUserByEmailOrUsername(email, username))
     .then(({ rows }) => {
@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => {
     })
     .then(() => hash(password, 10))
     .then((hashed) => addUser({
-      username, email, password: hashed, nativeLangId, learningLangId,
+      username, email, password: hashed, nativeLangId, learningLangId, interestsId,
     }))
     .then(({ rows }) => jwtSign({ userInfo: { username: rows[0].username, Id: rows[0].id } }, key))
     .then((sigendPayload) => {

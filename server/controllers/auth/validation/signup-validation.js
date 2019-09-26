@@ -19,6 +19,8 @@ const signupSchema = yup.object().shape({
     .required()
     .positive()
     .integer(),
+  interestsId: yup
+    .array().of(yup.number().min(1)),
 });
 
 module.exports = { signupSchema };
