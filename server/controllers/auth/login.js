@@ -1,4 +1,4 @@
-const { compare } = require('bcrypt');
+const { compare, hash } = require('bcrypt');
 const { jwtSign } = require('../../helpers');
 const { getUserByUsername } = require('../../database/queries/users');
 
@@ -11,14 +11,16 @@ exports.login = (req, res, next) => {
   getUserByUsername(username)
     .then(({ rows }) => {
       id = rows[0].id;
-      return compare(password, rows[0].password);
+      return hash(password, 10)
+        .then((hashed) => compare(hashed, rows[0].password));
     })
     .then((isValid) => {
       if (isValid) {
         return jwtSign({ userInfo: { username, id } }, key);
       }
       throw new Error(' username or password doesn\'t match our records ');
-    }).then((token) => {
+    })
+    .then((token) => {
       res.cookie('token', token);
       res.send({ Login: 'success' });
     })
