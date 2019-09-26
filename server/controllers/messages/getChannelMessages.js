@@ -1,12 +1,12 @@
-const { messages } = require('../../database/queries');
+const { messages: { getChannelMessages } } = require('../../database/queries');
 
 exports.getChannelMessages = (req, res, next) => {
-  messages
-    .getChannelMessages(req.params.id)
+  const { id } = req.params;
+  getChannelMessages(id)
     .then(({ rows }) => res.json({
       data:
       {
-        channelId: req.params.id,
+        channelId: id,
         messages: rows,
       },
     }))
