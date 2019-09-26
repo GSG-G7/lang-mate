@@ -8,7 +8,7 @@ exports.getUsersByInterest = (req, res, next) => {
   let users;
   const { id } = req.params;
   // Validate the id
-  if (!Number(id)) return next({ code: 400 });
+  if (!Number(id)) return next({ code: 400, msg: 'bad request' });
   // Calling the query
   getUsersByInterest(id)
     .then(({ rows }) => {
