@@ -2,11 +2,11 @@ const dbConnection = require('../../config/dbConnection');
 
 exports.getChannelMessages = (channelId, numberOfMessages = null) => {
   const sql = numberOfMessages ? {
-    text: 'select * from (select * from messages where channel_id = $1 order by sent_at desc) as msgs limit $2',
+    text: 'SELECT * FROM (SELECT * FROM messages WHERE channel_id = $1 ORDER BY sent_at DESC) AS msgs LIMIT $2',
     values: [channelId, numberOfMessages],
   }
     : {
-      text: 'select * from messages where channel_id = $1 order by sent_at desc',
+      text: 'SELECT * FROM messages WHERE channel_id = $1 ORDER BY sent_at DESC',
       values: [channelId],
     };
   return dbConnection.query(sql);
