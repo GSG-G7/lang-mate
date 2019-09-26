@@ -11,6 +11,5 @@ test('test changePassword query', (t) => {
       t.equals(result.rows[0].password, 'Mai', 'The password must be changed');
       t.end();
     })
-    .catch((err) => t.error(err))
-    .catch(t.error);
+    .catch((err) => t.error(err));
 });
