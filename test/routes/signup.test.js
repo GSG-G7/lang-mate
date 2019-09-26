@@ -20,7 +20,6 @@ test('Test /signup route', (t) => {
         t.error(err);
         t.end();
       } else {
-        console.log('asdasdas', res.body);
         t.equals(res.body.isSuccess, true, 'the login is Success');
         t.end();
       }
