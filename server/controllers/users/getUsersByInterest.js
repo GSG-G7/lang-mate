@@ -1,5 +1,5 @@
 const {
-  users: { getUsersByInterest: getUsers },
+  users: { getUsersByInterest },
   languages: { getLanguageById },
 } = require('../../database/queries');
 const { formatLanguages } = require('../../helpers/formatLanguages');
@@ -10,7 +10,7 @@ exports.getUsersByInterest = (req, res, next) => {
   // Validate the id
   if (!Number(id)) return next({ code: 400 });
   // Calling the query
-  getUsers(id)
+  getUsersByInterest(id)
     .then((result) => {
       users = result.rows;
       return users.map((user) => getLanguageById(user.native_lang_id));
