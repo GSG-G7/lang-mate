@@ -16,7 +16,8 @@ exports.login = (req, res, next) => {
     .then((isValid) => {
       if (isValid) {
         return jwtSign({ userInfo: { username, id } }, key);
-      } throw new Error(' username or password doesn\'t match our records ');
+      }
+      throw new Error(' username or password doesn\'t match our records ');
     }).then((token) => {
       res.cookie('token', token);
       res.send({ Login: 'success' });
