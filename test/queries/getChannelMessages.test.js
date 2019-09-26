@@ -21,7 +21,7 @@ test('test Languages query', (t) => {
       const actual = rows;
       delete actual[0].sent_at;
       delete actual[1].sent_at;
-      t.deepEqual(rows, actual, 'The table should be languages');
+      t.deepEqual(actual, expected, 'The table should be languages');
       t.end();
     })
     .catch(t.error);
