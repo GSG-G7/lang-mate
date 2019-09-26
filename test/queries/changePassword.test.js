@@ -1,10 +1,10 @@
 const test = require('tape');
-const dbbuild = require('../../server/database/config/dbbuild');
+const dbBuild = require('../../server/database/config/dbbuild');
 const { users: { changePassword, getUserById } } = require('../../server/database/queries/');
 
 test('test changePassword query', (t) => {
   const passwordInfo = { userId: 1, newPassword: 'Mai' };
-  dbbuild()
+  dbBuild()
     .then(() => changePassword(passwordInfo))
     .then(() => getUserById(passwordInfo.userId))
     .then((result) => {
