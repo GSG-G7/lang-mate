@@ -24,7 +24,7 @@ exports.signup = (req, res, next) => {
       username, email, password: hashed, nativeLangId, learningLangId,
     }))
     .then(({ rows: [addedUser] }) => {
-      interestsId.map((interestId) => addUserInterests(interestId, addedUser.id));
+      addUserInterests(interestsId, addedUser.id);
       return jwtSign({ userInfo: { username: addedUser.username, Id: addedUser.id } }, key);
     })
     .then((sigendPayload) => {
