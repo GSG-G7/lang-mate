@@ -11,8 +11,8 @@ exports.getUsersByInterest = (req, res, next) => {
   if (!Number(id)) return next({ code: 400 });
   // Calling the query
   getUsersByInterest(id)
-    .then((result) => {
-      users = result.rows;
+    .then(({ rows }) => {
+      users = rows;
       return users.map((user) => getLanguageById(user.native_lang_id));
     })
     .then((promises) => Promise.all(promises))
