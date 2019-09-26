@@ -1,3 +1,4 @@
-exports.langaugesTest = require('./languages.test');
-exports.usersByInterest = require('./usersByInterest.test');
-exports.changePassword = require('./changePassword.test');
+require('./languages.test');
+require('./getChannelMessages.test');
+require('./usersByInterest.test');
+require('./changePassword.test');
