@@ -41,3 +41,26 @@ test('testing GET /api/v1/users/search?search=', (t) => {
     })
     .catch(t.error);
 });
+test('testing GET /api/v1/users/search?search=', (t) => {
+  const expected = {
+    msg: 'no users with that username found :(',
+  };
+
+  dbBuild()
+    .then(() => {
+      supertest(app)
+        .get('/api/v1/users/search?search=aasdasdmo')
+        .expect(400)
+        .expect('Content-Type', 'application/json; charset=utf-8')
+        .end((err, { body: actual }) => {
+          if (err) {
+            t.error(err);
+            t.end();
+          } else {
+            t.deepEqual(actual, expected, 'should be equal');
+            t.end();
+          }
+        });
+    })
+    .catch(t.error);
+});
