@@ -4,7 +4,7 @@ const {
   users: {
     changePassword,
     getUserChannels,
-    getUserByInterest,
+    getUsersByInterest,
     deactivateUser,
     getUsersByLang,
     getUserInfo,
@@ -29,7 +29,7 @@ router.post('/channels', addChannel);
 
 router.get('/users/search', searchUser);
 router.get('/users/native-lang/:id', getUsersByLang);
-router.get('/users/interest/:id', getUserByInterest);
+router.get('/users/interest/:id', getUsersByInterest);
 router.get('/users/profile/:username', getUserInfo);
 router.put('/users/deactivate', deactivateUser);
 router.put('/users/change-password', changePassword);

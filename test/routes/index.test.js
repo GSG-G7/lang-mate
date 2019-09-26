@@ -1,2 +1,5 @@
-exports.languagesTest = require('./languages.test');
-exports.deactivate = require('./deactivate.test');
+require('./deactivate.test');
+require('./languages.test');
+require('./getChannelMessages.test');
+require('./usersByInterest.test');
+require('./changePassword.test');
