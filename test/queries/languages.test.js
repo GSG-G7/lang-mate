@@ -1,5 +1,5 @@
 const test = require('tape');
-const dbbuild = require('../../server/database/config/dbbuild');
+const dbBuild = require('../../server/database/config/dbbuild');
 const { languages: { getLanguages } } = require('../../server/database/queries/');
 
 test('test Languages query', (t) => {
@@ -11,13 +11,13 @@ test('test Languages query', (t) => {
     { id: 5, name: 'dutch' },
     { id: 6, name: 'japanese' },
   ];
-  dbbuild()
-    .then(() => getLanguages()
-      .then((res) => res.rows)
-      .then((result) => {
-        t.deepEqual(result, expected, 'The table should be languages');
-        t.end();
-      })
-      .catch((err) => t.error(err)))
+  dbBuild()
+    .then(() => getLanguages())
+    .then((res) => res.rows)
+    .then((result) => {
+      t.deepEqual(result, expected, 'The table should be languages');
+      t.end();
+    })
+    .catch((err) => t.error(err))
     .catch(t.error);
 });
