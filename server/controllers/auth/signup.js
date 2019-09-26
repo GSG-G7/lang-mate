@@ -23,11 +23,11 @@ exports.signup = (req, res, next) => {
     .then((hashed) => addUser({
       username, email, password: hashed, nativeLangId, learningLangId,
     }))
-    .then(({ rows: [addedUser] }) => {
-      addUserInterests(interestsId, addedUser.id);
-      return jwtSign({ userInfo: { username: addedUser.username, Id: addedUser.id } }, key);
-    })
-    .then((sigendPayload) => {
+    .then(({ rows: [addedUser] }) => Promise.all([
+      jwtSign({ userInfo: { username: addedUser.username, Id: addedUser.id } }, key),
+      addUserInterests(interestsId, addedUser.id),
+    ]))
+    .then(([sigendPayload]) => {
       res.cookie('token', sigendPayload, { maxAge: 86400000 });
       res.send({ isSuccess: true });
     })
