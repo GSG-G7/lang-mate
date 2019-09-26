@@ -3,7 +3,7 @@ const supertest = require('supertest');
 const app = require('../../server/app');
 const dbbuild = require('../../server/database/config/dbbuild');
 
-test('should do something', async (t) => {
+test('test route of GET /api/v1/channels/:id ', (t) => {
   dbbuild().then(() => {
     supertest(app)
       .get('/api/v1/channels/1')
