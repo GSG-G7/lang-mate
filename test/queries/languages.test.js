@@ -1,5 +1,5 @@
 const test = require('tape');
-const dbbuild = require('../../server/database/config/dbbuild');
+const dbBuild = require('../../server/database/config/dbbuild');
 const { languages: { getLanguages } } = require('../../server/database/queries/');
 
 test('test Languages query', (t) => {
@@ -11,7 +11,7 @@ test('test Languages query', (t) => {
     { id: 5, name: 'dutch' },
     { id: 6, name: 'japanese' },
   ];
-  dbbuild()
+  dbBuild()
     .then(() => getLanguages()
       .then((res) => res.rows)
       .then((result) => {

@@ -1,2 +1,4 @@
-exports.langaugesTest = require('./languages.test');
-exports.signUpTest = require('./signup.test');
+require('./signup.test');
+require('./languages.test');
+require('./getChannelMessages.test');
+require('./usersByInterest.test');
