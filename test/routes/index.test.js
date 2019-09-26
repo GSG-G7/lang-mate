@@ -3,3 +3,4 @@ require('./getChannelMessages.test');
 require('./usersByInterest.test');
 require('./changePassword.test');
 require('./addChannel.test');
+require('./logout.test');
