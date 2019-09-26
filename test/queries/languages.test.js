@@ -12,12 +12,11 @@ test('test Languages query', (t) => {
     { id: 6, name: 'japanese' },
   ];
   dbBuild()
-    .then(() => getLanguages()
-      .then((res) => res.rows)
-      .then((result) => {
-        t.deepEqual(result, expected, 'The table should be languages');
-        t.end();
-      })
-      .catch((err) => t.error(err)))
-    .catch(t.error);
+    .then(() => getLanguages())
+    .then((res) => res.rows)
+    .then((result) => {
+      t.deepEqual(result, expected, 'The table should be languages');
+      t.end();
+    })
+    .catch((err) => t.error(err));
 });
