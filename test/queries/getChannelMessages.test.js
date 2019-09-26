@@ -2,7 +2,7 @@ const test = require('tape');
 const dbBuild = require('../../server/database/config/dbbuild');
 const { messages: { getChannelMessages } } = require('../../server/database/queries/');
 
-test('test Languages query', (t) => {
+test('test messages from channel query', (t) => {
   const expected = [{
     id: 1,
     user_id: 1,
