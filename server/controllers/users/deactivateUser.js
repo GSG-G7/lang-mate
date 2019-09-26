@@ -2,7 +2,7 @@ const { users: { deactivateUser } } = require('../../database/queries');
 
 exports.deactivateUser = (req, res, next) => {
   // Get the user id and username
-  // const { userId, username } = req.user;
+  // const { id, username } = req.user;
   // Calling the query
   deactivateUser(1)
     .then(({ rows: [{ isactive }] }) => {
