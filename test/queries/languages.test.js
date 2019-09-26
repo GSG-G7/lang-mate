@@ -13,9 +13,8 @@ test('test Languages query', (t) => {
   ];
   dbBuild()
     .then(() => getLanguages())
-    .then((res) => res.rows)
-    .then((result) => {
-      t.deepEqual(result, expected, 'The table should be languages');
+    .then(({ rows }) => {
+      t.deepEqual(rows, expected, 'The table should be languages');
       t.end();
     })
     .catch((err) => t.error(err));
