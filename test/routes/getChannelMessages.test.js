@@ -14,10 +14,11 @@ test('test route of GET /api/v1/channels/:id ', (t) => {
           t.error(err);
           t.end();
         } else {
+          const [{ content: actualContent1 }, { content: actualContent2 }] = res.body.data.messages;
           const expectedContent1 = 'hey';
           const expectedContent2 = 'hey4';
-          t.equal(res.body.data.messages[0].content, expectedContent1, 'content should be equal');
-          t.equal(res.body.data.messages[1].content, expectedContent2, 'content should be equal');
+          t.equal(actualContent1, expectedContent1, 'content should be equal');
+          t.equal(actualContent2, expectedContent2, 'content should be equal');
           t.end();
         }
       });
