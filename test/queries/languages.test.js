@@ -18,6 +18,5 @@ test('test Languages query', (t) => {
       t.deepEqual(result, expected, 'The table should be languages');
       t.end();
     })
-    .catch((err) => t.error(err))
-    .catch(t.error);
+    .catch((err) => t.error(err));
 });
