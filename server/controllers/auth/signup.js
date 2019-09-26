@@ -1,7 +1,7 @@
 const { hash } = require('bcrypt');
 const { jwtSign } = require('../../helpers');
 const { signupSchema } = require('./validation/signup-validation');
-const { users: { getUserByEmailOrUsername, addUser } } = require('../../database/queries');
+const { users: { getUserByEmailOrUsername, addUser, addUserInterests } } = require('../../database/queries');
 
 
 exports.signup = (req, res, next) => {
@@ -9,7 +9,6 @@ exports.signup = (req, res, next) => {
   const {
     username, email, password, nativeLangId, learningLangId, interestsId,
   } = req.body;
-
   signupSchema.validate({
     username, email, password, nativeLangId, learningLangId, interestsId,
   })
@@ -22,12 +21,15 @@ exports.signup = (req, res, next) => {
     })
     .then(() => hash(password, 10))
     .then((hashed) => addUser({
-      username, email, password: hashed, nativeLangId, learningLangId, interestsId,
+      username, email, password: hashed, nativeLangId, learningLangId,
     }))
-    .then(({ rows }) => jwtSign({ userInfo: { username: rows[0].username, Id: rows[0].id } }, key))
+    .then(({ rows: [addedUser] }) => {
+      interestsId.map((interestId) => addUserInterests(interestId, addedUser.id).then(({ rows }) => console.log(rows)));
+      return jwtSign({ userInfo: { username: addedUser.username, Id: addedUser.id } }, key);
+    })
     .then((sigendPayload) => {
       res.cookie('token', sigendPayload, { maxAge: 86400000 });
-      res.send({ signup: true });
+      res.send({ isSuccess: true });
     })
     .catch((err) => {
       if ((err.message === 'email exists') || (err.message === 'username exists')) {
