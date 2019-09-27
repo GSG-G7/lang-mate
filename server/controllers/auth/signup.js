@@ -9,9 +9,10 @@ exports.signup = (req, res, next) => {
   const {
     username, email, password, nativeLangId, learningLangId, interestsId,
   } = req.body;
-  signupSchema.validate({
+  const userIfos = {
     username, email, password, nativeLangId, learningLangId, interestsId,
-  })
+  };
+  signupSchema.validate(userIfos)
     .then(() => getUserByEmailOrUsername(email, username))
     .then(({ rows }) => {
       if (rows.length !== 0) {
@@ -20,9 +21,7 @@ exports.signup = (req, res, next) => {
       }
     })
     .then(() => hash(password, 10))
-    .then((hashed) => addUser({
-      username, email, password: hashed, nativeLangId, learningLangId,
-    }))
+    .then((hashed) => addUser({ ...userIfos, password: hashed }))
     .then(({ rows: [addedUser] }) => Promise.all([
       jwtSign({ userInfo: { username: addedUser.username, id: addedUser.id } }, key),
       addUserInterests(interestsId, addedUser.id),
