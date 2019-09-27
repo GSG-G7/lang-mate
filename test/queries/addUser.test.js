@@ -14,10 +14,11 @@ tape('test for adduser query', (t) => {
     native_lang_id: 1,
     learning_lang_id: 1,
   }];
+  const userInfo = {
+    username: 'fadi1', email: 'fadi1@gmail.com', password: 'asd', nativeLangId: 1, learningLangId: 1,
+  };
   dbBulid()
-    .then(() => addUser({
-      username: 'fadi1', email: 'fadi1@gmail.com', password: 'asd', nativeLangId: 1, learningLangId: 1,
-    }))
+    .then(() => addUser(userInfo))
     .then(() => getUserByUsername('fadi1'))
     .then((res) => {
       t.deepEqual(res.rows, expected, 'test for add user');
