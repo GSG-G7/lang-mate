@@ -24,7 +24,7 @@ exports.signup = (req, res, next) => {
       username, email, password: hashed, nativeLangId, learningLangId,
     }))
     .then(({ rows: [addedUser] }) => Promise.all([
-      jwtSign({ userInfo: { username: addedUser.username, Id: addedUser.id } }, key),
+      jwtSign({ userInfo: { username: addedUser.username, id: addedUser.id } }, key),
       addUserInterests(interestsId, addedUser.id),
     ]))
     .then(([sigendPayload]) => {
