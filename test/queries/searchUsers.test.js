@@ -1,6 +1,6 @@
 const test = require('tape');
 const dbBuild = require('../../server/database/config/dbbuild');
-const { users: { searchUsers } } = require('../../server/database/queries/');
+const { users: { searchUsers } } = require('../../server/database/queries');
 
 test('testing search user query ', (t) => {
   const expected = [
@@ -8,7 +8,6 @@ test('testing search user query ', (t) => {
       id: 1,
       username: 'amoodaa',
       email: 'amoodaa@gmail.com',
-      password: '$2a$10$qRmEayvDH5zdQd0sEeqccOzmpQb4s6gd2.zjQ0kul7JM8TWfXJQKO',
       isactive: true,
       bio: null,
       avatar_path: null,
@@ -19,7 +18,9 @@ test('testing search user query ', (t) => {
 
   dbBuild()
     .then(() => searchUsers('amo'))
-    .then(({ rows: actual }) => {
+    .then(({ rows }) => {
+      const actual = [...rows];
+      delete actual[0].interests;
       t.deepEqual(actual, expected, 'should be equal');
       t.end();
     }).catch(t.error);
