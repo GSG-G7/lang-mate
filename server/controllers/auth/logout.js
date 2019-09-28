@@ -1,3 +1,4 @@
 exports.logout = (req, res) => {
-  res.send(' Hello from logout file');
+  res.clearCookie('token');
+  res.send({ isSuccess: true });
 };
