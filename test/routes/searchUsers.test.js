@@ -12,7 +12,6 @@ test('testing GET /api/v1/users/search?search=', (t) => {
           id: 1,
           username: 'amoodaa',
           email: 'amoodaa@gmail.com',
-          isactive: true,
           bio: null,
           avatar_path: null,
           interests: [{ id: 1, name: 'music' }, { id: 2, name: 'sports' }],

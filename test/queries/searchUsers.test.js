@@ -8,7 +8,6 @@ test('testing search user query ', (t) => {
       id: 1,
       username: 'amoodaa',
       email: 'amoodaa@gmail.com',
-      isactive: true,
       bio: null,
       avatar_path: null,
       native_lang_id: 1,
