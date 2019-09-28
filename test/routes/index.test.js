@@ -1,3 +1,4 @@
+require('./signup.test');
 require('./getInterests.test');
 require('./languages.test');
 require('./getChannelMessages.test');

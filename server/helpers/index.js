@@ -1,4 +1,12 @@
 const { jwtSign } = require('./jwtVerifyPromise');
-const { formatLanguagesV2 } = require('./formatLanguagesV2');
+const { jwtVerify } = require('./jwtVerifyPromise');
 
-module.exports = { jwtSign, formatLanguagesV2 };
+const { formatLanguagesV2 } = require('./formatLanguagesV2');
+const { formatLanguages } = require('./formatLanguages');
+
+module.exports = {
+  jwtSign,
+  jwtVerify,
+  formatLanguages,
+  formatLanguagesV2,
+};
