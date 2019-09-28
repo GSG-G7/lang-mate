@@ -10,7 +10,7 @@ const {
     getUserInfo,
     searchUsers,
   },
-  messages: { addChannel, getChannelMessages },
+  messages: { addChannel, getChannelMessages, getChannels },
   interests: { getAllInterests },
   languages: { getAllLanguages },
   errors: { errors },
@@ -25,6 +25,7 @@ router.get('/languages', getAllLanguages);
 router.get('/interests', getAllInterests);
 
 router.get('/channels/:id', getChannelMessages);
+router.get('/getChannels', getChannels);
 router.post('/channels', addChannel);
 
 router.get('/users/search', searchUsers);
