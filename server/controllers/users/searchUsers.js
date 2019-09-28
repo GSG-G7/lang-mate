@@ -7,7 +7,6 @@ exports.searchUsers = (req, res, next) => {
   const { search: searchQuery } = req.query;
   Promise.all([searchUsers(searchQuery), getLanguages()])
     .then(([{ rows: users }, { rows: languages }]) => {
-      console.log(users);
       if (users && users[0]) {
         return formatLanguagesV2(users, languages);
       }
