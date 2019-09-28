@@ -1,9 +1,6 @@
 const dbConnection = require('../../config/dbConnection');
 
 exports.getInterests = () => {
-  const sql = {
-    text: '',
-    values: [],
-  };
+  const sql = 'SELECT * FROM interests';
   return dbConnection.query(sql);
 };
