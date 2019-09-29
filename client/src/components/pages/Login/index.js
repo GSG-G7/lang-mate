@@ -33,7 +33,7 @@ class Login extends Component {
             </div>
             <div className="login-btn">
               <button type="submit">Login</button>
-              <Button text="Login" className="submit-btn" />
+              <Button text="Login" className="submit-btn" onClick={login} />
             </div>
           </form>
         </div>
