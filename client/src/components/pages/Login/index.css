@@ -32,7 +32,7 @@
 }
 
 .password-input , .username-input{
-    margin-top: 30px;
+    margin:30px auto 0 auto;
     background: #DADADA;
 border-radius: 15px;
 height: 50px;
@@ -60,3 +60,9 @@ border: none;
     font-weight: bold;
     height: 35px;
 }
+
+.input {
+    display: flex;
+    justify-content: center;
+}
+
