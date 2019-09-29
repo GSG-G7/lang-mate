@@ -5,7 +5,7 @@ exports.changePassword = (req, res, next) => {
   const { oldPassword, newPassword } = req.body;
   const { userInfo: { id } } = req.user;
   getUserById(id).then(({ rows }) => {
-    if (rows.length === 0) next({ code: 400, msg: 'no user with that id' });
+    if (rows.length === 0) return next({ code: 400, msg: 'no user with that id' });
 
     return Promise.all([
       compare(oldPassword, rows[0].password),
