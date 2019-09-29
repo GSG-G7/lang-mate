@@ -5,20 +5,18 @@ exports.changePassword = (req, res, next) => {
   const { oldPassword, newPassword } = req.body;
   const { userInfo: { id } } = req.user;
   getUserById(id).then(({ rows }) => {
-    if (rows.length === 0) throw new Error();
+    if (rows.length === 0) return next({ code: 400, msg: 'no user with that id' });
+
     return Promise.all([
-      compare(oldPassword, (rows[0].password)),
+      compare(oldPassword, rows[0].password),
       compare(newPassword, rows[0].password),
     ]);
   }).then(([oldPasswordMatches, newPasswordMatches]) => {
-    if (!oldPasswordMatches) throw new Error('You entered a wrong password');
-    else if (newPasswordMatches) throw new Error('Your new password and old password are the same');
+    if (!oldPasswordMatches) return next({ code: 400, msg: 'You entered a wrong password' });
+    if (newPasswordMatches) return next({ code: 400, msg: 'Your new password and old password are the same' });
     return hash(newPassword, 10);
   })
     .then((hashedPassword) => changePassword(id, hashedPassword))
     .then(() => res.status(200).json({ message: 'Password is changed' }))
-    .catch((err) => {
-      if (err.message === 'You entered a wrong password' || err.message === 'Your new password and old password are the same') next({ code: 400, msg: err.message });
-      else next(err);
-    });
+    .catch(next);
 };

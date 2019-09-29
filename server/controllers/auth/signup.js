@@ -16,8 +16,8 @@ exports.signup = (req, res, next) => {
     .then(() => getUserByEmailOrUsername(email, username))
     .then(({ rows }) => {
       if (rows.length !== 0) {
-        if (rows[0].username === username) throw Error('username exists');
-        if (rows[0].email === email) throw Error('email exists');
+        if (rows[0].username === username) return next({ code: 400, msg: 'username exists' });
+        if (rows[0].email === email) return next({ code: 400, msg: 'email exists' });
       }
     })
     .then(() => hash(password, 10))
@@ -32,9 +32,9 @@ exports.signup = (req, res, next) => {
     })
     .catch((err) => {
       if ((err.message === 'email exists') || (err.message === 'username exists')) {
-        next({ code: 400, msg: err.message });
-      } else {
+        return next({ code: 400, msg: err.message });
+      } 
         next(err);
-      }
+      
     });
 };
