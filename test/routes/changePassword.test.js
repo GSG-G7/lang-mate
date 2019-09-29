@@ -10,8 +10,7 @@ test('Test /users/change-password route', (t) => {
       supertest(app)
         .put('/api/v1/users/change-password')
         .send({
-          userId: 1,
-          newPassword: 'mai',
+          newPassword: 'fadi',
           oldPassword: 'Fatma123',
         })
         .expect(200)
