@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import Button from './components/common/Button';
 
 class Login extends Component {
   state = {};
