@@ -7,6 +7,9 @@ import Button from '../../common/Button';
 export default class signup extends Component {
   state = {
     username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
 
   render() {
