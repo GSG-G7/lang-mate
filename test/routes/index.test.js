@@ -1,3 +1,4 @@
+require('./login.test');
 require('./signup.test');
 require('./getInterests.test');
 require('./languages.test');
