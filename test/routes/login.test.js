@@ -3,18 +3,14 @@ const supertest = require('supertest');
 const app = require('../../server/app');
 const dbBuild = require('../../server/database/config/dbbuild');
 
-test('Test /signup route', (t) => {
+test('Test /login route', (t) => {
   const userInfo = {
-    username: 'sje1a',
-    email: 'fade@assassssskd1x.com',
+    username: 'fadi',
     password: 'Fatma123',
-    nativeLangId: 1,
-    learningLangId: 2,
-    interestsId: [1, 2],
   };
   dbBuild().then(() => {
     supertest(app)
-      .post('/api/v1/signup')
+      .post('/api/v1/login')
       .send(userInfo)
       .expect(200)
       .expect('Content-Type', 'application/json; charset=utf-8')
@@ -23,7 +19,7 @@ test('Test /signup route', (t) => {
           t.error(err);
           t.end();
         } else {
-          t.equals(res.body.isSuccess, true, 'the Signup is Success');
+          t.equals(res.body.isSuccess, true, 'the login is Success');
           t.end();
         }
       });

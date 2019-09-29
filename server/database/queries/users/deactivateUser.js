@@ -1,9 +1,9 @@
 const dbConnection = require('../../config/dbConnection');
 
-exports.deactivateUser = () => {
+exports.deactivateUser = (userId) => {
   const sql = {
-    text: '',
-    values: [],
+    text: 'UPDATE users SET isactive = false WHERE users.id = $1 RETURNING isactive',
+    values: [userId],
   };
   return dbConnection.query(sql);
 };
