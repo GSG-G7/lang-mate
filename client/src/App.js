@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import ApiService from './services/api';
 import './App.css';
 import Login from './components/pages/Login';
-import Button from './components/common/Button';
 
 class App extends React.Component {
   state = {
