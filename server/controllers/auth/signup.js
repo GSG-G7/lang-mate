@@ -26,8 +26,8 @@ exports.signup = (req, res, next) => {
       jwtSign({ userInfo: { username: addedUser.username, id: addedUser.id } }, key),
       addUserInterests(interestsId, addedUser.id),
     ]))
-    .then(([sigendPayload]) => {
-      res.cookie('token', sigendPayload, { maxAge: 86400000 });
+    .then(([signedPayload]) => {
+      res.cookie('token', signedPayload, { maxAge: 86400000 });
       res.send({ isSuccess: true });
     })
     .catch((err) => {

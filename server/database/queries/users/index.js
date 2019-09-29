@@ -1,5 +1,6 @@
 const { changePassword } = require('./changePassword');
 const { deactivateUser } = require('./deactivateUser');
+const { reactivateUser } = require('./reactivateUser');
 const { getUsersByInterest } = require('./getUsersByInterest');
 const {
   getUserById, getUserByUsername, getUserByEmail, getUserByEmailOrUsername,
@@ -13,6 +14,7 @@ const { addUserInterests } = require('./addUserInterests');
 module.exports = {
   changePassword,
   deactivateUser,
+  reactivateUser,
   getUserChannels,
   getUserById,
   getUserByUsername,
