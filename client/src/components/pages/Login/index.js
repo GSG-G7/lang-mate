@@ -12,7 +12,9 @@ class Login extends Component {
   render() {
     return (
       <div className="loginPage">
-        <div className="backBtn"></div>
+        <div className="backBtn">
+          <BackButton back={() => console.log('the url for previous page  ')} />
+        </div>
         <div className="loginBox">
           <form action="/" className="login-form">
             <div className="login-wlecome">
