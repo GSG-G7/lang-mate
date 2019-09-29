@@ -9,9 +9,13 @@ exports.login = (req, res, next) => {
   const key = process.env.KEY;
   let id;
   getUserByUsername(username)
-    .then(({ rows: [{ id: dbId, password: dbPassword }] }) => {
-      id = dbId;
-      return compare(password, dbPassword);
+    .then(({ rows }) => {
+      if (rows && rows[0]) {
+        const [{ id: dbId, password: dbPassword }] = rows;
+        id = dbId;
+        return compare(password, dbPassword);
+      }
+      return next({ code: 400, msg: 'username doesn\'t exist' });
     })
     .then((isValid) => {
       if (isValid) {
@@ -21,7 +25,7 @@ exports.login = (req, res, next) => {
     })
     .then((token) => {
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
-      res.send({ message: 'success' });
+      res.send({ isSuccess: true, message: 'success' });
     })
     .catch(next);
 };
