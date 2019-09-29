@@ -2,6 +2,7 @@ const test = require('tape');
 const supertest = require('supertest');
 const dbBuild = require('../../server/database/config/dbbuild');
 const app = require('../../server/app.js');
+const { token } = require('./cookie.test');
 
 test('testing GET /api/v1/users/search?search=', (t) => {
   const expected = {
@@ -28,6 +29,7 @@ test('testing GET /api/v1/users/search?search=', (t) => {
         .get('/api/v1/users/search?search=amo')
         .expect(200)
         .expect('Content-Type', 'application/json; charset=utf-8')
+        .set('Cookie', [`token=${token}`])
         .end((err, { body: actual }) => {
           if (err) {
             t.error(err);
@@ -51,6 +53,7 @@ test('testing GET /api/v1/users/search?search=', (t) => {
         .get('/api/v1/users/search?search=aasdasdmo')
         .expect(400)
         .expect('Content-Type', 'application/json; charset=utf-8')
+        .set('Cookie', [`token=${token}`])
         .end((err, { body: actual }) => {
           if (err) {
             t.error(err);
