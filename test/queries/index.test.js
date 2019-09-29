@@ -1,4 +1,5 @@
 require('./addUser.test');
+require('./deactivate.test');
 require('./getInterests.test');
 require('./languages.test');
 require('./getChannelMessages.test');
