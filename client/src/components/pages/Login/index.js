@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './index.css';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
-import login from '../../../services/api';
+
+// import loginFun from '../../../services/api';
+import { loginFun, inputFun } from '../../../services/api';
 
 class Login extends Component {
   state = {};
@@ -17,7 +19,17 @@ class Login extends Component {
               <h1>Welcome Back</h1>
             </div>
             <div className="login-inpputs">
-              <input
+              <Input
+                type="text"
+                name="username-input"
+                className="username"
+                label="username"
+                placeholder="username"
+                value=""
+                onChange={inputFun}
+                errMsg=""
+              />
+              {/* <input
                 type="text"
                 placeholder="username"
                 className="username-input"
@@ -30,10 +42,20 @@ class Login extends Component {
                 className="password-input"
                 name="username-password"
                 aria-label="password"
+              /> */}
+              <Input
+                type="text"
+                name="username-passwrd"
+                className="password"
+                label="password"
+                placeholder="password"
+                value=""
+                onChange={inputFun}
+                errMsg=" "
               />
             </div>
             <div className="login-btn">
-              <Button text="Login" className="submit-btn" onClick={login} />
+              <Button text="Login" className="submit-btn" onClick={loginFun} />
             </div>
           </form>
         </div>
