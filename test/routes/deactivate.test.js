@@ -7,6 +7,7 @@ test('Testing for the deactivate route', (t) => {
   supertest(app)
     .put('/api/v1/users/deactivate')
     .set('Cookie', [`token=${token}`])
+    .send({ password: 'Fatma123' })
     .expect(200)
     .expect('Content-Type', /json/)
     .end((err, res) => {
