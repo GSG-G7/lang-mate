@@ -3,7 +3,6 @@ import './index.css';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 
-// import loginFun from '../../../services/api';
 import { loginFun, inputFun } from '../../../services/api';
 
 class Login extends Component {
