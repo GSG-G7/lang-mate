@@ -2,6 +2,7 @@ const test = require('tape');
 const supertest = require('supertest');
 const app = require('../../server/app');
 const dbbuild = require('../../server/database/config/dbbuild');
+const { token } = require('./cookie.test');
 
 test('test route of GET /api/v1/channels/:id ', (t) => {
   dbbuild().then(() => {
@@ -9,6 +10,7 @@ test('test route of GET /api/v1/channels/:id ', (t) => {
       .get('/api/v1/channels/1')
       .expect(200)
       .expect('Content-Type', 'application/json; charset=utf-8')
+      .set('Cookie', [`token=${token}`])
       .end((err, res) => {
         if (err) {
           t.error(err);

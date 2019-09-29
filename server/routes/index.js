@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const {
-  auth: { login, logout, signup },
+  auth: {
+    login, logout, signup, auth,
+  },
   users: {
     changePassword,
     getUserChannels,
@@ -18,6 +20,8 @@ const {
 
 router.post('/login', login);
 router.post('/signup', signup);
+router.use(auth);
+
 router.post('/logout', logout);
 
 router.get('/languages', getAllLanguages);
