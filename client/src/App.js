@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import LandingPage from './components/pages/Landing';
 import ApiService from './services/api';
 import './App.css';
 
@@ -19,6 +20,7 @@ class App extends React.Component {
         <div>
           <h1>{text}</h1>
         </div>
+        <Route exact path="/" component={LandingPage} />
       </BrowserRouter>
     );
   }
