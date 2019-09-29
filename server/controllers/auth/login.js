@@ -9,10 +9,14 @@ exports.login = (req, res, next) => {
   const key = process.env.KEY;
   let id;
   getUserByUsername(username)
-    .then(({ rows: [{ id: dbId, password: dbPassword, isactive }] }) => {
-      id = dbId;
-      const reactivePromise = isactive ? Promise.resolve(true) : reactivateUser();
-      return Promise.all([compare(password, dbPassword), reactivePromise]);
+    .then(({ rows }) => {
+      if (rows && rows[0]) {
+        const [{ id: dbId, password: dbPassword, isactive }] = rows;
+        id = dbId;
+        const reactivePromise = isactive ? Promise.resolve(true) : reactivateUser();
+        return Promise.all([compare(password, dbPassword), reactivePromise]);
+      }
+      return next({ code: 400, msg: 'username doesn\'t exist' });
     })
     .then(([isValid]) => {
       if (isValid) {
@@ -22,7 +26,7 @@ exports.login = (req, res, next) => {
     })
     .then((token) => {
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
-      res.send({ message: 'success' });
+      res.send({ isSuccess: true, message: 'success' });
     })
     .catch((err) => {
       if (err.message === ' username or password doesn\'t match our records ') {

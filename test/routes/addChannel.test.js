@@ -2,6 +2,7 @@ const test = require('tape');
 const supertest = require('supertest');
 const app = require('../../server/app');
 const dbBuild = require('../../server/database/config/dbbuild');
+const { token } = require('./cookie.test');
 
 test('Test /channels route', (t) => {
   dbBuild()
@@ -13,6 +14,7 @@ test('Test /channels route', (t) => {
           subscribers: [1, 2],
         })
         .expect(200)
+        .set('Cookie', [`token=${token}`])
         .expect('Content-Type', 'application/json; charset=utf-8')
         .end((err, res) => {
           if (err) {
