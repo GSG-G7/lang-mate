@@ -14,6 +14,6 @@ exports.getUsersByLang = (req, res, next) => {
     })
     .then(() => getLanguages())
     .then((langs) => formatLanguagesV2(users, langs.rows))
-    .then((result) => res.json({ data: result }))
+    .then((result) => res.status(200).json({ data: result }))
     .catch((err) => next(err));
 };
