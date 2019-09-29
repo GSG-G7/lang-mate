@@ -26,7 +26,5 @@ exports.getUsersByInterest = (req, res, next) => {
     .then((result) => {
       res.status(200).json({ data: result });
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch(next);
 };

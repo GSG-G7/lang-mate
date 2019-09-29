@@ -10,11 +10,7 @@ exports.searchUsers = (req, res, next) => {
       if (users && users[0]) {
         return formatLanguagesV2(users, languages);
       }
-      throw new Error('no users with that username found :(');
+      return next({ code: 400, msg: 'no users with that username found :(' });
     }).then((usersFormatted) => res.json({ data: { searchQuery, result: usersFormatted } }))
-    .catch((err) => {
-      if (err.message === 'no users with that username found :(') {
-        next({ code: 400, msg: err.message });
-      } else next(err);
-    });
+    .catch(next);
 };

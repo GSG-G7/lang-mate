@@ -16,8 +16,8 @@ exports.signup = (req, res, next) => {
     .then(() => getUserByEmailOrUsername(email, username))
     .then(({ rows }) => {
       if (rows.length !== 0) {
-        if (rows[0].username === username) throw Error('username exists');
-        if (rows[0].email === email) throw Error('email exists');
+        if (rows[0].username === username) next({ code: 400, msg: 'username exists' });
+        if (rows[0].email === email) next({ code: 400, msg: 'email exists' });
       }
     })
     .then(() => hash(password, 10))
