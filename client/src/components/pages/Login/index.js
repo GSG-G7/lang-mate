@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import Button from './components/common/Button';
+import { login } from './services/api';
 
 class Login extends Component {
   state = {};
