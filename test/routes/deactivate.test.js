@@ -22,5 +22,5 @@ test('Testing for the deactivate route', (t) => {
             t.end();
           }
         });
-    }).catch(next);
+    }).catch((err) => t.error(err));
 });
