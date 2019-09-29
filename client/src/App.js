@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ApiService from './services/api';
+import Signup from './components/pages/Signup';
 import './App.css';
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <h1>{text}</h1>
+          <Route exact path="/signup" component={Signup} />
         </div>
       </BrowserRouter>
     );
