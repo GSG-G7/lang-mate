@@ -1,5 +1,5 @@
-const { users: { getUsersByLang }, languages: { getLanguageById } } = require('../../database/queries');
-const { formatLanguages } = require('../../helpers/formatLanguages');
+const { users: { getUsersByLang }, languages: { getLanguages } } = require('../../database/queries');
+const { formatLanguagesV2 } = require('../../helpers');
 
 exports.getUsersByLang = (req, res, next) => {
   let users;
@@ -10,16 +10,10 @@ exports.getUsersByLang = (req, res, next) => {
   getUsersByLang(id)
     .then(({ rows }) => {
       users = rows;
-      return users.map((user) => getLanguageById(user.native_lang_id));
+      return users;
     })
-    .then((promises) => Promise.all(promises))
-    .then((langs) => formatLanguages(users, langs, 'native_lang_id'))
-    .then((result) => {
-      users = result;
-      return result.map((user) => getLanguageById(user.learning_lang_id));
-    })
-    .then((promises) => Promise.all(promises))
-    .then((langs) => formatLanguages(users, langs, 'learning_lang_id'))
-    .then((result) => res.status(200).json({ data: result }))
+    .then(() => getLanguages())
+    .then((langs) => formatLanguagesV2(users, langs.rows))
+    .then((result) => res.json({ data: result }))
     .catch((err) => next(err));
 };
