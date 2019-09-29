@@ -2,7 +2,7 @@ const {
   users: { getUsersByInterest },
   languages: { getLanguageById },
 } = require('../../database/queries');
-const { formatLanguages } = require('../../helpers/formatLanguages');
+const { formatLanguages } = require('../../helpers');
 
 exports.getUsersByInterest = (req, res, next) => {
   let users;

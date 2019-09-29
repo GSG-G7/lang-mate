@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const {
-  auth: { login, logout, signup },
+  auth: {
+    login, logout, signup, auth,
+  },
   users: {
     changePassword,
     getUserChannels,
@@ -8,9 +10,9 @@ const {
     deactivateUser,
     getUsersByLang,
     getUserInfo,
-    searchUser,
+    searchUsers,
   },
-  messages: { addChannel, getChannelMessages },
+  messages: { addChannel, getChannelMessages, getChannels },
   interests: { getAllInterests },
   languages: { getAllLanguages },
   errors: { errors },
@@ -18,6 +20,8 @@ const {
 
 router.post('/login', login);
 router.post('/signup', signup);
+router.use(auth);
+
 router.post('/logout', logout);
 
 router.get('/languages', getAllLanguages);
@@ -25,9 +29,10 @@ router.get('/languages', getAllLanguages);
 router.get('/interests', getAllInterests);
 
 router.get('/channels/:id', getChannelMessages);
+router.get('/getChannels', getChannels);
 router.post('/channels', addChannel);
 
-router.get('/users/search', searchUser);
+router.get('/users/search', searchUsers);
 router.get('/users/native-lang/:id', getUsersByLang);
 router.get('/users/interest/:id', getUsersByInterest);
 router.get('/users/profile/:username', getUserInfo);

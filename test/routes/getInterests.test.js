@@ -4,24 +4,22 @@ const app = require('../../server/app');
 const dbBuild = require('../../server/database/config/dbbuild');
 const { token } = require('./cookie.test');
 
-test('Test /languages route', (t) => {
+test('Testing for the interests route', (t) => {
   dbBuild()
     .then(() => {
       supertest(app)
-        .get('/api/v1/languages')
+        .get('/api/v1/interests')
         .expect(200)
-        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect('Content-Type', /json/)
         .set('Cookie', [`token=${token}`])
         .end((err, res) => {
           if (err) {
             t.error(err);
             t.end();
           } else {
-            t.equals(res.text.includes('data'), true, 'Should return languages');
+            t.equal(res.text.includes('name'), true, 'There is a name if we have interests');
             t.end();
           }
         });
-    }).catch((err) => {
-      t.error(err);
     });
 });

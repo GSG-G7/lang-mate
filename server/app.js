@@ -1,5 +1,6 @@
 const { join } = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 // middlewares
 const cors = require('cors');
 const compression = require('compression');
@@ -8,7 +9,8 @@ const morgan = require('morgan');
 const router = require('./routes');
 
 const app = express();
-
+app.use(express.json());
+app.use(cookieParser());
 app.set('port', process.env.PORT || 5000);
 
 if (process.env.NODE_ENV === 'development') {
