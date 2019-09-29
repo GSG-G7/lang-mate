@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import Button from '../../common/Button';
+import Input from '../../common/Input';
 import login from '../../../services/api';
 
 class Login extends Component {
