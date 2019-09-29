@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
-import Button from './components/common/Button';
-import { login } from './services/api';
+import Button from '../../common/Button';
+import login from '../../../services/api';
 
 class Login extends Component {
   state = {};
@@ -32,8 +32,10 @@ class Login extends Component {
               />
             </div>
             <div className="login-btn">
-              <button type="submit">Login</button>
-              <Button text="Login" className="submit-btn" onClick={login} />
+              <button type="submit" className="submit-btn">
+                Login
+              </button>
+              {/* <Button text="Login" className="submit-btn" onClick={login} /> */}
             </div>
           </form>
         </div>
