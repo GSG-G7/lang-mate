@@ -1,7 +1,9 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ApiService from './services/api';
 import './App.css';
+import Login from './components/pages/Login';
+import Button from './components/common/Button';
 
 class App extends React.Component {
   state = {
@@ -19,6 +21,7 @@ class App extends React.Component {
         <div>
           <h1>{text}</h1>
         </div>
+        <Route exact path="/login" component={Login} />
       </BrowserRouter>
     );
   }
