@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
+import BackButton from '../../common/BackButton';
 
 import { loginFun, inputFun } from '../../../services/api';
 
@@ -11,9 +12,11 @@ class Login extends Component {
   render() {
     return (
       <div className="loginPage">
+        <div className="backBtn">
+          <div>asd</div>
+        </div>
         <div className="loginBox">
           <form action="/" className="login-form">
-            <div className="backBtn"></div>
             <div className="login-wlecome">
               <h1>Welcome Back</h1>
             </div>
@@ -57,6 +60,9 @@ class Login extends Component {
               <Button text="Login" className="submit-btn" onClick={loginFun} />
             </div>
           </form>
+        </div>
+        <div style={{ width: '20%' }} className="thirdDiv">
+          asd
         </div>
       </div>
     );
