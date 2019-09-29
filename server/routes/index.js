@@ -8,7 +8,7 @@ const {
     deactivateUser,
     getUsersByLang,
     getUserInfo,
-    searchUser,
+    searchUsers,
   },
   messages: { addChannel, getChannelMessages, getChannels },
   interests: { getAllInterests },
@@ -28,7 +28,7 @@ router.get('/channels/:id', getChannelMessages);
 router.get('/getChannels', getChannels);
 router.post('/channels', addChannel);
 
-router.get('/users/search', searchUser);
+router.get('/users/search', searchUsers);
 router.get('/users/native-lang/:id', getUsersByLang);
 router.get('/users/interest/:id', getUsersByInterest);
 router.get('/users/profile/:username', getUserInfo);
