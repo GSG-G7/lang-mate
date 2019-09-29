@@ -61,9 +61,6 @@ class Login extends Component {
             </div>
           </form>
         </div>
-        <div style={{ width: '20%' }} className="thirdDiv">
-          asd
-        </div>
       </div>
     );
   }

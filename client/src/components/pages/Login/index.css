@@ -66,3 +66,8 @@ border: none;
     justify-content: center;
 }
 
+.backBtn {
+position: absolute;
+top:50px;
+left: 30px;
+}
