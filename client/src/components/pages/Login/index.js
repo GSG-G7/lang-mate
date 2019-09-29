@@ -12,9 +12,7 @@ class Login extends Component {
   render() {
     return (
       <div className="loginPage">
-        <div className="backBtn">
-          <div>asd</div>
-        </div>
+        <div className="backBtn"></div>
         <div className="loginBox">
           <form action="/" className="login-form">
             <div className="login-wlecome">
