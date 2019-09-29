@@ -1,6 +1,6 @@
-require('./deactivate.test');
 require('./login.test');
 require('./signup.test');
+require('./deactivate.test');
 require('./getInterests.test');
 require('./languages.test');
 require('./getChannelMessages.test');
