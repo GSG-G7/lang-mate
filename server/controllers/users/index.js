@@ -4,7 +4,7 @@ const { getUsersByInterest } = require('./getUsersByInterest');
 const { deactivateUser } = require('./deactivateUser');
 const { getUsersByLang } = require('./getUsersByLang');
 const { getUserInfo } = require('./getUserInfo');
-const { searchUser } = require('./searchUser');
+const { searchUsers } = require('./searchUsers');
 
 module.exports = {
   changePassword,
@@ -13,5 +13,5 @@ module.exports = {
   deactivateUser,
   getUsersByLang,
   getUserInfo,
-  searchUser,
+  searchUsers,
 };
