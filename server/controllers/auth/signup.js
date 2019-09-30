@@ -16,8 +16,8 @@ exports.signup = (req, res, next) => {
     .then(() => getUserByEmailOrUsername(email, username))
     .then(({ rows }) => {
       if (rows.length !== 0) {
-        if (rows[0].username === username) throw Error('username exists');
-        if (rows[0].email === email) throw Error('email exists');
+        if (rows[0].username === username) return next({ code: 400, msg: 'username exists' });
+        if (rows[0].email === email) return next({ code: 400, msg: 'email exists' });
       }
     })
     .then(() => hash(password, 10))
@@ -26,15 +26,15 @@ exports.signup = (req, res, next) => {
       jwtSign({ userInfo: { username: addedUser.username, id: addedUser.id } }, key),
       addUserInterests(interestsId, addedUser.id),
     ]))
-    .then(([sigendPayload]) => {
-      res.cookie('token', sigendPayload, { maxAge: 86400000 });
+    .then(([signedPayload]) => {
+      res.cookie('token', signedPayload, { maxAge: 86400000 });
       res.send({ isSuccess: true });
     })
     .catch((err) => {
       if ((err.message === 'email exists') || (err.message === 'username exists')) {
-        next({ code: 400, msg: err.message });
-      } else {
+        return next({ code: 400, msg: err.message });
+      } 
         next(err);
-      }
+      
     });
 };

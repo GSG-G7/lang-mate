@@ -1,27 +1,28 @@
 const test = require('tape');
 const supertest = require('supertest');
+
+const { token } = require('./cookie.test');
 const app = require('../../server/app');
 const dbBuild = require('../../server/database/config/dbbuild');
-const { token } = require('./cookie.test');
 
-test('Test /languages route', (t) => {
+
+test('Testing for the users by lang route', (t) => {
   dbBuild()
     .then(() => {
       supertest(app)
-        .get('/api/v1/languages')
+        .get('/api/v1/users/native-lang/1')
         .expect(200)
-        .expect('Content-Type', 'application/json; charset=utf-8')
+        .expect('Content-Type', /json/)
         .set('Cookie', [`token=${token}`])
         .end((err, res) => {
           if (err) {
             t.error(err);
             t.end();
           } else {
-            t.equals(res.text.includes('data'), true, 'Should return languages');
+            t.equal(res.text.includes('data'), true, 'There should be data');
             t.end();
           }
         });
-    }).catch((err) => {
-      t.error(err);
-    });
+    })
+    .catch((err) => t.error(err));
 });

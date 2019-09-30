@@ -1,8 +1,10 @@
 require('./addUser.test');
+require('./deactivate.test');
 require('./getInterests.test');
 require('./languages.test');
 require('./getChannelMessages.test');
 require('./getUsersByInterest.test');
+require('./getUsersByLang.test');
 require('./searchUsers.test');
 require('./changePassword.test');
 require('./getChannels.test');
