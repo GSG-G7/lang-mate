@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // import BackButton from '../../common/BackButton';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
+import Dropdown from '../../common/Dropdown';
 import './index.css';
 
 export default class signup extends Component {
@@ -17,61 +18,87 @@ export default class signup extends Component {
     const { username, email, password, confirmPassword } = this.state;
     return (
       <div className="signup">
-        <h2>Join Us Now</h2>
-        <div className="signup__form">
-          <form id="signup" className="signup__form" method="POST">
-            {/* <BackButton onClick={() => HashRouter.push('/')} /> */}
-            <Input
-              type="text"
-              name="username"
-              className="signup__input"
-              label="username"
-              placeholder="Username"
-              value={username}
-              onChange={({ target: { value } }) =>
-                this.setState({ username: value })
-              }
-              errMsg={<span>You entered an exist username</span>}
-            />
-            <Input
-              type="email"
-              name="email"
-              className="signup__input"
-              label="email"
-              placeholder="Email"
-              value={email}
-              onChange={({ target: { value } }) => {
-                this.setState({ email: value });
-              }}
-              errMsg={<span>You entered an exist email</span>}
-            />
-            <Input
-              type="password"
-              name="password"
-              className="signup__input"
-              label="passeord"
-              placeholder="Password"
-              value={password}
-              onChange={({ target: { value } }) => {
-                this.setState({ password: value });
-              }}
-              errMsg={<span>You entered weak password</span>}
-            />
-            <Input
-              type="password"
-              name="confirmPassword"
-              className="signup__input"
-              label="confirmPassword"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={({ target: { value } }) => {
-                this.setState({ confirmPassword: value });
-              }}
-              errMsg={<span>The password is not matching</span>}
-            />
-            <Button text="Next" className="" />
-          </form>
+        <div className="signup__body" id="step1">
+          <h2 className="signup__heading">Join Us Now</h2>
+          <div className="signup__form">
+            <form id="signup" className="signup__form" method="POST">
+              {/* <BackButton onClick={() => HashRouter.push('/')} /> */}
+              <Input
+                type="text"
+                name="username"
+                className="signup__input"
+                label="username"
+                placeholder="Username"
+                value={username}
+                onChange={({ target: { value } }) =>
+                  this.setState({ username: value })
+                }
+                // errMsg={() => <span>You entered an exist username</span>}
+              />
+              <Input
+                type="email"
+                name="email"
+                className="signup__input"
+                label="email"
+                placeholder="Email"
+                value={email}
+                onChange={({ target: { value } }) => {
+                  this.setState({ email: value });
+                }}
+                // errMsg={<span>You entered an exist email</span>}
+              />
+              <Input
+                type="password"
+                name="password"
+                className="signup__input"
+                label="passeord"
+                placeholder="Password"
+                value={password}
+                onChange={({ target: { value } }) => {
+                  this.setState({ password: value });
+                }}
+                // errMsg={() => <span>You entered weak password</span>}
+              />
+              <Input
+                type="password"
+                name="confirmPassword"
+                className="signup__input"
+                label="confirmPassword"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={({ target: { value } }) => {
+                  this.setState({ confirmPassword: value });
+                }}
+                // errMsg={() => <span>The password is not matching</span>}
+              />
+              <Button
+                text="Next"
+                className="signup__button"
+                onClick={({ target: { value } }) => {
+                  this.setState({
+                    username,
+                    email,
+                    password,
+                    confirmPassword,
+                  });
+                  // e.target.parent.style.display = 'none';
+                }}
+              />
+            </form>
+          </div>
         </div>
+        {/* <div className="signup__body" id="step2">
+          <h2 className="signup__heading">Choose Languages</h2>
+          <Dropdown
+            labelText="Native Language"
+            name="Select language"
+            languages={() => {
+              ['Arabic', 'English', 'Spanish'].languages();
+            }}
+            value={}
+            onChange={({ target: { value } }) => }
+          />
+        </div> */}
       </div>
     );
   }
