@@ -19,7 +19,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <h1>{text}</h1>
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/sign-up" component={Signup} />
         </div>
       </BrowserRouter>
     );
