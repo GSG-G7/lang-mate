@@ -22,8 +22,9 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        required
       />
-      <span className="err-msg">{errMsg}</span>
+      <span className="err-msg">{errMsg || ''}</span>
     </div>
   );
 };
@@ -35,9 +36,12 @@ Input.propTypes = {
   className: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  errMsg: PropTypes.func.isRequired,
+  errMsg: PropTypes.string,
+  value: PropTypes.string.isRequired,
+};
+Input.defaultProps = {
+  errMsg: '',
 };
 
 export default Input;

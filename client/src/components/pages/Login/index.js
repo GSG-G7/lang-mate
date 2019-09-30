@@ -4,12 +4,32 @@ import Button from '../../common/Button';
 import Input from '../../common/Input';
 import BackButton from '../../common/BackButton';
 
-import { loginFun, inputFun } from '../../../services/api';
+import api from '../../../services/api';
 
 class Login extends Component {
-  state = {};
+  state = {
+    username: '',
+    password: '',
+  };
+
+  handleChange = ({ target: { name, value } }) =>
+    this.setState({ [name]: value });
+
+  handleClick = () => {
+    const { username, password } = this.state;
+    console.log(username, password);
+    api
+      .login({
+        username,
+        password,
+      })
+      .then(res => {
+        console.log(res);
+      });
+  };
 
   render() {
+    const { username, password } = this.state;
     return (
       <div className="loginPage">
         <div className="backBtn">
@@ -23,41 +43,29 @@ class Login extends Component {
             <div className="login-inpputs">
               <Input
                 type="text"
-                name="username-input"
+                name="username"
                 className="username"
                 label="username"
                 placeholder="username"
-                value=""
-                onChange={inputFun}
-                errMsg=""
+                value={username}
+                onChange={this.handleChange}
               />
-              {/* <input
-                type="text"
-                placeholder="username"
-                className="username-input"
-                aria-label="username"
-                name="username-input"
-              />
-              <input
-                type="text"
-                placeholder="password"
-                className="password-input"
-                name="username-password"
-                aria-label="password"
-              /> */}
               <Input
-                type="text"
-                name="username-passwrd"
+                type="password"
+                name="password"
                 className="password"
                 label="password"
                 placeholder="password"
-                value=""
-                onChange={inputFun}
-                errMsg=" "
+                value={password}
+                onChange={this.handleChange}
               />
             </div>
             <div className="login-btn">
-              <Button text="Login" className="submit-btn" onClick={loginFun} />
+              <Button
+                text="Login"
+                className="submit-btn"
+                onClick={this.handleClick}
+              />
             </div>
           </form>
         </div>

@@ -1,16 +1,14 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { fetchData } from './services/api';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
+import Login from './components/pages/Login';
 
 class App extends React.Component {
   state = {
     text: '',
   };
 
-  componentDidMount() {
-    fetchData().then(result => this.setState({ text: result.body }));
-  }
+  componentDidMount() {}
 
   render() {
     const { text } = this.state;
@@ -19,6 +17,7 @@ class App extends React.Component {
         <div>
           <h1>{text}</h1>
         </div>
+        <Route exact path="/login" component={Login} />
       </BrowserRouter>
     );
   }
