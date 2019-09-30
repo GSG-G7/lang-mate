@@ -33,8 +33,7 @@ exports.signup = (req, res, next) => {
     .catch((err) => {
       if ((err.message === 'email exists') || (err.message === 'username exists')) {
         return next({ code: 400, msg: err.message });
-      } 
-        next(err);
-      
+      }
+      next(err);
     });
 };

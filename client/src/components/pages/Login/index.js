@@ -40,11 +40,11 @@ class Login extends Component {
       history: { goBack },
     } = this.props;
     return (
-      <div className="loginPage">
-        <div className="backBtn">
+      <div className="login-page">
+        <div className="back-btn">
           <BackButton back={() => goBack()} />
         </div>
-        <div className="loginBox">
+        <div className="login-box">
           <form action="/" className="login-form">
             <div className="login-wlecome">
               <h1>Welcome Back</h1>
@@ -84,9 +84,10 @@ class Login extends Component {
   }
 }
 Login.propTypes = {
-  history: PropTypes.shap({
+  history: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
+
 export default Login;
