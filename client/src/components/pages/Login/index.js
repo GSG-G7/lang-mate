@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import BackButton from '../../common/BackButton';
-
 import api from '../../../services/api';
 
 class Login extends Component {
