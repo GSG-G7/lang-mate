@@ -1,0 +1,11 @@
+.profile{
+  text-align: center;
+}
+
+.profile__avatar{
+  border-radius: 100%
+}
+
+.profile__username{
+  font-family: Roboto;
+}
