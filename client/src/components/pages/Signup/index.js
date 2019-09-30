@@ -33,12 +33,12 @@ export default class signup extends Component {
     return (
       <div className="signup">
         <div className="signup__body" id="step1">
-          <BackButton
+          {/* <BackButton
             className="back__button"
             onClick={() =>
               console.log('back button')
-            } /* this.props.history.push('/') */
-          />
+            }  this.props.history.push('/')
+          /> */}
           <h2 className="signup__heading">Join Us Now</h2>
           <div className="signup__form">
             <form id="signup" className="signup__form" method="POST">
@@ -107,8 +107,8 @@ export default class signup extends Component {
             languages={[
               { id: 1, language: 'Arabic' },
               { id: 2, language: 'English' },
-              { id: 2, language: 'Spanish' },
-              { id: 2, language: 'Dutch' },
+              { id: 3, language: 'Spanish' },
+              { id: 4, language: 'Dutch' },
             ]}
             value={nativeLang}
             onChange={({ target: { value } }) =>
@@ -121,8 +121,8 @@ export default class signup extends Component {
             languages={[
               { id: 1, language: 'Arabic' },
               { id: 2, language: 'English' },
-              { id: 2, language: 'Spanish' },
-              { id: 2, language: 'Dutch' },
+              { id: 3, language: 'Spanish' },
+              { id: 4, language: 'Dutch' },
             ]}
             value={learnLang}
             onChange={({ target: { value } }) =>
