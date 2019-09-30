@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
+import UnderConstruction from '../UnderConstruction';
 
-const Profile = () => <h1>hellow from Profile</h1>;
+const Profile = () => <UnderConstruction />;
 
 export default Profile;

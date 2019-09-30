@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
+import UnderConstruction from '../UnderConstruction';
 
-const Chat = () => <h1>hellow from Chat</h1>;
+const Chat = () => <UnderConstruction />;
 
 export default Chat;

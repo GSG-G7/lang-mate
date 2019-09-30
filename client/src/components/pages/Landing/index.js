@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
+import UnderConstruction from '../UnderConstruction';
 
-const Landing = () => <h1>hellow from Landing</h1>;
+const Landing = () => <UnderConstruction />;
 
 export default Landing;

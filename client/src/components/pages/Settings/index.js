@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
+import UnderConstruction from '../UnderConstruction';
 
-const Settings = () => <h1>hellow from Settings</h1>;
+const Settings = () => <UnderConstruction />;
 
 export default Settings;

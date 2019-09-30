@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
+import UnderConstruction from '../UnderConstruction';
 
-const Signup = () => <h1>hellow from signup</h1>;
+const Signup = () => <UnderConstruction />;
 
 export default Signup;

@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
+import UnderConstruction from '../UnderConstruction';
 
-const Home = () => <h1>hellow from Home</h1>;
+const Home = () => <UnderConstruction />;
 
 export default Home;

@@ -10,7 +10,6 @@ import Landing from './components/pages/Landing';
 import Home from './components/pages/Home';
 import Chat from './components/pages/Chat';
 import Settings from './components/pages/Settings';
-import UnderConstruction from './components/pages/UnderConstruction';
 
 class App extends React.Component {
   state = {
@@ -29,12 +28,12 @@ class App extends React.Component {
           <h1>{text}</h1>
         </div>
         <Switch>
-          <Route exact path="/" component={UnderConstruction} />
-          <Route path="/login" component={UnderConstruction} />
-          <Route path="/sign-up" component={UnderConstruction} />
-          <Route path="/profile/:username" component={UnderConstruction} />
-          <Route path="/settings" component={UnderConstruction} />
-          <Route path="/channel/:username" component={UnderConstruction} />
+          <Route exact path="/" component={Landing} />
+          <Route path="/login" component={Login} />
+          <Route path="/sign-up" component={Signup} />
+          <Route path="/profile/:username" component={Profile} />
+          <Route path="/settings" component={Settings} />
+          <Route path="/channel/:username" component={Chat} />
           <Route path="/logout" />
           <Route component={() => <h1>Error 404</h1>} />
         </Switch>
