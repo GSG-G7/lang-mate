@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { HashRouter } from 'react-router-dom';
-// import BackButton from '../../common/BackButton';
+import { HashRouter } from 'react-router-dom';
+import BackButton from '../../common/BackButton';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
 import Dropdown from '../../common/Dropdown';
@@ -12,10 +12,19 @@ export default class signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
+    nativeLang: '',
+    learnLang: '',
   };
 
   render() {
-    const { username, email, password, confirmPassword } = this.state;
+    const {
+      username,
+      email,
+      password,
+      confirmPassword,
+      nativeLang,
+      learnLang,
+    } = this.state;
     return (
       <div className="signup">
         <div className="signup__body" id="step1">
@@ -33,7 +42,7 @@ export default class signup extends Component {
                 onChange={({ target: { value } }) =>
                   this.setState({ username: value })
                 }
-                // errMsg={() => <span>You entered an exist username</span>}
+                errMsg={() => console.log('You entered an exist username')}
               />
               <Input
                 type="email"
@@ -45,7 +54,7 @@ export default class signup extends Component {
                 onChange={({ target: { value } }) => {
                   this.setState({ email: value });
                 }}
-                // errMsg={<span>You entered an exist email</span>}
+                errMsg={() => console.log('You entered an exist email')}
               />
               <Input
                 type="password"
@@ -57,7 +66,7 @@ export default class signup extends Component {
                 onChange={({ target: { value } }) => {
                   this.setState({ password: value });
                 }}
-                // errMsg={() => <span>You entered weak password</span>}
+                errMsg={() => console.log('You entered weak password')}
               />
               <Input
                 type="password"
@@ -69,7 +78,7 @@ export default class signup extends Component {
                 onChange={({ target: { value } }) => {
                   this.setState({ confirmPassword: value });
                 }}
-                // errMsg={() => <span>The password is not matching</span>}
+                errMsg={() => console.log('The password is not matching')}
               />
               <Button
                 text="Next"
@@ -87,18 +96,39 @@ export default class signup extends Component {
             </form>
           </div>
         </div>
-        {/* <div className="signup__body" id="step2">
+        <div className="signup__body" id="step2">
           <h2 className="signup__heading">Choose Languages</h2>
           <Dropdown
             labelText="Native Language"
             name="Select language"
-            languages={() => {
-              ['Arabic', 'English', 'Spanish'].languages();
-            }}
-            value={}
-            onChange={({ target: { value } }) => }
+            languages={['Arabic', 'English', 'Spanish', 'Dutch']}
+            value={nativeLang}
+            onChange={({ target: { value } }) =>
+              this.setState({ nativeLang: value })
+            }
           />
-        </div> */}
+          <Dropdown
+            labelText="Learning Language"
+            name="Select language"
+            languages={['Arabic', 'English', 'Spanish', 'Dutch']}
+            value={learnLang}
+            onChange={({ target: { value } }) =>
+              this.setState({ learnLang: value })
+            }
+          />
+          <Button
+            text="Next"
+            className="signup__button"
+            onClick={({ target: { value } }) => {
+              this.setState({
+                nativeLang,
+                learnLang,
+              });
+              console.log(this.state);
+              // e.target.parent.style.display = 'none';
+            }}
+          />
+        </div>
       </div>
     );
   }
