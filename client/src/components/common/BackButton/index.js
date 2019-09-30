@@ -6,6 +6,7 @@ const BackButton = ({ back }) => (
   <div
     role="button"
     tabIndex={0}
+    className="back__button"
     onClick={back}
     onKeyDown={e =>
       e.key === 'Backspace' || e.key === 'Escape' ? back() : null

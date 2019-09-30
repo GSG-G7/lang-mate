@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter } from 'react-router-dom';
+// import { BrowserHistory } from 'react-router-dom';
 import BackButton from '../../common/BackButton';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
@@ -17,6 +17,10 @@ export default class signup extends Component {
     learnLang: '',
   };
 
+  handleChange = ({ target: { value, name } }) => {
+    this.setState({ [name]: value });
+  };
+
   render() {
     const {
       username,
@@ -29,10 +33,15 @@ export default class signup extends Component {
     return (
       <div className="signup">
         <div className="signup__body" id="step1">
+          <BackButton
+            className="back__button"
+            onClick={() =>
+              console.log('back button')
+            } /* this.props.history.push('/') */
+          />
           <h2 className="signup__heading">Join Us Now</h2>
           <div className="signup__form">
             <form id="signup" className="signup__form" method="POST">
-              {/* <BackButton onClick={() => HashRouter.push('/')} /> */}
               <Input
                 type="text"
                 name="username"
@@ -84,15 +93,7 @@ export default class signup extends Component {
               <Button
                 text="Next"
                 className="signup__button"
-                onClick={({ target: { value } }) => {
-                  this.setState({
-                    username,
-                    email,
-                    password,
-                    confirmPassword,
-                  });
-                  // e.target.parent.style.display = 'none';
-                }}
+                onClick={this.handleChange}
               />
             </form>
           </div>
@@ -102,8 +103,13 @@ export default class signup extends Component {
           <h2 className="signup__heading">Choose Languages</h2>
           <Dropdown
             labelText="Native Language"
-            name="Select language"
-            languages={['Arabic', 'English', 'Spanish', 'Dutch']}
+            name="language"
+            languages={[
+              { id: 1, language: 'Arabic' },
+              { id: 2, language: 'English' },
+              { id: 2, language: 'Spanish' },
+              { id: 2, language: 'Dutch' },
+            ]}
             value={nativeLang}
             onChange={({ target: { value } }) =>
               this.setState({ nativeLang: value })
@@ -111,8 +117,13 @@ export default class signup extends Component {
           />
           <Dropdown
             labelText="Learning Language"
-            name="Select language"
-            languages={['Arabic', 'English', 'Spanish', 'Dutch']}
+            name="language"
+            languages={[
+              { id: 1, language: 'Arabic' },
+              { id: 2, language: 'English' },
+              { id: 2, language: 'Spanish' },
+              { id: 2, language: 'Dutch' },
+            ]}
             value={learnLang}
             onChange={({ target: { value } }) =>
               this.setState({ learnLang: value })
@@ -121,12 +132,7 @@ export default class signup extends Component {
           <Button
             text="Next"
             className="signup__button"
-            onClick={({ target: { value } }) => {
-              this.setState({
-                nativeLang,
-                learnLang,
-              });
-            }}
+            onClick={this.handleChange}
           />
         </div>
         {/* Step 3 to choose interests */}
@@ -137,12 +143,7 @@ export default class signup extends Component {
           <Button
             text="Sign Up"
             className="signup__button"
-            onClick={({ target: { value } }) => {
-              this.setState({
-                nativeLang,
-                learnLang,
-              });
-            }}
+            onClick={this.handleChange}
           />
         </div>
       </div>
