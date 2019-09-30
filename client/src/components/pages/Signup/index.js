@@ -97,6 +97,7 @@ export default class signup extends Component {
             </form>
           </div>
         </div>
+        {/* Step 2 to choose languages */}
         <div className="signup__body" id="step2">
           <h2 className="signup__heading">Choose Languages</h2>
           <Dropdown
@@ -128,6 +129,7 @@ export default class signup extends Component {
             }}
           />
         </div>
+        {/* Step 3 to choose interests */}
         <div className="signup__body" id="step3">
           <h2 className="signup__heading">Choose Interests</h2>
           <Checkbox id={1} value="Music" onClick={() => this.setState({})} />
