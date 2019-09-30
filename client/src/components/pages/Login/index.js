@@ -18,7 +18,9 @@ class Login extends Component {
 
   handleClick = () => {
     const { username, password } = this.state;
-    const { push } = this.props.history;
+    const {
+      history: { push },
+    } = this.props;
     api
       .login({
         username,
@@ -34,7 +36,9 @@ class Login extends Component {
 
   render() {
     const { username, password, errMSg } = this.state;
-    const { goBack } = this.props.history;
+    const {
+      history: { goBack },
+    } = this.props;
     return (
       <div className="loginPage">
         <div className="backBtn">
@@ -80,6 +84,9 @@ class Login extends Component {
   }
 }
 Login.propTypes = {
-  goBack: PropTypes.func.isRequired,
+  history: PropTypes.shap({
+    goBack: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 export default Login;
