@@ -1,5 +1,5 @@
 .checkbox__home{
-  display: inline-flex;
+  display: flex;
   margin: 10px;
 }
 

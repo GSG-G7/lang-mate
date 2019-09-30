@@ -4,6 +4,7 @@ import BackButton from '../../common/BackButton';
 import Input from '../../common/Input';
 import Button from '../../common/Button';
 import Dropdown from '../../common/Dropdown';
+import Checkbox from '../../common/Checkbox';
 import './index.css';
 
 export default class signup extends Component {
@@ -124,8 +125,21 @@ export default class signup extends Component {
                 nativeLang,
                 learnLang,
               });
-              console.log(this.state);
-              // e.target.parent.style.display = 'none';
+            }}
+          />
+        </div>
+        <div className="signup__body" id="step3">
+          <h2 className="signup__heading">Choose Interests</h2>
+          <Checkbox id={1} value="Music" onClick={() => this.setState({})} />
+          <Checkbox id={2} value="Sport" onClick={() => this.setState({})} />
+          <Button
+            text="Sign Up"
+            className="signup__button"
+            onClick={({ target: { value } }) => {
+              this.setState({
+                nativeLang,
+                learnLang,
+              });
             }}
           />
         </div>
