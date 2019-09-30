@@ -13,7 +13,7 @@ import Settings from './components/pages/Settings';
 
 class App extends React.Component {
   state = {
-    text: '',
+    isLogged: true,
   };
 
   componentDidMount() {
@@ -21,14 +21,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { text } = this.state;
+    const { isLogged } = this.state;
     return (
       <BrowserRouter>
-        <div>
-          <h1>{text}</h1>
-        </div>
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={isLogged ? Home : Landing} />
           <Route path="/login" component={Login} />
           <Route path="/sign-up" component={Signup} />
           <Route path="/profile/:username" component={Profile} />
