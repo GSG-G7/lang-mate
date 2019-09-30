@@ -7,11 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "start:server": "NODE_ENV=production node server",
+    "start:server": "NODE_ENV=development node server",
     "start:client": "cd client && npm run start",
     "dev": "NODE_ENV=development  concurrently  \"npm run start:server\" \"npm run start:client\"",
     "dev:server": "NODE_ENV=development nodemon server",
-    "start": "node ./server/index.js",
+    "start": "NODE_ENV=production node ./server/index.js",
     "heroku-postbuild": "NODE_ENV=production cd client && npm install && npm run build",
     "test": "NODE_ENV=test node test/index.test.js | tap-spec",
     "kill": "fuser -k 5000/tcp",
