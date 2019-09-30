@@ -4,7 +4,7 @@ const { getUserByUsername } = require('../../database/queries/users');
 
 exports.login = (req, res, next) => {
   const { username, password } = req.body;
-  if (!username || !password) return next({ code: 400, msg: 'bad request !!!!' });
+  if (!username || !password) throw next({ code: 400, msg: 'bad request !!!!' });
 
   const key = process.env.KEY;
   let id;
@@ -15,13 +15,13 @@ exports.login = (req, res, next) => {
         id = dbId;
         return compare(password, dbPassword);
       }
-      return next({ code: 400, msg: 'username doesn\'t exist' });
+      throw next({ code: 400, msg: 'username doesn\'t exist' });
     })
     .then((isValid) => {
       if (isValid) {
         return jwtSign({ userInfo: { username, id } }, key);
       }
-      return next({ code: 400, msg: 'username or password doesn\'t match our records' });
+      throw next({ code: 400, msg: 'username or password doesn\'t match our records' });
     })
     .then((token) => {
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
