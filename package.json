@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start:server": "NODE_ENV=development node server",
+    "start:server": "NODE_ENV=development nodemon server",
     "start:client": "cd client && npm run start",
     "dev": "NODE_ENV=development  concurrently  \"npm run start:server\" \"npm run start:client\"",
     "dev:server": "NODE_ENV=development nodemon server",
