@@ -14,8 +14,8 @@ export default class signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    nativeLang: '',
-    learnLang: '',
+    nativeLanguage: '',
+    learnLanguage: '',
   };
 
   handleChange = ({ target: { value, name } }) => {
@@ -47,8 +47,8 @@ export default class signup extends Component {
       email,
       password,
       confirmPassword,
-      nativeLang,
-      learnLang,
+      nativeLanguage,
+      learnLanguage,
     } = this.state;
     return (
       <div className="signup">
@@ -68,7 +68,7 @@ export default class signup extends Component {
                 className="signup__input"
                 label="username"
                 placeholder="Username"
-                value={username}
+                value={username.value}
                 onChange={this.handleChange}
                 errMsg={() => console.log('You entered an exist username')}
               />
@@ -78,7 +78,7 @@ export default class signup extends Component {
                 className="signup__input"
                 label="email"
                 placeholder="Email"
-                value={email}
+                value={email.value}
                 onChange={this.handleChange}
                 errMsg={() => console.log('You entered an exist email')}
               />
@@ -88,7 +88,7 @@ export default class signup extends Component {
                 className="signup__input"
                 label="passeord"
                 placeholder="Password"
-                value={password}
+                value={password.value}
                 onChange={this.handleChange}
                 errMsg={() => console.log('You entered weak password')}
               />
@@ -98,7 +98,7 @@ export default class signup extends Component {
                 className="signup__input"
                 label="confirmPassword"
                 placeholder="Confirm Password"
-                value={confirmPassword}
+                value={confirmPassword.value}
                 onChange={this.handleChange}
                 errMsg={() => console.log('The password is not matching')}
               />
@@ -115,34 +115,32 @@ export default class signup extends Component {
           <h2 className="signup__heading">Choose Languages</h2>
           <Dropdown
             labelText="Native Language"
-            name="language"
+            name="nativeLanguage"
             languages={[
               { id: 1, language: 'Arabic' },
               { id: 2, language: 'English' },
               { id: 3, language: 'Spanish' },
               { id: 4, language: 'Dutch' },
             ]}
-            value={nativeLang}
-            onChange={({ target: { value } }) =>
-              this.setState({ nativeLang: value })
-            }
+            value={nativeLanguage.value}
+            onChange={this.handleChange}
           />
           <Dropdown
             labelText="Learning Language"
-            name="language"
+            name="learnLanguage"
             languages={[
               { id: 1, language: 'Arabic' },
               { id: 2, language: 'English' },
               { id: 3, language: 'Spanish' },
               { id: 4, language: 'Dutch' },
             ]}
-            value={learnLang}
+            value={learnLanguage.value}
             onChange={this.handleChange}
           />
           <Button
             text="Next"
             className="signup__button"
-            onClick={this.handleSignup}
+            onClick={() => console.log(this.state)}
           />
         </div>
         {/* Step 3 to choose interests */}
