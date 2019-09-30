@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import PropTypes from 'prop-types';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import BackButton from '../../common/BackButton';
@@ -10,6 +11,7 @@ class Login extends Component {
   state = {
     username: '',
     password: '',
+    errMSg: '',
   };
 
   handleChange = ({ target: { name, value } }) =>
@@ -17,23 +19,27 @@ class Login extends Component {
 
   handleClick = () => {
     const { username, password } = this.state;
-    console.log(username, password);
+    const { push } = this.props.history;
     api
       .login({
         username,
         password,
       })
       .then(res => {
-        console.log(res);
+        if (res.isSuccess) {
+          return push('/');
+        }
+        return this.setState({ errMSg: res.message });
       });
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, errMSg } = this.state;
+    const { goBack } = this.props.history;
     return (
       <div className="loginPage">
         <div className="backBtn">
-          <BackButton back={() => console.log('the url for previous page  ')} />
+          <BackButton back={() => goBack()} />
         </div>
         <div className="loginBox">
           <form action="/" className="login-form">
@@ -60,6 +66,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
+            {errMSg}
             <div className="login-btn">
               <Button
                 text="Login"
@@ -73,5 +80,7 @@ class Login extends Component {
     );
   }
 }
-
+Login.propTypes = {
+  goBack: PropTypes.func.isRequired,
+};
 export default Login;
