@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './index.css';
 import PropTypes from 'prop-types';
 import Button from '../../common/Button';
@@ -69,13 +70,21 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="err-msg">{errMSg}</div>
+            <div className="error-msg">{errMSg}</div>
             <div className="login-btn">
               <Button
                 text="Login"
                 className="submit-btn"
                 onClick={this.handleClick}
               />
+            </div>
+            <div className="signup-link">
+              <h5>
+                Don’t have an account? &nbsp;&nbsp;
+                <Link to="/sign-up">
+                  <span className="signup-link_span">Signup!</span>
+                </Link>
+              </h5>
             </div>
           </form>
         </div>
