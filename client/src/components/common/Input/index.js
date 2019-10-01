@@ -24,7 +24,7 @@ const Input = ({
         onChange={onChange}
         required
       />
-      <span className="err-msg">{errMsg || ''}</span>
+      <span className="err-msg">{errMsg}</span>
     </div>
   );
 };
@@ -40,6 +40,7 @@ Input.propTypes = {
   errMsg: PropTypes.string,
   value: PropTypes.string.isRequired,
 };
+
 Input.defaultProps = {
   errMsg: '',
 };

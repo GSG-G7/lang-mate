@@ -32,8 +32,9 @@ class Login extends Component {
           if (res.isSuccess) {
             return push('/');
           }
-          return this.setState({ errMSg: res.message });
-        });
+          throw new Error(res.message);
+        })
+        .catch(err => this.setState({ errMSg: err.message }));
     } else {
       this.setState({ errMSg: 'Pls, Enter value' });
     }
@@ -49,7 +50,7 @@ class Login extends Component {
         <div className="login-box">
           <form action="/" className="login-form">
             <div className="back-btn">
-              <BackButton back={() => goBack()} />
+              <BackButton back={goBack} />
             </div>
             <div className="login-wlecome">
               <h1>Welcome Back</h1>
