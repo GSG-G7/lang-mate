@@ -8,15 +8,15 @@ const MessageCard = ({
   <div className="message-card">
     <img
       src={avatar || 'https://img.icons8.com/clouds/2x/user.png'}
-      alt={`${username} avatr`}
+      alt={`${username} avatar`}
       className="message-card__image"
     />
-    <div className="Message-card__content">
-      <h2>{username}</h2>
-      <p>{lastMessage}</p>
+    <div className="message-card__content">
+      <h2 className="message-card__username">{username}</h2>
+      <p className="message-card__message">{lastMessage}</p>
     </div>
-    <div className="message-time">
-      <span>{messageTime}</span>
+    <div className="message-card__time">
+      <span className="message-card__time-span">{messageTime}</span>
     </div>
   </div>
 );
