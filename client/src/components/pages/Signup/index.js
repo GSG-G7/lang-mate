@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import UnderConstruction from '../UnderConstruction';
+import UnderConstruction from '../../common/UnderConstruction';
 
 const Signup = () => <UnderConstruction />;
 
