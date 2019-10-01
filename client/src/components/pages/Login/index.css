@@ -73,6 +73,8 @@
   color: red;
   height: 30px;
   margin-top: 10px;
+  width: 81%;
+  text-align: center
 }
 
 .signup-link {
