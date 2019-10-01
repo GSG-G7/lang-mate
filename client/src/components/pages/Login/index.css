@@ -1,90 +1,87 @@
 .login-page {
-    background-image: linear-gradient(to bottom, rgba(22, 18, 18, 0.2), rgba(255, 247, 247, 0.2)), url('https://i.imgur.com/iF6tuWl.jpg');
-
-    background-size: cover;
-    background-position: center center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-image: linear-gradient(to bottom, rgba(22, 18, 18, 0.2), rgba(255, 247, 247, 0.2)), url('https://i.imgur.com/iF6tuWl.jpg');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-box {
-    background: rgb(255, 255, 255);
-    height: 70%;
-    width: 70%;
- 
+  background: rgb(255, 255, 255);
+  height: 70%;
+  width: 85%;
 }
 
 .login-form {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .username-input {
-    display: flex;
-    flex-direction: column;
-    height: 30%;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: center;
 }
 
-.password-input , .username-input{
-    margin:30px auto 0 auto;
-    background: #fff;
-border-radius: 15px;
-height: 50px;
-outline: none;
-border: none;
-
+.password-input, .username-input {
+  margin: 30px auto 0 auto;
+  background: #fff;
+  border-radius: 15px;
+  height: 50px;
+  outline: none;
+  border: none;
 }
 
-.password-input::placeholder , .username-input::placeholder {
-    font-size: 20px;
-    padding: 10px;
+.password-input::placeholder, .username-input::placeholder {
+  font-size: 20px;
+  padding: 10px;
 }
 
 .submit-btn {
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 1px 28px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    background: #52DE97;
-    border-radius: 20px;
-    font-weight: bold;
-    height: 35px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 1px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background: #52DE97;
+  border-radius: 20px;
+  font-weight: bold;
+  height: 35px;
 }
 
 .input {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .back-btn {
-position: relative;
-width: 100%;
-outline: none;
+  position: relative;
+  width: 100%;
+  outline: none;
 }
 
 .error-msg {
-    color: red;
-    height: 30px;
-    margin-top:10px; 
+  color: red;
+  height: 30px;
+  margin-top: 10px;
 }
 
 .signup-link {
-    width: 73% ;
-    display:flex;
-    justify-content: space-around;
+  width: 73%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .signup-link_span {
-    color: #23CD77;
-    line-height: 19px;
+  color: #23CD77;
+  line-height: 19px;
 }

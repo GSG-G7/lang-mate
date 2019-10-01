@@ -19,20 +19,24 @@ class Login extends Component {
 
   handleClick = () => {
     const { username, password } = this.state;
-    const {
-      history: { push },
-    } = this.props;
-    api
-      .login({
-        username,
-        password,
-      })
-      .then(res => {
-        if (res.isSuccess) {
-          return push('/');
-        }
-        return this.setState({ errMSg: res.message });
-      });
+    if (username && password) {
+      const {
+        history: { push },
+      } = this.props;
+      api
+        .login({
+          username,
+          password,
+        })
+        .then(res => {
+          if (res.isSuccess) {
+            return push('/');
+          }
+          return this.setState({ errMSg: res.message });
+        });
+    } else {
+      this.setState({ errMSg: 'Pls, Enter value' });
+    }
   };
 
   render() {
