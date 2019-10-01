@@ -22,33 +22,6 @@ class App extends React.Component {
 
   render() {
     const { isLogged } = this.state;
-    const userInfo = {
-      id: 1,
-      username: 'amoodaa',
-      email: 'amoodaa@gmail.com',
-      isactive: true,
-      bio: 'HI I LOVE PPl',
-      avatar_path:
-        'https://d2ln1xbi067hum.cloudfront.net/assets/default_user-951af10295a22e5f7fa2fa6165613c14.png',
-      interests: [
-        {
-          id: 1,
-          name: 'music',
-        },
-        {
-          id: 2,
-          name: 'sports',
-        },
-      ],
-      learningLang: {
-        id: 6,
-        name: 'japanese',
-      },
-      nativeLang: {
-        id: 1,
-        name: 'arabic',
-      },
-    };
     return (
       <BrowserRouter>
         <Switch>
