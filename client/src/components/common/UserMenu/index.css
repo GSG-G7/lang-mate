@@ -1,6 +1,6 @@
 .user-menu {
   margin: auto;
-  width: 100%;
+  width: 100%isRequired;
   padding: 6px;
   border: solid #24242482 1px;
 }

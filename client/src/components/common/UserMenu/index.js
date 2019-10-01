@@ -13,7 +13,7 @@ const renderSvg = (path, fill) => (
     fill={fill}
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path fillRule="evenodd" cpRule="evenodd" d={path} fill={fill} />
+    <path fillRule="evenodd" d={path} fill={fill} />
   </svg>
 );
 
