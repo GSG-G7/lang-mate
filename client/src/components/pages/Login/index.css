@@ -71,3 +71,8 @@ position: relative;
 width: 100%;
 outline: none;
 }
+
+.err-msg {
+    color: red;
+    height: 50px;
+}
