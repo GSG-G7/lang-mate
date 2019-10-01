@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import UserCard from '../../../common/UserCard';
 import './index.css';
 
-const People = ({ data }) => {
+const People = ({ users }) => {
+  console.log(users);
   return (
     <section className="main-feed__people">
-      {data ? (
-        data.map(userInfo => (
+      {users ? (
+        users.map(userInfo => (
           <Link
             key={userInfo.id}
             to={{
@@ -27,8 +28,12 @@ const People = ({ data }) => {
   );
 };
 
+People.defaultProps = {
+  users: [],
+};
+
 People.propTypes = {
-  data: PropTypes.arrayOf.isRequired,
+  users: PropTypes.arrayOf,
 };
 
 export default People;
