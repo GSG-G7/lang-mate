@@ -1,8 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ApiService from './services/api';
-import './App.css';
-
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
 import Profile from './components/pages/Profile';
@@ -10,6 +7,8 @@ import Landing from './components/pages/Landing';
 import Home from './components/pages/Home';
 import Chat from './components/pages/Chat';
 import Settings from './components/pages/Settings';
+
+import './App.css';
 
 class App extends React.Component {
   state = {
