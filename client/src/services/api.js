@@ -1,3 +1,7 @@
-const fetchData = () => fetch('/api/v1').then(res => res.json());
+const api = {
+  userNativeLang: () => {
+    return fetch('api/v1/users/native-lang/1').then(res => res.json());
+  },
+};
 
-export default { fetchData };
+export default api;
