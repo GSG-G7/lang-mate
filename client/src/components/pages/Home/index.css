@@ -1,0 +1,47 @@
+.main-feed {
+  width: 100%;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.main-feed__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-feed__search {
+  width: 100%;
+}
+
+.main-feed__filter {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-feed__profile {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.main-feed__user {
+  border-radius: 50%;
+  border: 1px solid rgb(0, 146, 0);
+  box-shadow: 0 0 0;
+}
+
+.main-feed__options {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0 40px 0;
+  text-transform: capitalize;
+  font-size: 18px;
+}
