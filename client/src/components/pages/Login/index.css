@@ -67,7 +67,7 @@ border: none;
 }
 
 .back-btn {
-position: absolute;
-top:30px;
-left: 10px;
+position: relative;
+width: 100%;
+outline: none;
 }

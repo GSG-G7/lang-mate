@@ -41,11 +41,11 @@ class Login extends Component {
     } = this.props;
     return (
       <div className="login-page">
-        <div className="back-btn">
-          <BackButton back={() => goBack()} />
-        </div>
         <div className="login-box">
           <form action="/" className="login-form">
+            <div className="back-btn">
+              <BackButton back={() => goBack()} />
+            </div>
             <div className="login-wlecome">
               <h1>Welcome Back</h1>
             </div>
