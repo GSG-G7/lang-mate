@@ -38,7 +38,7 @@ router.get('/users/interest/:id', getUsersByInterest);
 router.get('/users/profile/:username', getUserInfo);
 router.put('/users/deactivate', deactivateUser);
 router.put('/users/change-password', changePassword);
-router.get('/users/channels/:username', getUserChannels);
+router.get('/users/channels/', getUserChannels);
 
 router.use(errors);
 
