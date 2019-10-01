@@ -15,6 +15,7 @@ class Home extends Component {
     menu: false,
     messages: [
       {
+        id: 1,
         avatar:
           'https://images.unsplash.com/photo-1516756587022-7891ad56a8cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
         username: 'ammodaa',
@@ -22,6 +23,7 @@ class Home extends Component {
         messageTime: '19:14',
       },
       {
+        id: 2,
         avatar:
           'https://images.unsplash.com/photo-1531251445707-1f000e1e87d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
         username: 'fadi',
@@ -109,7 +111,7 @@ class Home extends Component {
             />
           </button>
         </header>
-        {menu ? <UserMenu /> : ''}
+        {menu ? <UserMenu username="amoodaa" /> : ''}
         <section className="main-feed__options">
           <button
             type="button"
@@ -126,7 +128,7 @@ class Home extends Component {
             messages
           </button>
         </section>
-        {showPeople && data ? <People data={data} /> : ''}
+        {showPeople && data ? <People users={data} /> : ''}
         {showMessages && Messages ? <Messages messages={messages} /> : ''}
       </div>
     );
