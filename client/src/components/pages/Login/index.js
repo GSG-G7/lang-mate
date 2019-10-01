@@ -49,7 +49,7 @@ class Login extends Component {
             <div className="login-wlecome">
               <h1>Welcome Back</h1>
             </div>
-            <div className="login-inpputs">
+            <div className="username-input">
               <Input
                 type="text"
                 name="username"

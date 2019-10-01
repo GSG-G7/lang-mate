@@ -24,7 +24,7 @@
     align-items: center;
 }
 
-.login-inpputs {
+.username-input {
     display: flex;
     flex-direction: column;
     height: 30%;
