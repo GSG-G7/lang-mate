@@ -13,7 +13,7 @@ import Settings from './components/pages/Settings';
 
 class App extends React.Component {
   state = {
-    isLogged: false,
+    isLogged: true,
   };
 
   componentDidMount() {
