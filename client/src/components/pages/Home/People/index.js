@@ -5,7 +5,6 @@ import UserCard from '../../../common/UserCard';
 import './index.css';
 
 const People = ({ users }) => {
-  console.log(users);
   return (
     <section className="main-feed__people">
       {users ? (
@@ -33,7 +32,7 @@ People.defaultProps = {
 };
 
 People.propTypes = {
-  users: PropTypes.arrayOf,
+  users: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default People;
