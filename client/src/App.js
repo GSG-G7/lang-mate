@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ApiService from './services/api';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import api from './services/api';
 import './App.css';
 
 import Login from './components/pages/Login';
@@ -17,7 +17,10 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    // ApiService.fetchData().then(result => this.setState({ text: result.body }));
+    const { isAuth } = api;
+    isAuth().then(res => {
+      if (res.data) this.setState({ isLogged: res.isAuth });
+    });
   }
 
   render() {
@@ -25,12 +28,30 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={isLogged ? Home : Landing} />
-          <Route path="/login" component={Login} />
-          <Route path="/sign-up" component={Signup} />
-          <Route path="/profile/:username" component={Profile} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/channel/:username" component={Chat} />
+          <Route
+            exact
+            path="/"
+            render={props => <Home {...props} />}
+            component={isLogged ? Home : Landing}
+          />
+          <Route
+            path="/login"
+            component={isLogged ? () => <Redirect to="/" /> : Login}
+          />
+          <Route
+            path="/sign-up"
+            component={isLogged ? () => <Redirect to="/" /> : Signup}
+          />
+
+          <Route
+            path="/profile/:username"
+            component={isLogged ? Profile : Landing}
+          />
+          <Route path="/settings" component={isLogged ? Settings : Landing} />
+          <Route
+            path="/channel/:username"
+            component={isLogged ? Chat : Landing}
+          />
           <Route path="/logout" />
           <Route component={() => <h1>Error 404</h1>} />
         </Switch>

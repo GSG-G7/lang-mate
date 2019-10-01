@@ -1,3 +1,5 @@
-const fetchData = () => fetch('/api/v1').then(res => res.json());
+const api = {
+  isAuth: () => fetch('/api/v1/is-auth').then(res => res.json()),
+};
 
-export default { fetchData };
+export default api;
