@@ -69,7 +69,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            {errMSg}
+            <div className="err-msg">{errMSg}</div>
             <div className="login-btn">
               <Button
                 text="Login"
