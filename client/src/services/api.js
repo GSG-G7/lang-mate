@@ -1,4 +1,13 @@
-export default {
+const api = {
+  isAuth: () =>
+    fetch('/api/v1/is-auth', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }).then(res => res.json()),
+
   login: data => {
     return fetch('/api/v1/login', {
       method: 'POST',
@@ -6,6 +15,13 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    }).then(res => res.json());
+    }).then(res => {
+      if (res.status !== 200) {
+        throw Error('Check username or password ... !!');
+      }
+      return res.json();
+    });
   },
 };
+
+export default api;
