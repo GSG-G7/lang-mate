@@ -1,11 +1,47 @@
-.profile{
+.profile {
   text-align: center;
 }
 
-.profile__avatar{
-  border-radius: 50%
+.profile__avatar {
+  border-radius: 50%;
+  margin: 0 auto;
 }
 
-.profile__username{
-  font-family: Roboto;
+.profile__username {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  margin: 1rem;
+}
+
+.profile__chat-btn {
+  width: 161px;
+  height: 35px;
+  background: linear-gradient(101.09deg, #3C9D9B 0.58%, #52DE97 95.23%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: none;
+}
+
+.profile__lang--learning {
+  text-align: left;
+  margin: 4rem 3rem 1rem;
+}
+
+.profile__lang__header {
+  font-size: 18px;
+  line-height: 21px;
+  color: #535353;
+}
+
+.profile__lang__info {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
 }

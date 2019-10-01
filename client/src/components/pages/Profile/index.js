@@ -31,7 +31,7 @@ const Profile = ({
       />
       <h1 className="profile__username">{upperCase(username)}</h1>
       <Link to={`/channel/${id}`}>
-        <Button className="" text="Chat" />
+        <Button className="profile__chat-btn" text="Chat" />
       </Link>
       <div className="profile__lang--native">
         <h4 className="profile__lang__header">Native Language</h4>
@@ -39,12 +39,14 @@ const Profile = ({
           <h4>{upperCase(nativeLang.name)}</h4>
         </div>
       </div>
+
       <div className="profile__lang--learning">
         <h4 className="profile__lang__header">Learning Language</h4>
         <div className="profile__lang__info">
           <h4>{upperCase(learningLang.name)}</h4>
         </div>
       </div>
+
       <div className="profile__bio">
         <h4 className="profile__bio__header">Bio</h4>
         <p className="profile__bio__p">{bio}</p>
