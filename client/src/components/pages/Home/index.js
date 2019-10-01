@@ -3,6 +3,7 @@ import Input from '../../common/Input';
 import Avatar from '../../common/Avatar';
 import UserMenu from '../../common/UserMenu';
 import People from './People';
+import Messages from './Messages';
 import api from '../../../services/api';
 import { filter } from '../../assets/svgPaths';
 import './index.css';
@@ -12,6 +13,24 @@ class Home extends Component {
     data: {},
     search: '',
     menu: false,
+    messages: [
+      {
+        avatar:
+          'https://images.unsplash.com/photo-1516756587022-7891ad56a8cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+        username: 'ammodaa',
+        lastMessage: 'Hey, what happened?',
+        messageTime: '19:14',
+      },
+      {
+        avatar:
+          'https://images.unsplash.com/photo-1531251445707-1f000e1e87d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+        username: 'fadi',
+        lastMessage: 'Hey, what happened?',
+        messageTime: '19:14',
+      },
+    ],
+    showMessages: false,
+    showPeople: true,
   };
 
   componentDidMount() {
@@ -27,11 +46,22 @@ class Home extends Component {
     this.setState({ menu: !menu });
   };
 
+  handleMessage = () => {
+    this.setState({ showMessages: true, showPeople: false });
+  };
+
+  handlePeople = () => {
+    this.setState({ showMessages: false, showPeople: true });
+  };
+
   render() {
     const {
       data: { data },
       search,
       menu,
+      messages,
+      showMessages,
+      showPeople,
     } = this.state;
     return (
       <div className="main-feed">
@@ -81,11 +111,23 @@ class Home extends Component {
         </header>
         {menu ? <UserMenu /> : ''}
         <section className="main-feed__options">
-          <h4 className="main-feed__people-option">people</h4>
-          <h4 className="main-feed__messages-option">messages</h4>
+          <button
+            type="button"
+            className="main-feed__people-option"
+            onClick={this.handlePeople}
+          >
+            people
+          </button>
+          <button
+            type="button"
+            className="main-feed__messages-option"
+            onClick={this.handleMessage}
+          >
+            messages
+          </button>
         </section>
-        {data ? <People data={data} /> : ''}
-        <section className="messages"></section>
+        {showPeople && data ? <People data={data} /> : ''}
+        {showMessages && Messages ? <Messages messages={messages} /> : ''}
       </div>
     );
   }

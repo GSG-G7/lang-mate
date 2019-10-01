@@ -45,3 +45,18 @@
   text-transform: capitalize;
   font-size: 18px;
 }
+
+.main-feed__people-option,
+.main-feed__messages-option {
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
+  background: none;
+  padding: 0.3rem 1rem;
+  outline: none;
+}
+.main-feed__people-option:focus,
+.main-feed__messages-option:focus {
+  border-bottom: 1px solid #52de97;
+}
