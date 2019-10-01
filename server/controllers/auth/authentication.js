@@ -9,6 +9,6 @@ exports.auth = (req, res, next) => {
       .then(() => next())
       .catch(() => next({ code: 401 }));
   } else {
-    return next({ code: 401 });
+    throw next({ code: 401 });
   }
 };
