@@ -34,7 +34,7 @@ const UserCard = ({
 UserCard.propTypes = {
   userInfo: PropTypes.shape({
     username: PropTypes.string.isRequired,
-    avatar_path: PropTypes.string,
+    avatar: PropTypes.string,
     nativeLang: PropTypes.objectOf.isRequired,
     learningLang: PropTypes.objectOf.isRequired,
   }).isRequired,

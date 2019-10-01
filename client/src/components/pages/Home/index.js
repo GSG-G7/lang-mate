@@ -10,33 +10,17 @@ import './index.css';
 
 class Home extends Component {
   state = {
-    data: {},
+    users: {},
     search: '',
-    menu: false,
-    messages: [
-      {
-        id: 1,
-        avatar:
-          'https://images.unsplash.com/photo-1516756587022-7891ad56a8cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        username: 'ammodaa',
-        lastMessage: 'Hey, what happened?',
-        messageTime: '19:14',
-      },
-      {
-        id: 2,
-        avatar:
-          'https://images.unsplash.com/photo-1531251445707-1f000e1e87d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        username: 'fadi',
-        lastMessage: 'Hey, what happened?',
-        messageTime: '19:14',
-      },
-    ],
+    showMenu: false,
+    messages: [],
     showMessages: false,
     showPeople: true,
   };
 
   componentDidMount() {
-    api.userNativeLang().then(res => this.setState({ data: res }));
+    api.userNativeLang().then(res => this.setState({ users: res }));
+    this.setState({ messages: api.fakeMessages });
   }
 
   changeSearch = ({ target: { value } }) => {
@@ -44,8 +28,8 @@ class Home extends Component {
   };
 
   showMenu = () => {
-    const { menu } = this.state;
-    this.setState({ menu: !menu });
+    const { showMenu } = this.state;
+    this.setState({ showMenu: !showMenu });
   };
 
   handleMessage = () => {
@@ -58,9 +42,9 @@ class Home extends Component {
 
   render() {
     const {
-      data: { data },
+      users: { data },
       search,
-      menu,
+      showMenu,
       messages,
       showMessages,
       showPeople,
@@ -111,7 +95,7 @@ class Home extends Component {
             />
           </button>
         </header>
-        {menu ? <UserMenu username="amoodaa" /> : ''}
+        {showMenu ? <UserMenu username="amoodaa" /> : ''}
         <section className="main-feed__options">
           <button
             type="button"
