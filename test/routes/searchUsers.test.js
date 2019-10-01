@@ -44,7 +44,7 @@ test('testing GET /api/v1/users/search?search=', (t) => {
 });
 test('testing GET /api/v1/users/search?search=', (t) => {
   const expected = {
-    msg: 'no users with that username found :(',
+    message: 'no users with that username found :(',
   };
 
   dbBuild()
