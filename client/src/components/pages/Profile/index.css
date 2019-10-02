@@ -24,10 +24,11 @@
   border: none;
 }
 
-.profile__lang__header {
+.profile__lang__header, .profile__bio__header, .profile__interests__header {
   font-size: 18px;
   line-height: 21px;
   color: #535353;
+  margin-bottom: .3rem;
 }
 
 .profile__lang__info {
@@ -46,9 +47,14 @@
   margin: .7rem 1rem;
 }
 
-.profile__interests__list{
+.profile__interests__list {
   display: flex;
 }
-.profile__interests__list div{
+
+.profile__interests__list div {
   margin-right: .5rem;
+  background: gainsboro;
+  padding: 0.4rem;
+  border-radius: 13px;
+  font-size: 14px;
 }
