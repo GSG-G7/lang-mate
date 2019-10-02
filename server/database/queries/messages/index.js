@@ -1,5 +1,6 @@
 const { addChannel, addSubscriber } = require('./addChannel');
 const { getChannelMessages } = require('./getChannelMessages');
+const { getChaMessagesByChaId } = require('./getChaMessagesByChaId');
 const { getChannels } = require('./getChannels');
 
 module.exports = {
@@ -7,4 +8,5 @@ module.exports = {
   getChannelMessages,
   addSubscriber,
   getChannels,
+  getChaMessagesByChaId,
 };

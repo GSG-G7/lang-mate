@@ -1,4 +1,13 @@
-export default {
+const api = {
+  signUp: data => {
+    return fetch('api/v1/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(res => res.json());
+  },
   login: data => {
     return fetch('/api/v1/login', {
       method: 'POST',
@@ -6,15 +15,22 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    }).then(res => res.json());
+    }).then(res => {
+      if (res.status !== 200) {
+        throw Error('Check username or password ... !!');
+      }
+      return res.json();
+    });
   },
-  signUp: data => {
-    return fetch('api/v1/sign-up', {
-      method: 'POST',
+
+  isAuth: () =>
+    fetch('/api/v1/is-auth', {
+      method: 'GET',
+      credentials: 'same-origin',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify(data),
-    }).then(res => res.json());
-  },
+    }).then(res => res.json()),
 };
+
+export default api;

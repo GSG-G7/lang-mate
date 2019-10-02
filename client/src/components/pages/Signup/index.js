@@ -7,6 +7,7 @@ import Button from '../../common/Button';
 import Dropdown from '../../common/Dropdown';
 import Checkbox from '../../common/Checkbox';
 import './index.css';
+import auth from '../../Auth/auth';
 
 export default class signup extends Component {
   state = {
@@ -15,8 +16,8 @@ export default class signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    nativeLnagId: '1',
-    learningLangId: '1',
+    nativeLangId: 1,
+    learningLangId: 1,
     tab: 0,
     errMsg: '',
     languages: [],
@@ -46,6 +47,7 @@ export default class signup extends Component {
   }
 
   handleChange = ({ target: { value, name } }) => {
+    console.log(value);
     this.setState({ [name]: value });
   };
 
@@ -88,15 +90,7 @@ export default class signup extends Component {
     this.setState({ tab: tab - 1 });
   };
 
-  filterInterests = array => {
-    const arrayId = [];
-    array.forEach(e => {
-      if (e.checked) {
-        arrayId.push(e.id);
-      }
-      return arrayId;
-    });
-  };
+  filterInterests = array => array.filter(e => e.checked).map(e => e.id);
 
   handleSignup = e => {
     e.preventDefault();
@@ -104,20 +98,22 @@ export default class signup extends Component {
       username,
       email,
       password,
-      nativeLnagId,
+      nativeLangId,
       learningLangId,
       interests,
     } = this.state;
     const interestsId = this.filterInterests(interests);
+    console.log(interestsId);
     const userInfo = {
       username,
       email,
       password,
-      nativeLnagId,
+      nativeLangId,
       learningLangId,
       interestsId,
     };
-    api.signUp(userInfo);
+
+    api.signUp(userInfo).then(res => console.log(res));
   };
 
   render() {
@@ -126,7 +122,7 @@ export default class signup extends Component {
       email,
       password,
       confirmPassword,
-      nativeLnagId,
+      nativeLangId,
       learningLangId,
       tab,
       Allinterests,
@@ -201,16 +197,16 @@ export default class signup extends Component {
               <h2 className="signup__heading">Choose Languages</h2>
               <Dropdown
                 labelText="Native Language"
-                name="nativeLnagId"
+                name="nativeLangId"
                 languages={languages}
-                value={nativeLnagId.value}
+                value={nativeLangId.id}
                 onChange={this.handleChange}
               />
               <Dropdown
                 labelText="Learning Language"
                 name="learningLangId"
                 languages={languages}
-                value={learningLangId.value}
+                value={learningLangId.id}
                 onChange={this.handleChange}
               />
               <Button

@@ -1,11 +1,13 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './index.css';
 import PropTypes from 'prop-types';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import BackButton from '../../common/BackButton';
 import api from '../../../services/api';
+import auth from '../../Auth/auth';
 
 class Login extends Component {
   state = {
@@ -19,20 +21,30 @@ class Login extends Component {
 
   handleClick = () => {
     const { username, password } = this.state;
+    const { setUserInfo } = this.props;
     if (username && password) {
       const {
         history: { push },
+        location: { state },
       } = this.props;
+
       api
         .login({
           username,
           password,
         })
-        .then(res => {
-          if (res.isSuccess) {
+        .then(({ data }) => {
+          if (data) {
+            auth.setUserInfo(data);
+            auth.isAuthenticated = true;
+            setUserInfo(data);
+            const prevPath = state.from.pathname;
+            if (prevPath) {
+              return push(prevPath);
+            }
             return push('/');
           }
-          throw new Error(res.message);
+          throw Error('Check username or password ..! ');
         })
         .catch(err => this.setState({ errMSg: err.message }));
     } else {
@@ -45,6 +57,38 @@ class Login extends Component {
     const {
       history: { goBack },
     } = this.props;
+    let pathName;
+    const {
+      history: {
+        location: { state },
+      },
+    } = this.props;
+    if (state) {
+      const {
+        history: {
+          location: {
+            state: {
+              from: { pathname },
+            },
+          },
+        },
+      } = this.props;
+      pathName = pathname;
+    } else {
+      pathName = '/';
+    }
+
+    const { location } = this.props;
+    if (auth.isAuthenticated) {
+      return (
+        <Redirect
+          to={{
+            pathname: `${pathName}`,
+            state: { from: location },
+          }}
+        />
+      );
+    }
     return (
       <div className="login-page">
         <div className="login-box">

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
 import Profile from './components/pages/Profile';
@@ -7,29 +8,73 @@ import Landing from './components/pages/Landing';
 import Home from './components/pages/Home';
 import Chat from './components/pages/Chat';
 import Settings from './components/pages/Settings';
+import auth from './components/Auth/auth';
+import PrivateRoute from './components/Auth/PrivateRoute';
 
 import './App.css';
 
 class App extends React.Component {
   state = {
-    isLogged: false,
+    isLogged: null,
+    userInfo: null,
   };
 
   componentDidMount() {
-    // ApiService.fetchData().then(result => this.setState({ text: result.body }));
+    auth.authenticate(() => {
+      if (auth.isAuthenticated) {
+        const userInfo = auth.getUserInfo();
+        this.setState({ userInfo, isLogged: auth.isAuthenticated });
+      } else {
+        this.setState({ isLogged: auth.isAuthenticated });
+      }
+    });
   }
 
+  isLoggedOut = () => {
+    auth.logout();
+    this.setState({ isLogged: false });
+  };
+
+  setUserInfo = (_userInfo, _islogged) => {
+    const userInfo = auth.getUserInfo() || _userInfo;
+    this.setState({ userInfo, isLogged: auth.isAuthenticated });
+  };
+
   render() {
-    const { isLogged } = this.state;
+    const { isLogged, userInfo } = this.state;
+
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={isLogged ? Home : Landing} />
-          <Route path="/login" component={Login} />
-          <Route path="/sign-up" component={Signup} />
-          <Route path="/profile/:username" component={Profile} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/channel/:username" component={Chat} />
+          {auth.isAuthenticated ? (
+            <Route
+              exact
+              path="/"
+              render={props => <Home userInfo={userInfo} {...props} />}
+            />
+          ) : (
+            <Route exact path="/" component={Landing} />
+          )}
+
+          <Route
+            exact
+            path="/login"
+            setUserInfo={this.setUserInfo}
+            render={props => (
+              <Login {...props} setUserInfo={this.setUserInfo} />
+            )}
+          />
+
+          <Route path="/sign-up" render={props => <Signup {...props} />} />
+
+          <PrivateRoute path="/profile/:username" component={Profile} />
+          <PrivateRoute path="/settings" component={Settings} />
+          <PrivateRoute
+            exact
+            path="/channel/:username"
+            userInfo={userInfo}
+            component={Chat}
+          />
           <Route path="/logout" />
           <Route component={() => <h1>Error 404</h1>} />
         </Switch>
