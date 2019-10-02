@@ -10,18 +10,18 @@ import './index.css';
 
 class Home extends Component {
   state = {
-    users: {},
-    search: '',
     showMenu: false,
-    messages: [],
-    showMessages: false,
     showPeople: true,
+    showMessages: false,
+    search: '',
+
+    people: { users: [] },
+    messages: { user: [], channels: [], users: [] },
   };
 
   componentDidMount() {
-    api.userNativeLang().then(res => this.setState({ users: res }));
+    api.userNativeLang().then(res => this.setState({ people: { users: res } }));
     api.getChannelsMessages().then(res => this.setState({ messages: res }));
-    this.setState({ messages: api.fakeMessages });
   }
 
   changeSearch = ({ target: { value } }) => {
@@ -42,8 +42,11 @@ class Home extends Component {
   };
 
   render() {
+    const { userInfo } = this.props;
     const {
-      users: { data },
+      people: {
+        users: { data },
+      },
       search,
       showMenu,
       messages,
@@ -114,7 +117,11 @@ class Home extends Component {
           </button>
         </section>
         {showPeople && data ? <People users={data} /> : ''}
-        {showMessages && Messages ? <Messages messages={messages} /> : ''}
+        {showMessages && Messages ? (
+          <Messages messages={messages} userInfo={userInfo} />
+        ) : (
+          ''
+        )}
       </div>
     );
   }

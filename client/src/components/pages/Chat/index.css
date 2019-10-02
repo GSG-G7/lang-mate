@@ -35,3 +35,11 @@
   padding: 10px;
   font-size: 24px;
 }
+
+.green {
+  background: #52de97;
+}
+
+.gray {
+  background: #eee;
+}

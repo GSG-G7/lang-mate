@@ -1,9 +1,12 @@
 const api = {
   userNativeLang: () => {
-    return fetch('api/v1/users/native-lang/1').then(res => res.json());
+    return fetch('/api/v1/users/native-lang/1').then(res => res.json());
   },
   getChannelsMessages: () => {
-    return fetch('api/v1/channels/1').then(res => res.json());
+    return fetch('/api/v1/users/channels').then(res => res.json());
+  },
+  getMessages: id => {
+    return fetch(`/api/v1/channels/${id}`).then(res => res.json());
   },
   isAuth: () =>
     fetch('/api/v1/is-auth', {
