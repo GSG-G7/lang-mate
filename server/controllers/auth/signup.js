@@ -5,7 +5,6 @@ const { users: { getUserByEmailOrUsername, addUser, addUserInterests } } = requi
 
 
 exports.signup = (req, res, next) => {
-  console.log('bofy :', req.body);
   const key = process.env.KEY;
   const {
     username, email, password, nativeLangId, learningLangId, interestsId,
