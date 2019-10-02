@@ -10,11 +10,11 @@ const Checkbox = ({ id, value, checked, onClick, name }) => (
         type="checkbox"
         value={value}
         name={name}
-        className="checkbox__input"
-        checked={checked}
         onClick={onClick}
+        className="checkbox"
       />
-      <span className="checkbox_span"></span>
+      <div className="round"></div>
+      {/* <span className="checkbox_span"></span> */}
       {value}
     </label>
   </div>
