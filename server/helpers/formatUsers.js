@@ -13,5 +13,5 @@ exports.formatUsers = (users, langs) => users.map(({
   ...rest,
   learningLang: langs[learningLangId - 1],
   nativeLang: langs[nativeLangId - 1],
-  interests: distinctInterests(interests),
+  interests: interests ? distinctInterests(interests) : interests,
 }));
