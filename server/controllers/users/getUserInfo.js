@@ -1,14 +1,16 @@
 const {
-  users: { getUserByUsername },
+  users: { getUserByUsername, getUsersByIds },
   languages: { getLanguages },
 } = require('../../database/queries');
 const { formatUsers } = require('../../helpers');
 
 exports.getUserInfo = (req, res, next) => {
   const { username } = req.params;
-  Promise.all([
-    getUserByUsername(username),
-    getLanguages()])
+  getUserByUsername(username)
+    .then(({ rows: [{ id }] }) => Promise.all([
+      getUsersByIds([id]),
+      getLanguages(),
+    ]))
     .then(([{ rows: users, rowCount }, { rows: languages }]) => (rowCount !== 0
       ? formatUsers(users, languages)
       : next({ code: 400, msg: 'no user with that username' })))
