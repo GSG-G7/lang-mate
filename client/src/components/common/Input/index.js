@@ -29,6 +29,10 @@ const Input = ({
   );
 };
 
+Input.defaultProps = {
+  errMsg: '',
+};
+
 // Checking for the value of the props
 Input.propTypes = {
   type: PropTypes.string.isRequired,
@@ -39,10 +43,6 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   errMsg: PropTypes.string,
   value: PropTypes.string.isRequired,
-};
-
-Input.defaultProps = {
-  errMsg: '',
 };
 
 export default Input;
