@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {
   auth: {
-    login, logout, signup, auth,
+    login, logout, signup, auth, isAuth,
   },
   users: {
     changePassword,
@@ -20,7 +20,9 @@ const {
 
 router.post('/login', login);
 router.post('/signup', signup);
+
 router.use(auth);
+router.get('/is-auth', isAuth);
 
 router.post('/logout', logout);
 
@@ -38,7 +40,7 @@ router.get('/users/interest/:id', getUsersByInterest);
 router.get('/users/profile/:username', getUserInfo);
 router.put('/users/deactivate', deactivateUser);
 router.put('/users/change-password', changePassword);
-router.get('/users/channels/:username', getUserChannels);
+router.get('/users/channels/', getUserChannels);
 
 router.use(errors);
 

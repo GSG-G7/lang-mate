@@ -8,9 +8,12 @@ exports.login = (req, res, next) => {
 
   const key = process.env.KEY;
   let id;
+  let user;
   getUserByUsername(username)
     .then(({ rows }) => {
       if (rows && rows[0]) {
+        const { id: userId, username: userName } = rows[0];
+        user = { userId, userName };
         const [{ id: dbId, password: dbPassword, isactive }] = rows;
         id = dbId;
         const reactivePromise = isactive ? Promise.resolve(true) : reactivateUser();
@@ -26,7 +29,7 @@ exports.login = (req, res, next) => {
     })
     .then((token) => {
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
-      res.send({ isSuccess: true, message: 'success' });
+      res.send({ isSuccess: true, message: 'success', data: user });
     })
     .catch(next);
 };

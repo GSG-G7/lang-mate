@@ -23,8 +23,8 @@ const Profile = ({
     <BackButton back={() => {}} />
     <div className="profile">
       <Avatar
-        width="200"
-        height="200"
+        width="180"
+        height="180"
         src={avatarPath}
         className="profile__avatar"
         altText="user profile pic"

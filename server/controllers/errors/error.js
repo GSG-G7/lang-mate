@@ -4,20 +4,20 @@ exports.errors = (err, req, res, next) => {
   console.log(err);
   switch (err.code) {
     case 400:
-      res.status(400).send({ msg: err.msg });
+      res.status(400).send({ message: err.msg });
       break;
     case 401:
-      res.status(401).send({ msg: 'Unauthorized' });
+      res.status(401).send({ message: 'Unauthorized' });
       break;
     case 403:
-      res.status(403).send({ msg: 'forbidden' });
+      res.status(403).send({ message: 'forbidden' });
       break;
     case 501:
-      res.status(501).send({ msg: 'not implemented' });
+      res.status(501).send({ message: 'not implemented' });
       break;
 
     default:
-      res.status(500).send({ msg: 'server error' });
+      res.status(500).send({ message: 'server error' });
       break;
   }
 };
