@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { BrowserHistory } from 'react-router-dom';
+import api from '../../../services/api';
 import signupValidation from '../utils/signupValidation';
 import BackButton from '../../common/BackButton';
 import Input from '../../common/Input';
@@ -10,35 +10,114 @@ import './index.css';
 
 export default class signup extends Component {
   state = {
+    interests: [],
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    nativeLanguage: '',
-    learnLanguage: '',
+    nativeLnagId: '1',
+    learningLangId: '1',
+    tab: 0,
+    errMsg: '',
+    languages: [],
   };
+
+  componentDidMount() {
+    const Allinterests = [
+      { id: 1, name: 'music' },
+      { id: 2, name: 'sports' },
+      { id: 3, name: 'football' },
+      { id: 4, name: 'reading' },
+      { id: 5, name: 'novels' },
+      { id: 6, name: 'games' },
+      { id: 7, name: 'swimming' },
+    ];
+
+    const languagesList = [
+      { id: 1, language: 'Arabic' },
+      { id: 2, language: 'English' },
+      { id: 3, language: 'Spanish' },
+      { id: 4, language: 'Dutch' },
+    ];
+    this.setState({
+      interests: Allinterests.map(e => ({ ...e, checked: false })),
+      languages: [...languagesList],
+    });
+  }
 
   handleChange = ({ target: { value, name } }) => {
     this.setState({ [name]: value });
   };
 
+  handleCheck = ({ target: { id } }) => {
+    const { interests } = this.state;
+    const newIntersts = interests.map(e => ({ ...e }));
+    newIntersts.forEach(e => {
+      if (+e.id === +id) {
+        e.checked = !e.checked;
+      }
+      return e;
+    });
+    this.setState({
+      interests: newIntersts,
+    });
+  };
+
+  nextTab = () => {
+    const { tab, username, email, password, confirmPassword } = this.state;
+    if (tab === 0) {
+      signupValidation
+        .validate({ username, email, password, confirmPassword })
+        .then(() => {
+          this.setState({
+            tab: tab + 1,
+          });
+        })
+        .catch(error => {
+          this.setState({ errMsg: error.errors[0] });
+        });
+    } else {
+      this.setState({
+        tab: tab + 1,
+      });
+    }
+  };
+
+  previousTab = () => {
+    const { tab } = this.state;
+    this.setState({ tab: tab - 1 });
+  };
+
+  filterInterests = array => {
+    const arrayId = [];
+    array.forEach(e => {
+      if (e.checked) {
+        arrayId.push(e.id);
+      }
+      return arrayId;
+    });
+  };
+
   handleSignup = e => {
     e.preventDefault();
-    const { username, email, password, confirmPassword } = this.state;
-    signupValidation
-      .validate(
-        { username, email, password, confirmPassword },
-        { abortEarly: false }
-      )
-      .then(values => {
-        return values;
-      })
-      .catch(error => {
-        const errorMessages = {};
-        error.inner.forEach(element => {
-          errorMessages[element.path] = element.message;
-        });
-      });
+    const {
+      username,
+      email,
+      password,
+      nativeLnagId,
+      learningLangId,
+      interests,
+    } = this.state;
+    const interestsId = this.filterInterests(interests);
+    const userInfo = {
+      username,
+      email,
+      password,
+      nativeLnagId,
+      learningLangId,
+      interestsId,
+    };
+    api.signUp(userInfo);
   };
 
   render() {
@@ -47,112 +126,124 @@ export default class signup extends Component {
       email,
       password,
       confirmPassword,
-      nativeLanguage,
-      learnLanguage,
+      nativeLnagId,
+      learningLangId,
+      tab,
+      Allinterests,
+      interests,
+      errMsg,
+      languages,
     } = this.state;
     return (
       <div className="signup">
-        <div className="signup__body" id="step1">
-          {/* <BackButton
+        {tab !== 0 ? (
+          <BackButton
             className="back__button"
-            onClick={() =>
-              console.log('back button')
-            }  this.props.history.push('/')
-          /> */}
-          <h2 className="signup__heading">Join Us Now</h2>
-          <div className="signup__form">
-            <form id="signup" className="signup__form" method="POST">
-              <Input
-                type="text"
-                name="username"
-                className="signup__input"
-                label="username"
-                placeholder="Username"
-                value={username.value}
+            back={() => this.previousTab()}
+          />
+        ) : (
+          ''
+        )}
+        <div className="signup__body">
+          {tab === 0 ? (
+            <>
+              <h2 className="signup__heading">Join Us Now</h2>
+              <div className="signup__form">
+                <Input
+                  type="text"
+                  name="username"
+                  className="signup__input"
+                  label="username"
+                  placeholder="Username"
+                  value={username.value}
+                  onChange={this.handleChange}
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  className="signup__input"
+                  label="email"
+                  placeholder="Email"
+                  value={email.value}
+                  onChange={this.handleChange}
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  className="signup__input"
+                  label="passeord"
+                  placeholder="Password"
+                  value={password.value}
+                  onChange={this.handleChange}
+                />
+                <Input
+                  type="password"
+                  name="confirmPassword"
+                  className="signup__input"
+                  label="confirmPassword"
+                  placeholder="Confirm Password"
+                  value={confirmPassword.value}
+                  onChange={this.handleChange}
+                />
+                <span className="errorMsg">{errMsg || ''}</span>
+                <Button
+                  text="Next"
+                  className="signup__button"
+                  onClick={this.nextTab}
+                />
+              </div>
+            </>
+          ) : (
+            ''
+          )}
+          {tab === 1 ? (
+            <>
+              <h2 className="signup__heading">Choose Languages</h2>
+              <Dropdown
+                labelText="Native Language"
+                name="nativeLnagId"
+                languages={languages}
+                value={nativeLnagId.value}
                 onChange={this.handleChange}
-                errMsg={() => console.log('You entered an exist username')}
               />
-              <Input
-                type="email"
-                name="email"
-                className="signup__input"
-                label="email"
-                placeholder="Email"
-                value={email.value}
+              <Dropdown
+                labelText="Learning Language"
+                name="learningLangId"
+                languages={languages}
+                value={learningLangId.value}
                 onChange={this.handleChange}
-                errMsg={() => console.log('You entered an exist email')}
-              />
-              <Input
-                type="password"
-                name="password"
-                className="signup__input"
-                label="passeord"
-                placeholder="Password"
-                value={password.value}
-                onChange={this.handleChange}
-                errMsg={() => console.log('You entered weak password')}
-              />
-              <Input
-                type="password"
-                name="confirmPassword"
-                className="signup__input"
-                label="confirmPassword"
-                placeholder="Confirm Password"
-                value={confirmPassword.value}
-                onChange={this.handleChange}
-                errMsg={() => console.log('The password is not matching')}
               />
               <Button
                 text="Next"
                 className="signup__button"
+                onClick={this.nextTab}
+              />
+            </>
+          ) : (
+            ''
+          )}
+          {tab === 2 ? (
+            <>
+              <h2 className="signup__heading">Choose Interests</h2>
+              {interests.map(({ id, name }, i) => (
+                <Checkbox
+                  key={id}
+                  id={id}
+                  value={name}
+                  onClick={this.handleCheck}
+                  name="interests"
+                  checked={() => interests[i] === Allinterests[i]}
+                />
+              ))}
+              <Button
+                text="Sign Up"
+                className="signup__button"
                 onClick={this.handleSignup}
               />
-            </form>
-          </div>
-        </div>
-        {/* Step 2 to choose languages */}
-        <div className="signup__body" id="step2">
-          <h2 className="signup__heading">Choose Languages</h2>
-          <Dropdown
-            labelText="Native Language"
-            name="nativeLanguage"
-            languages={[
-              { id: 1, language: 'Arabic' },
-              { id: 2, language: 'English' },
-              { id: 3, language: 'Spanish' },
-              { id: 4, language: 'Dutch' },
-            ]}
-            value={nativeLanguage.value}
-            onChange={this.handleChange}
-          />
-          <Dropdown
-            labelText="Learning Language"
-            name="learnLanguage"
-            languages={[
-              { id: 1, language: 'Arabic' },
-              { id: 2, language: 'English' },
-              { id: 3, language: 'Spanish' },
-              { id: 4, language: 'Dutch' },
-            ]}
-            value={learnLanguage.value}
-            onChange={this.handleChange}
-          />
-          <Button
-            text="Next"
-            className="signup__button"
-            onClick={() => console.log(this.state)}
-          />
-        </div>
-        {/* Step 3 to choose interests */}
-        <div className="signup__body" id="step3">
-          <h2 className="signup__heading">Choose Interests</h2>
-          <Checkbox id={1} value="Music" onClick={this.handleChange} />
-          <Checkbox id={2} value="Sport" onClick={this.handleChange} />
-          <Button
-            text="Sign Up"
-            className="signup__button"
-            onClick={this.handleSignup}
-          />
+            </>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     );
