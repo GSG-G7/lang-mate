@@ -4,7 +4,7 @@ const { formatUsers } = require('../../helpers');
 exports.getUsersByLang = (req, res, next) => {
   const { id } = req.params;
 
-  if (!Number(id)) throw next({ code: 400, msg: 'Bad request' });
+  if (!Number(id)) throw ({ code: 400, msg: 'Bad request' });
 
   Promise.all([getUsersByLang(id), getLanguages()])
     .then(([{ rows: users }, { rows: langs }]) => formatUsers(users, langs))
