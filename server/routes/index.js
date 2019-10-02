@@ -20,15 +20,13 @@ const {
 
 router.post('/login', login);
 router.post('/signup', signup);
+router.get('/languages', getAllLanguages);
+router.get('/interests', getAllInterests);
 
 router.use(auth);
 router.get('/is-auth', isAuth);
 
 router.post('/logout', logout);
-
-router.get('/languages', getAllLanguages);
-
-router.get('/interests', getAllInterests);
 
 router.get('/channels/:id', getChannelMessages);
 router.get('/getChannels', getChannels);
