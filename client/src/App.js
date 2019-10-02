@@ -41,12 +41,17 @@ class App extends React.Component {
   };
 
   render() {
-    const { isLogged } = this.state;
+    const { isLogged, userInfo } = this.state;
+
     return (
       <BrowserRouter>
         <Switch>
           {auth.isAuthenticated ? (
-            <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path="/"
+              render={props => <Home userInfo={userInfo} {...props} />}
+            />
           ) : (
             <Route exact path="/" component={Landing} />
           )}
@@ -66,7 +71,12 @@ class App extends React.Component {
 
           <PrivateRoute path="/profile/:username" component={Profile} />
           <PrivateRoute path="/settings" component={Settings} />
-          <PrivateRoute path="/channel/:username" component={Chat} />
+          <PrivateRoute
+            exact
+            path="/channel/:username"
+            userInfo={userInfo}
+            component={Chat}
+          />
           <Route path="/logout" />
           <Route component={() => <h1>Error 404</h1>} />
         </Switch>

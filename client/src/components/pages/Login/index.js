@@ -58,13 +58,33 @@ class Login extends Component {
     const {
       history: { goBack },
     } = this.props;
+    let pathName;
+    const {
+      history: {
+        location: { state },
+      },
+    } = this.props;
+    if (state) {
+      const {
+        history: {
+          location: {
+            state: {
+              from: { pathname },
+            },
+          },
+        },
+      } = this.props;
+      pathName = pathname;
+    } else {
+      pathName = '/';
+    }
 
     const { location } = this.props;
     if (auth.isAuthenticated) {
       return (
         <Redirect
           to={{
-            pathname: '/',
+            pathname: `${pathName}`,
             state: { from: location },
           }}
         />
