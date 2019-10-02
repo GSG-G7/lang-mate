@@ -1,7 +1,7 @@
 const { join } = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-// middlewares
+// middlewares  
 const cors = require('cors');
 const compression = require('compression');
 const morgan = require('morgan');

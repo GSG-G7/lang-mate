@@ -20,6 +20,7 @@ class Home extends Component {
 
   componentDidMount() {
     api.userNativeLang().then(res => this.setState({ users: res }));
+    api.getChannelsMessages().then(res => this.setState({ messages: res }));
     this.setState({ messages: api.fakeMessages });
   }
 
