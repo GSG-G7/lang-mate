@@ -1,67 +1,86 @@
-import React from 'react';
+import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Avatar from '../../common/Avatar';
 import BackButton from '../../common/BackButton';
 import Button from '../../common/Button';
 import upperCase from '../../../helpers/capitalizeFirstLetter';
 import './index.css';
+import auth from '../../Auth/auth';
+import api from '../../../services/api';
 
-const Profile = ({
-  userInfo: {
-    username,
-    id,
-    email,
-    bio,
-    avatar_path: avatarPath,
-    nativeLang,
-    learningLang,
-    interests,
-  },
-}) => (
-  <>
-    <BackButton back={() => {}} />
-    <div className="profile">
-      <Avatar
-        width="180"
-        height="180"
-        src={avatarPath}
-        className="profile__avatar"
-        altText="user profile pic"
-      />
-      <h1 className="profile__username">{upperCase(username)}</h1>
-      <Link to={`/channel/${id}`}>
-        <Button className="profile__chat-btn" text="Chat" />
-      </Link>
-      <div className="profile__lang--native">
-        <h4 className="profile__lang__header">Native Language</h4>
-        <div className="profile__lang__info">
-          <h4>{upperCase(nativeLang.name)}</h4>
-        </div>
-      </div>
+class Profile extends Component {
+  state = { userInfo: null };
 
-      <div className="profile__lang--learning">
-        <h4 className="profile__lang__header">Learning Language</h4>
-        <div className="profile__lang__info">
-          <h4>{upperCase(learningLang.name)}</h4>
-        </div>
-      </div>
+  componentDidMount() {
+    const { userInfo } = this.props;
+    console.log();
 
-      <div className="profile__bio">
-        <h4 className="profile__bio__header">Bio</h4>
-        <p className="profile__bio__p">{bio}</p>
-      </div>
-      <div className="profile__interests">
-        <h4 className="profile__interests__header">Interests</h4>
-        <div className="profile__interests__list">
-          {interests.map(({ id: key, name }) => (
-            <div key={key}>{upperCase(name)}</div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </>
-);
+    if (userInfo) {
+      this.setState({ userInfo });
+    } else {
+      const { userName } = auth.getUserInfo();
+      api.getUserInfo(userName);
+    }
+  }
+
+  render() {
+    const { userInfo } = this.state;
+    return (
+      <>
+        {userInfo ? (
+          <>
+            <BackButton back={() => {}} />
+            <div className="profile">
+              <Avatar
+                width="180"
+                height="180"
+                src={userInfo.avatar_path || 'https://i.imgur.com/fLrnzVg.jpg'}
+                className="profile__avatar"
+                altText="user profile pic"
+              />
+              <h1 className="profile__username">
+                {upperCase(userInfo.username)}
+              </h1>
+              <Link to={`/channel/${userInfo.id}`}>
+                <Button className="profile__chat-btn" text="Chat" />
+              </Link>
+              <div className="profile__lang--native">
+                <h4 className="profile__lang__header">Native Language</h4>
+                <div className="profile__lang__info">
+                  <h4>{upperCase(userInfo.nativeLang.name)}</h4>
+                </div>
+              </div>
+
+              <div className="profile__lang--learning">
+                <h4 className="profile__lang__header">Learning Language</h4>
+                <div className="profile__lang__info">
+                  <h4>{upperCase(userInfo.learningLang.name)}</h4>
+                </div>
+              </div>
+
+              <div className="profile__bio">
+                <h4 className="profile__bio__header">Bio</h4>
+                <p className="profile__bio__p">{userInfo.bio}</p>
+              </div>
+              <div className="profile__interests">
+                <h4 className="profile__interests__header">Interests</h4>
+                <div className="profile__interests__list">
+                  {userInfo.interests.map(({ id: key, name }) => (
+                    <div key={key}>{upperCase(name)}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          'loading ..!!'
+        )}
+      </>
+    );
+  }
+}
+
 Profile.defaultProps = {
   userInfo: {
     id: 1,

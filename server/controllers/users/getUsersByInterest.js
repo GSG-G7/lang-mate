@@ -2,7 +2,7 @@ const {
   users: { getUsersByInterest },
   languages: { getLanguages },
 } = require('../../database/queries');
-const { formatLanguagesV2 } = require('../../helpers');
+const { formatUsers } = require('../../helpers');
 
 exports.getUsersByInterest = (req, res, next) => {
   const { id } = req.params;
@@ -10,7 +10,7 @@ exports.getUsersByInterest = (req, res, next) => {
   if (!Number(id)) throw next({ code: 400, msg: 'bad request' });
   // Calling the query
   Promise.all([getUsersByInterest(id), getLanguages()])
-    .then(([{ rows: users }, { rows: langs }]) => formatLanguagesV2(users, langs))
+    .then(([{ rows: users }, { rows: langs }]) => formatUsers(users, langs))
     .then((result) => res.json({ data: result }))
     .catch((err) => {
       next(err);
