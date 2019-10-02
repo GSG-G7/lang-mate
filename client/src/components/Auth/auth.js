@@ -8,9 +8,11 @@ const auth = {
     api
       .isAuth()
       .then(res => {
-        if (res.success && res.data) {
+        if (res.isAuth && res.data) {
+          const { id: userId, username: userName } = res.data.userInfo;
+          const userInfo = { userId, userName };
           this.isAuthenticated = true;
-          this.userInfo = res.data;
+          this.userInfo = userInfo;
           cb();
         } else {
           this.isAuthenticated = false;
