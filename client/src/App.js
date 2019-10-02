@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import io from 'socket.io-client';
 
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
@@ -19,11 +20,17 @@ class App extends React.Component {
     userInfo: null,
   };
 
+  socket = null;
+
+  // .connect('/channel');
+
   componentDidMount() {
     auth.authenticate(() => {
       if (auth.isAuthenticated) {
+        this.socket = io(':8080/');
         const userInfo = auth.getUserInfo();
         this.setState({ userInfo, isLogged: auth.isAuthenticated });
+        this.socket.on('message', msg => console.warn(msg));
       } else {
         this.setState({ isLogged: auth.isAuthenticated });
       }
@@ -73,7 +80,7 @@ class App extends React.Component {
           <PrivateRoute path="/settings" component={Settings} />
           <PrivateRoute
             exact
-            path="/channel/:username"
+            path="/channel/:channelId"
             userInfo={userInfo}
             component={Chat}
           />
