@@ -23,12 +23,9 @@ const api = {
     });
   },
   getUserInfo: username => {
-    return fetch(`/api/v1/profile/${username}`, {
+    return fetch(`/api/v1/users/profile/${username}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(res => res.json());
+    }).then(result => result.json());
   },
 };
 

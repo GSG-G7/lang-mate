@@ -6,21 +6,35 @@ import BackButton from '../../common/BackButton';
 import Button from '../../common/Button';
 import upperCase from '../../../helpers/capitalizeFirstLetter';
 import './index.css';
-import auth from '../../Auth/auth';
 import api from '../../../services/api';
 
 class Profile extends Component {
   state = { userInfo: null };
 
   componentDidMount() {
-    const { userInfo } = this.props;
-    console.log();
+    const {
+      location: {
+        state: { userInfo },
+      },
+    } = this.props;
 
     if (userInfo) {
       this.setState({ userInfo });
     } else {
-      const { userName } = auth.getUserInfo();
-      api.getUserInfo(userName);
+      const {
+        match: {
+          params: { username },
+        },
+        history: { push },
+      } = this.props;
+      api.getUserInfo(username).then(res => {
+        if (res) {
+          this.setState({ userInfo: res[0] });
+        }
+        if (res.message) {
+          push('/  ');
+        }
+      });
     }
   }
 
@@ -111,26 +125,38 @@ Profile.defaultProps = {
   },
 };
 Profile.propTypes = {
-  userInfo: propTypes.shape({
-    username: propTypes.string.isRequired,
-    id: propTypes.number.isRequired,
-    email: propTypes.string.isRequired,
-    bio: propTypes.string.isRequired,
-    avatar_path: propTypes.string.isRequired,
-    nativeLang: propTypes.shape({
-      id: propTypes.number.isRequired,
-      name: propTypes.string.isRequired,
-    }).isRequired,
-    learningLang: propTypes.shape({
-      id: propTypes.number.isRequired,
-      name: propTypes.string.isRequired,
-    }).isRequired,
-    interests: propTypes.arrayOf(
-      propTypes.shape({
+  location: propTypes.shape({
+    state: propTypes.shape({
+      userInfo: propTypes.shape({
+        username: propTypes.string.isRequired,
         id: propTypes.number.isRequired,
-        name: propTypes.string.isRequired,
-      })
-    ),
-  }),
+        email: propTypes.string.isRequired,
+        bio: propTypes.string.isRequired,
+        avatar_path: propTypes.string.isRequired,
+        nativeLang: propTypes.shape({
+          id: propTypes.number.isRequired,
+          name: propTypes.string.isRequired,
+        }).isRequired,
+        learningLang: propTypes.shape({
+          id: propTypes.number.isRequired,
+          name: propTypes.string.isRequired,
+        }).isRequired,
+        interests: propTypes.arrayOf(
+          propTypes.shape({
+            id: propTypes.number.isRequired,
+            name: propTypes.string.isRequired,
+          })
+        ),
+      }),
+    }).isRequired,
+  }).isRequired,
+  match: propTypes.shape({
+    params: propTypes.shape({
+      username: propTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+  history: propTypes.shape({
+    push: propTypes.func.isRequired,
+  }).isRequired,
 };
 export default Profile;
