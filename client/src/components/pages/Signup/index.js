@@ -1,4 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+
 import api from '../../../services/api';
 import signupValidation from '../utils/signupValidation';
 import BackButton from '../../common/BackButton';
@@ -47,7 +51,6 @@ export default class signup extends Component {
   }
 
   handleChange = ({ target: { value, name } }) => {
-    console.log(value);
     this.setState({ [name]: value });
   };
 
@@ -93,6 +96,10 @@ export default class signup extends Component {
   filterInterests = array => array.filter(e => e.checked).map(e => e.id);
 
   handleSignup = e => {
+    const {
+      history: { push },
+    } = this.props;
+
     e.preventDefault();
     const {
       username,
@@ -103,7 +110,6 @@ export default class signup extends Component {
       interests,
     } = this.state;
     const interestsId = this.filterInterests(interests);
-    console.log(interestsId);
     const userInfo = {
       username,
       email,
@@ -113,7 +119,19 @@ export default class signup extends Component {
       interestsId,
     };
 
-    api.signUp(userInfo).then(res => console.log(res));
+    api
+      .signUp(userInfo)
+      .then(res => {
+        if (res.isSuccess) {
+          const { id: userId, username: userName } = res.data;
+          const userInformation = { userId, userName };
+          auth.isAuthenticated = true;
+          auth.setUserInfo(userInformation);
+          push('/');
+        }
+        if (res.message) throw Error(res.message);
+      })
+      .catch(err => alert(err.message));
   };
 
   render() {
@@ -130,6 +148,39 @@ export default class signup extends Component {
       errMsg,
       languages,
     } = this.state;
+    const {
+      history: {
+        location: { state },
+      },
+    } = this.props;
+    let newPathname;
+    if (state) {
+      const {
+        history: {
+          location: {
+            state: {
+              from: { pathname },
+            },
+          },
+        },
+      } = this.props;
+      newPathname = pathname;
+    } else {
+      newPathname = '/';
+    }
+
+    const { location } = this.props;
+    if (auth.isAuthenticated) {
+      return (
+        <Redirect
+          to={{
+            pathname: `${newPathname}`,
+            state: { from: location },
+          }}
+        />
+      );
+    }
+
     return (
       <div className="signup">
         {tab !== 0 ? (
@@ -195,20 +246,27 @@ export default class signup extends Component {
           {tab === 1 ? (
             <>
               <h2 className="signup__heading">Choose Languages</h2>
-              <Dropdown
-                labelText="Native Language"
-                name="nativeLangId"
-                languages={languages}
-                value={nativeLangId.id}
-                onChange={this.handleChange}
-              />
-              <Dropdown
-                labelText="Learning Language"
-                name="learningLangId"
-                languages={languages}
-                value={learningLangId.id}
-                onChange={this.handleChange}
-              />
+              {languages ? (
+                <>
+                  <Dropdown
+                    labelText="Native Language"
+                    name="nativeLangId"
+                    languages={languages}
+                    value={nativeLangId.id}
+                    onChange={this.handleChange}
+                  />
+                  <Dropdown
+                    labelText="Learning Language"
+                    name="learningLangId"
+                    languages={languages}
+                    value={learningLangId.id}
+                    onChange={this.handleChange}
+                  />
+                </>
+              ) : (
+                ''
+              )}
+
               <Button
                 text="Next"
                 className="signup__button"
@@ -221,16 +279,18 @@ export default class signup extends Component {
           {tab === 2 ? (
             <>
               <h2 className="signup__heading">Choose Interests</h2>
-              {interests.map(({ id, name }, i) => (
-                <Checkbox
-                  key={id}
-                  id={id}
-                  value={name}
-                  onClick={this.handleCheck}
-                  name="interests"
-                  checked={() => interests[i] === Allinterests[i]}
-                />
-              ))}
+              {interests
+                ? interests.map(({ id, name }, i) => (
+                    <Checkbox
+                      key={id}
+                      id={id}
+                      value={name}
+                      onClick={this.handleCheck}
+                      name="interests"
+                      checked={() => interests[i] === Allinterests[i]}
+                    />
+                  ))
+                : ''}
               <Button
                 text="Sign Up"
                 className="signup__button"
@@ -245,3 +305,9 @@ export default class signup extends Component {
     );
   }
 }
+
+signup.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};

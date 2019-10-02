@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const Checkbox = ({ id, value, checked, onClick, name }) => (
+const Checkbox = ({ id, value, onClick, name }) => (
   <div className="checkbox__home">
     <label htmlFor={id} className="checkbox_label">
       <input
@@ -21,14 +21,13 @@ const Checkbox = ({ id, value, checked, onClick, name }) => (
 );
 
 Checkbox.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   value: PropTypes.string.isRequired,
-  checked: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 Checkbox.defaultProps = {
-  checked: false,
+  id: 1,
 };
 
 export default Checkbox;
