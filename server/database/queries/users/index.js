@@ -5,6 +5,7 @@ const { getUsersByInterest } = require('./getUsersByInterest');
 const {
   getUserById, getUserByUsername, getUserByEmail, getUserByEmailOrUsername,
 } = require('./getUserInfo');
+const { getUsersByIds } = require('./getUsersByIds');
 const { getUsersByLang } = require('./getUsersByLang');
 const { searchUsers } = require('./searchUsers');
 const { getUserChannels } = require('./getUserChannels');
@@ -17,6 +18,7 @@ module.exports = {
   reactivateUser,
   getUserChannels,
   getUserById,
+  getUsersByIds,
   getUserByUsername,
   getUsersByLang,
   searchUsers,

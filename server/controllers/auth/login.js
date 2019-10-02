@@ -4,7 +4,7 @@ const { getUserByUsername, reactivateUser } = require('../../database/queries/us
 
 exports.login = (req, res, next) => {
   const { username, password } = req.body;
-  if (!username || !password) throw next({ code: 400, msg: 'bad request !!!!' });
+  if (!username || !password) throw ({ code: 400, msg: 'bad request !!!!' });
 
   const key = process.env.KEY;
   let id;
@@ -19,13 +19,13 @@ exports.login = (req, res, next) => {
         const reactivePromise = isactive ? Promise.resolve(true) : reactivateUser();
         return Promise.all([compare(password, dbPassword), reactivePromise]);
       }
-      throw next({ code: 400, msg: 'username doesn\'t exist' });
+      throw ({ code: 400, msg: 'username doesn\'t exist' });
     })
     .then(([isValid]) => {
       if (isValid) {
         return jwtSign({ userInfo: { username, id } }, key);
       }
-      throw next({ code: 400, msg: 'username or password doesn\'t match our records' });
+      throw ({ code: 400, msg: 'username or password doesn\'t match our records' });
     })
     .then((token) => {
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
