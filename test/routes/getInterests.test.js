@@ -2,7 +2,6 @@ const test = require('tape');
 const supertest = require('supertest');
 const app = require('../../server/app');
 const dbBuild = require('../../server/database/config/dbbuild');
-const { token } = require('./cookie.test');
 
 test('Testing for the interests route', (t) => {
   dbBuild()
@@ -11,7 +10,6 @@ test('Testing for the interests route', (t) => {
         .get('/api/v1/interests')
         .expect(200)
         .expect('Content-Type', /json/)
-        .set('Cookie', [`token=${token}`])
         .end((err, res) => {
           if (err) {
             t.error(err);

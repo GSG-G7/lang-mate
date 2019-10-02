@@ -2,7 +2,6 @@ const test = require('tape');
 const supertest = require('supertest');
 const app = require('../../server/app');
 const dbBuild = require('../../server/database/config/dbbuild');
-const { token } = require('./cookie.test');
 
 test('Test /languages route', (t) => {
   dbBuild()
@@ -11,7 +10,6 @@ test('Test /languages route', (t) => {
         .get('/api/v1/languages')
         .expect(200)
         .expect('Content-Type', 'application/json; charset=utf-8')
-        .set('Cookie', [`token=${token}`])
         .end((err, res) => {
           if (err) {
             t.error(err);
