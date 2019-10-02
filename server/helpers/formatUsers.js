@@ -8,6 +8,7 @@ exports.formatUsers = (users, langs) => users.map(({
   native_lang_id: nativeLangId,
   learning_lang_id: learningLangId,
   interests,
+  password,
   ...rest
 }) => ({
   ...rest,
