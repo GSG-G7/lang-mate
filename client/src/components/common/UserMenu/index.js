@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { profilePath, settingsPath, logoutPath } from '../../assets/svgPaths';
+import api from '../../../services/api';
 import './index.css';
 
 const renderSvg = (path, fill) => (
@@ -30,7 +31,9 @@ const UserMenu = ({ username }) => (
       </Link>
       <Link to="/logout" className="user-menu__nav--link">
         {renderSvg(logoutPath, '#BF2929')}
-        Logout
+        <button type="button" onClick={api.l}>
+          Logout
+        </button>
       </Link>
     </nav>
   </div>

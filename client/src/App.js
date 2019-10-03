@@ -79,7 +79,7 @@ class App extends React.Component {
           <PrivateRoute path="/settings" component={Settings} />
           <PrivateRoute
             exact
-            path="/channel/:username"
+            path="/channel/:user/:id"
             userInfo={userInfo}
             component={Chat}
           />
