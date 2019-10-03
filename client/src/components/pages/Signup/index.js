@@ -183,15 +183,15 @@ export default class signup extends Component {
 
     return (
       <div className="signup">
-        {tab !== 0 ? (
-          <BackButton
-            className="back__button"
-            back={() => this.previousTab()}
-          />
-        ) : (
-          ''
-        )}
         <div className="signup__body">
+          {tab !== 0 ? (
+            <BackButton
+              className="back__button"
+              back={() => this.previousTab()}
+            />
+          ) : (
+            ''
+          )}
           {tab === 0 ? (
             <>
               <h2 className="signup__heading">Join Us Now</h2>

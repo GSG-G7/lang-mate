@@ -23,7 +23,9 @@
 }
 
 .back__button{
-  display: flex
+  display: flex;
+  outline: none;
+
 }
 
 .signup__form{
