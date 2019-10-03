@@ -12,6 +12,7 @@ const DataSource = {
   addChangeListener: notfiyFn => subscribers.add(notfiyFn),
   removeChangeListener: notfiyFn => subscribers.delete(notfiyFn),
   onChange: () => subscribers.forEach(notify => notify()),
+  init: () => {},
 };
 
 export default Object.freeze(DataSource);
