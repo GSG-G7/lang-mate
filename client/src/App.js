@@ -11,8 +11,6 @@ import Settings from './components/pages/Settings';
 import auth from './components/Auth/auth';
 import PrivateRoute from './components/Auth/PrivateRoute';
 
-import api from './services/api';
-
 import './App.css';
 
 class App extends React.Component {
@@ -22,7 +20,6 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    api.getMessages(1).then(res => console.log(res));
     auth.authenticate(() => {
       if (auth.isAuthenticated) {
         const userInfo = auth.getUserInfo();
