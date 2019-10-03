@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { profilePath, settingsPath, logoutPath } from '../../assets/svgPaths';
-import api from '../../../services/api';
 import './index.css';
 
 const renderSvg = (path, fill) => (
@@ -39,6 +38,9 @@ const UserMenu = ({ username, handleLogout }) => (
   </div>
 );
 
-UserMenu.propTypes = { username: propTypes.string.isRequired };
+UserMenu.propTypes = {
+  username: propTypes.string.isRequired,
+  handleLogout: propTypes.func.isRequired,
+};
 
 export default UserMenu;

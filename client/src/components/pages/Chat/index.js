@@ -49,7 +49,7 @@ class Chat extends Component {
           </div>
           <div className="chat__user">
             <Avatar
-              src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+              src="https://i.imgur.com/fLrnzVg.jpg"
               width="25"
               height="25"
               altText="chat user"

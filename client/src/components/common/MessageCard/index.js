@@ -11,13 +11,14 @@ const MessageCard = ({
 }) =>
   username ? (
     <Link
+      style={{ textDecoration: 'none', color: 'black' }}
       to={{
         pathname: `/channel/${username}/${channelId}`,
       }}
     >
       <div className="message-card">
         <img
-          src={avatar || 'https://img.icons8.com/clouds/2x/user.png'}
+          src={avatar || 'https://i.imgur.com/fLrnzVg.jpg'}
           alt={`${username} avatar`}
           className="message-card__image"
         />
@@ -39,11 +40,14 @@ const MessageCard = ({
 MessageCard.propTypes = {
   participant: PropTypes.shape({
     username: PropTypes.string.isRequired,
-    avatar_path: PropTypes.string.isRequired,
+    avatar_path: PropTypes.string,
   }).isRequired,
   lastMessage: PropTypes.shape({
     content: PropTypes.string.isRequired,
     sent_at: PropTypes.string.isRequired,
+  }).isRequired,
+  channel: PropTypes.shape({
+    channelId: PropTypes.number.isRequired,
   }).isRequired,
 };
 
