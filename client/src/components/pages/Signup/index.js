@@ -279,18 +279,20 @@ export default class signup extends Component {
           {tab === 2 ? (
             <>
               <h2 className="signup__heading">Choose Interests</h2>
-              {interests
-                ? interests.map(({ id, name }, i) => (
-                    <Checkbox
-                      key={id}
-                      id={id}
-                      value={name}
-                      onClick={this.handleCheck}
-                      name="interests"
-                      checked={() => interests[i] === Allinterests[i]}
-                    />
-                  ))
-                : ''}
+              <div className="checkBoxes">
+                {interests
+                  ? interests.map(({ id, name }, i) => (
+                      <Checkbox
+                        key={id}
+                        id={id}
+                        value={name}
+                        onClick={this.handleCheck}
+                        name="interests"
+                        checked={() => interests[i] === Allinterests[i]}
+                      />
+                    ))
+                  : ''}
+              </div>
               <Button
                 text="Sign Up"
                 className="signup__button"
