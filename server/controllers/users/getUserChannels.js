@@ -29,6 +29,10 @@ exports.getUserChannels = (req, res, next) => {
     })
     .then(([channels,
       { rows: users },
-      { rows: languages }]) => res.json({ userId, ...channels, users: formatUsers(users, languages) }))
+      { rows: languages }]) => res.json({
+      user: formatUsers(users.filter((e) => e.id === userId), languages)[0],
+      ...channels,
+      users: formatUsers(users.filter((e) => e.id !== userId), languages),
+    }))
     .catch(next);
 };

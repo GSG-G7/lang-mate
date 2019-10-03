@@ -1,0 +1,60 @@
+.profile {
+  text-align: center;
+}
+
+.profile__avatar {
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.profile__username {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  margin: .5rem;
+}
+
+.profile__chat-btn {
+  width: 161px;
+  height: 35px;
+  background: linear-gradient(101.09deg, #3C9D9B 0.58%, #52DE97 95.23%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: none;
+}
+
+.profile__lang__header, .profile__bio__header, .profile__interests__header {
+  font-size: 18px;
+  line-height: 21px;
+  color: #535353;
+  margin-bottom: .3rem;
+}
+
+.profile__lang__info {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+}
+
+.profile__lang--native, .profile__lang--learning, .profile__bio, .profile__interests {
+  text-align: left;
+  margin: .7rem 1rem;
+}
+
+.profile__interests__list {
+  display: flex;
+}
+
+.profile__interests__list div {
+  margin-right: .5rem;
+  background: gainsboro;
+  padding: 0.4rem;
+  border-radius: 13px;
+  font-size: 14px;
+}

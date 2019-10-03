@@ -22,6 +22,11 @@ const api = {
       return res.json();
     });
   },
+  getUserInfo: username => {
+    return fetch(`/api/v1/users/profile/${username}`, {
+      method: 'GET',
+    }).then(result => result.json());
+  },
 };
 
 export default api;
