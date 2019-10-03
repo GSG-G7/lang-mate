@@ -22,7 +22,6 @@ class Login extends Component {
   handleClick = () => {
     const { username, password } = this.state;
     const { setUserInfo } = this.props;
-
     if (username && password) {
       const {
         history: { push },

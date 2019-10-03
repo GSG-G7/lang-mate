@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import Input from '../../common/Input';
 import Avatar from '../../common/Avatar';
 import BackButton from '../../common/BackButton';
@@ -12,13 +13,24 @@ class Chat extends Component {
     messages: [],
   };
 
-  handelChange = ({ target: { value } }) => {
+  socket = null;
+
+  componentDidMount() {
+    this.socket = io(':8080/');
+    this.socket.on('message', msg => {
+      const { messages } = this.state;
+      this.setState({ messages: [...messages, msg] });
+    });
+  }
+
+  handleChange = ({ target: { value } }) => {
     this.setState({ message: value });
   };
 
-  handelClick = () => {
+  handleClick = () => {
     const { message, messages } = this.state;
-    messages.push(message);
+    this.setState({ messages: [...messages, message] });
+    this.socket.send(message);
   };
 
   render() {
@@ -43,7 +55,11 @@ class Chat extends Component {
             <h4 className="chat__username">Fadi</h4>
           </div>
         </header>
-        <div className="chat__body"></div>
+        <div className="chat__body">
+          {messages.map(e => (
+            <p>{e}</p>
+          ))}
+        </div>
         <div className="chat__box">
           <Input
             type="text"
@@ -52,13 +68,13 @@ class Chat extends Component {
             label="message filed"
             placeholder="type a message"
             value={message}
-            onChange={this.handelChange}
+            onChange={this.handleChange}
             errMsg=""
           />
           <Button
             text="+"
             className="chat__button"
-            onClick={this.handelClick}
+            onClick={this.handleClick}
           />
         </div>
       </div>
