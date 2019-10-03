@@ -99,6 +99,7 @@ export default class signup extends Component {
     const {
       history: { push },
     } = this.props;
+    const { setUserInfo } = this.props;
 
     e.preventDefault();
     const {
@@ -127,6 +128,8 @@ export default class signup extends Component {
           const userInformation = { userId, userName };
           auth.isAuthenticated = true;
           auth.setUserInfo(userInformation);
+          setUserInfo(res.data);
+
           push('/');
         }
         if (res.message) throw Error(res.message);
