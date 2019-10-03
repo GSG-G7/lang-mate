@@ -12,13 +12,12 @@ class Profile extends Component {
   state = { userInfo: null };
 
   componentDidMount() {
-    const {
-      location: {
-        state: { userInfo },
-      },
-    } = this.props;
-
-    if (userInfo) {
+    if (this.props.location.state.userInfo) {
+      const {
+        location: {
+          state: { userInfo },
+        },
+      } = this.props;
       this.setState({ userInfo });
     } else {
       const {
@@ -40,11 +39,14 @@ class Profile extends Component {
 
   render() {
     const { userInfo } = this.state;
+    const {
+      history: { goBack },
+    } = this.props;
     return (
       <>
         {userInfo ? (
           <>
-            <BackButton back={() => {}} />
+            <BackButton back={goBack} />
             <div className="profile">
               <Avatar
                 width="180"
