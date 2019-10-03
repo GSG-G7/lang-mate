@@ -3,6 +3,7 @@ import Input from '../../common/Input';
 import Avatar from '../../common/Avatar';
 import BackButton from '../../common/BackButton';
 import Button from '../../common/Button';
+import api from '../../../services/api';
 
 import './index.css';
 
@@ -12,19 +13,33 @@ class Chat extends Component {
     messages: [],
   };
 
-  handelChange = ({ target: { value } }) => {
-    this.setState({ message: value });
-  };
+  componentDidMount() {
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
+    api
+      .getMessages(id)
+      .then(res => this.setState({ messages: res.data.messages }));
+  }
 
   handelClick = () => {
     const { message, messages } = this.state;
     messages.push(message);
   };
 
+  handelChange = ({ target: { value } }) => {
+    this.setState({ message: value });
+  };
+
   render() {
     const { messages, message } = this.state;
     const {
       history: { goBack },
+      match: {
+        params: { user },
+      },
     } = this.props;
     return (
       <div className="chat">
@@ -40,10 +55,19 @@ class Chat extends Component {
               altText="chat user"
               className="chat__avatar"
             />
-            <h4 className="chat__username">Fadi</h4>
+            <h4 className="chat__username">{user}</h4>
           </div>
         </header>
-        <div className="chat__body"></div>
+        <div className="chat__body">
+          {messages.map(message => (
+            <h4
+              key={message.id}
+              className={message.user_id === 2 ? 'green' : 'gray'}
+            >
+              {message.content}
+            </h4>
+          ))}
+        </div>
         <div className="chat__box">
           <Input
             type="text"
