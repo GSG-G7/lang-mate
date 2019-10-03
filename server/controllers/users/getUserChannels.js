@@ -19,7 +19,7 @@ exports.getUserChannels = (req, res, next) => {
     .then(({ rows: messages }) => {
       const userIds = new Set();
       messages.forEach((msg) => {
-        userIds.add(msg.user_id);
+        if (msg.user_id !== userId) { userIds.add(msg.user_id); }
       });
       return Promise.all([
         formatMessages(messages, channelIds, userId),
