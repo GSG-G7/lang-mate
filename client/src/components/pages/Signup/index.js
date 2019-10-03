@@ -232,7 +232,7 @@ export default class signup extends Component {
                   value={confirmPassword.value}
                   onChange={this.handleChange}
                 />
-                <span className="errorMsg">{errMsg || ''}</span>
+                <span className="error-msg">{errMsg || ''}</span>
                 <Button
                   text="Next"
                   className="signup__button"
