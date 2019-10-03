@@ -13,9 +13,7 @@ const Checkbox = ({ id, value, onClick, name }) => (
         onClick={onClick}
         className="checkbox"
       />
-      <div className="round"></div>
-      {/* <span className="checkbox_span"></span> */}
-      {value}
+      <div className="check-value">{value}</div>
     </label>
   </div>
 );
