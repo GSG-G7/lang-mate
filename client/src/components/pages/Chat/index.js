@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import Input from '../../common/Input';
 import Avatar from '../../common/Avatar';
 import BackButton from '../../common/BackButton';
@@ -13,7 +14,19 @@ class Chat extends Component {
     messages: [],
   };
 
+  socket = null;
+
   componentDidMount() {
+    this.socket = io(':8080/');
+    this.socket.on('message', msg => {
+      const { messages } = this.state;
+      this.setState({ messages: [...messages, msg] });
+    });
+  }
+
+  handleChange = ({ target: { value } }) => {
+    this.setState({ message: value });
+
     const {
       match: {
         params: { id },
@@ -22,11 +35,12 @@ class Chat extends Component {
     api
       .getMessages(id)
       .then(res => this.setState({ messages: res.data.messages }));
-  }
+  };
 
-  handelClick = () => {
+  handleClick = () => {
     const { message, messages } = this.state;
-    messages.push(message);
+    this.setState({ messages: [...messages, message] });
+    this.socket.send(message);
   };
 
   handelChange = ({ target: { value } }) => {
@@ -59,12 +73,9 @@ class Chat extends Component {
           </div>
         </header>
         <div className="chat__body">
-          {messages.map(message => (
-            <h4
-              key={message.id}
-              className={message.user_id === 2 ? 'green' : 'gray'}
-            >
-              {message.content}
+          {messages.map(msg => (
+            <h4 key={msg.id} className={msg.user_id === 2 ? 'green' : 'gray'}>
+              {msg.content}
             </h4>
           ))}
         </div>
@@ -76,13 +87,13 @@ class Chat extends Component {
             label="message filed"
             placeholder="type a message"
             value={message}
-            onChange={this.handelChange}
+            onChange={this.handleChange}
             errMsg=""
           />
           <Button
             text="+"
             className="chat__button"
-            onClick={this.handelClick}
+            onClick={this.handleClick}
           />
         </div>
       </div>

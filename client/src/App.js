@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import io from 'socket.io-client';
 
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
@@ -11,6 +12,7 @@ import Settings from './components/pages/Settings';
 import auth from './components/Auth/auth';
 import PageNotFound from './components/common/pageNotFound';
 import PrivateRoute from './components/Auth/PrivateRoute';
+import DataSource from './services/dataSource';
 
 import './App.css';
 
@@ -18,6 +20,7 @@ class App extends React.Component {
   state = {
     isLogged: null,
     userInfo: null,
+    input: '',
   };
 
   componentDidMount() {
@@ -25,6 +28,7 @@ class App extends React.Component {
       if (auth.isAuthenticated) {
         const userInfo = auth.getUserInfo();
         this.setState({ userInfo, isLogged: auth.isAuthenticated });
+        DataSource.init();
       } else {
         this.setState({ isLogged: auth.isAuthenticated });
       }
