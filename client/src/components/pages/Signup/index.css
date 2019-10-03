@@ -47,8 +47,8 @@
   background: #DADADA;
 }
 
-.err-msg{
-  display: none;
+.error-msg{
+  color: red;
 }
 
 .signup__button {
