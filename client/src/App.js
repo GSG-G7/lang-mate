@@ -23,17 +23,11 @@ class App extends React.Component {
     input: '',
   };
 
-  socket = null;
-
-  // .connect('/channel');
-
   componentDidMount() {
     auth.authenticate(() => {
       if (auth.isAuthenticated) {
-        this.socket = io(':8080/');
         const userInfo = auth.getUserInfo();
         this.setState({ userInfo, isLogged: auth.isAuthenticated });
-        this.socket.on('message', msg => console.warn(msg));
       } else {
         this.setState({ isLogged: auth.isAuthenticated });
       }
