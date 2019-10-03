@@ -20,7 +20,6 @@ class App extends React.Component {
   state = {
     isLogged: null,
     userInfo: null,
-    input: '',
   };
 
   componentDidMount() {
