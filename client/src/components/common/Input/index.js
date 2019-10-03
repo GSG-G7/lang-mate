@@ -29,6 +29,10 @@ const Input = ({
   );
 };
 
+Input.defaultProps = {
+  errMsg: '',
+};
+
 // Checking for the value of the props
 Input.propTypes = {
   type: PropTypes.string.isRequired,
@@ -38,11 +42,8 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   errMsg: PropTypes.string,
-  value: PropTypes.string.isRequired,
-};
-
-Input.defaultProps = {
-  errMsg: '',
+  // eslint-disable-next-line react/require-default-props
+  value: PropTypes.string,
 };
 
 export default Input;

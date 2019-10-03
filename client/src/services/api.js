@@ -1,13 +1,13 @@
 const api = {
-  isAuth: () =>
-    fetch('/api/v1/is-auth', {
-      method: 'GET',
-      credentials: 'same-origin',
+  signUp: data => {
+    return fetch('api/v1/signup', {
+      method: 'POST',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
-    }).then(res => res.json()),
-
+      body: JSON.stringify(data),
+    }).then(res => res.json());
+  },
   login: data => {
     return fetch('/api/v1/login', {
       method: 'POST',
@@ -22,6 +22,16 @@ const api = {
       return res.json();
     });
   },
+
+  isAuth: () =>
+    fetch('/api/v1/is-auth', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    }).then(res => res.json()),
+
   getUserInfo: username => {
     return fetch(`/api/v1/users/profile/${username}`, {
       method: 'GET',

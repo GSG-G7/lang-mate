@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
@@ -65,9 +65,14 @@ class App extends React.Component {
               <Login {...props} setUserInfo={this.setUserInfo} />
             )}
           />
+
           <Route
+            exact
             path="/sign-up"
-            component={isLogged ? () => <Redirect to="/" /> : Signup}
+            setUserInfo={this.setUserInfo}
+            render={props => (
+              <Signup {...props} setUserInfo={this.setUserInfo} />
+            )}
           />
 
           <PrivateRoute path="/profile/:username" component={Profile} />
