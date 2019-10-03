@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { profilePath, settingsPath, logoutPath } from '../../assets/svgPaths';
 import api from '../../../services/api';
@@ -18,7 +18,7 @@ const renderSvg = (path, fill) => (
   </svg>
 );
 
-const UserMenu = ({ username }) => (
+const UserMenu = ({ username, handleLogout }) => (
   <div className="user-menu">
     <nav className="user-menu__nav">
       <Link to={`/profile/${username}`} className="user-menu__nav--link">
@@ -31,7 +31,7 @@ const UserMenu = ({ username }) => (
       </Link>
       <Link to="/logout" className="user-menu__nav--link">
         {renderSvg(logoutPath, '#BF2929')}
-        <button type="button" onClick={api.l}>
+        <button type="button" onClick={handleLogout}>
           Logout
         </button>
       </Link>

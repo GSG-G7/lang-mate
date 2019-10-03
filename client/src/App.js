@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Login from './components/pages/Login';
 import Signup from './components/pages/Signup';
@@ -83,7 +83,6 @@ class App extends React.Component {
             userInfo={userInfo}
             component={Chat}
           />
-          <Route path="/logout" />
           <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>

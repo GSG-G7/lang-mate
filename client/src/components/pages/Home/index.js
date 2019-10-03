@@ -7,6 +7,7 @@ import Messages from './Messages';
 import api from '../../../services/api';
 import { filter } from '../../assets/svgPaths';
 import './index.css';
+import auth from '../../Auth/auth';
 
 class Home extends Component {
   state = {
@@ -39,6 +40,14 @@ class Home extends Component {
 
   handlePeople = () => {
     this.setState({ showMessages: false, showPeople: true });
+  };
+
+  handleLogout = () => {
+    api.logout().then(() => {
+      auth.logout();
+      auth.isAuthenticated = false;
+      this.props.history.push('/login');
+    });
   };
 
   render() {
@@ -99,7 +108,11 @@ class Home extends Component {
             />
           </button>
         </header>
-        {showMenu ? <UserMenu username="amoodaa" /> : ''}
+        {showMenu ? (
+          <UserMenu username="amoodaa" handleLogout={this.handleLogout} />
+        ) : (
+          ''
+        )}
         <section className="main-feed__options">
           <button
             type="button"

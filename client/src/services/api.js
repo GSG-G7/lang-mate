@@ -47,6 +47,10 @@ const api = {
       method: 'GET',
     }).then(result => result.json());
   },
+  logout: () =>
+    fetch('/api/v1/logout', {
+      method: 'POST',
+    }),
 };
 
 export default api;
