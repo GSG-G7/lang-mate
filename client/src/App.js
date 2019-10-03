@@ -14,11 +14,13 @@ import PageNotFound from './components/common/pageNotFound';
 import PrivateRoute from './components/Auth/PrivateRoute';
 
 import './App.css';
+import Input from './components/common/Input';
 
 class App extends React.Component {
   state = {
     isLogged: null,
     userInfo: null,
+    input: '',
   };
 
   socket = null;
@@ -52,6 +54,7 @@ class App extends React.Component {
     const { isLogged, userInfo } = this.state;
 
     return (
+      // <Input onChange={}/>
       <BrowserRouter>
         <Switch>
           {auth.isAuthenticated ? (

@@ -8,10 +8,14 @@ const connections = [];
 
 const channel = io.of('/channel');
 
-io.on('connection', (socket) => {
-  connections.push(connections);
+io.on('connect', (socket) => {
+  connections.push(socket);
   console.log(`users connected ${connections.length}`);
-  socket.send('hi!');
+  socket.send('hi, new logged guy!');
+  socket.on('message', (message) => {
+    console.log(message);
+    socket.broadcast.send(message);
+  });
 });
 // io.use();
 module.exports = { server };
