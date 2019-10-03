@@ -16,11 +16,11 @@ class Chat extends Component {
   componentDidMount() {
     const {
       match: {
-        params: { username },
+        params: { id },
       },
     } = this.props;
     api
-      .getMessages(username)
+      .getMessages(id)
       .then(res => this.setState({ messages: res.data.messages }));
   }
 
@@ -37,6 +37,9 @@ class Chat extends Component {
     const { messages, message } = this.state;
     const {
       history: { goBack },
+      match: {
+        params: { user },
+      },
     } = this.props;
     return (
       <div className="chat">
@@ -52,7 +55,7 @@ class Chat extends Component {
               altText="chat user"
               className="chat__avatar"
             />
-            <h4 className="chat__username">Fadi</h4>
+            <h4 className="chat__username">{user}</h4>
           </div>
         </header>
         <div className="chat__body">
