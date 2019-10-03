@@ -83,11 +83,10 @@ class App extends React.Component {
           <PrivateRoute path="/settings" component={Settings} />
           <PrivateRoute
             exact
-            path="/channel/:channelId"
+            path="/channel/:user/:id"
             userInfo={userInfo}
             component={Chat}
           />
-          <Route path="/logout" />
           <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>

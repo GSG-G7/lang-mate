@@ -1,4 +1,14 @@
 const api = {
+  userNativeLang: () => {
+    return fetch('/api/v1/users/native-lang/1').then(res => res.json());
+  },
+  getChannelsMessages: () => {
+    return fetch('/api/v1/users/channels').then(res => res.json());
+  },
+  getMessages: id => {
+    return fetch(`/api/v1/channels/${id}`).then(res => res.json());
+  },
+
   signUp: data => {
     return fetch('api/v1/signup', {
       method: 'POST',
@@ -37,6 +47,10 @@ const api = {
       method: 'GET',
     }).then(result => result.json());
   },
+  logout: () =>
+    fetch('/api/v1/logout', {
+      method: 'POST',
+    }),
 };
 
 export default api;

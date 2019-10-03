@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { profilePath, settingsPath, logoutPath } from '../../assets/svgPaths';
+import api from '../../../services/api';
 import './index.css';
 
 const renderSvg = (path, fill) => (
@@ -13,11 +14,11 @@ const renderSvg = (path, fill) => (
     fill={fill}
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path fillRule="evenodd" cpRule="evenodd" d={path} fill={fill} />
+    <path fillRule="evenodd" d={path} fill={fill} />
   </svg>
 );
 
-const UserMenu = ({ username }) => (
+const UserMenu = ({ username, handleLogout }) => (
   <div className="user-menu">
     <nav className="user-menu__nav">
       <Link to={`/profile/${username}`} className="user-menu__nav--link">
@@ -30,7 +31,9 @@ const UserMenu = ({ username }) => (
       </Link>
       <Link to="/logout" className="user-menu__nav--link">
         {renderSvg(logoutPath, '#BF2929')}
-        Logout
+        <button type="button" onClick={handleLogout}>
+          Logout
+        </button>
       </Link>
     </nav>
   </div>
