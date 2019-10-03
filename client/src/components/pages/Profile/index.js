@@ -12,12 +12,11 @@ class Profile extends Component {
   state = { userInfo: null };
 
   componentDidMount() {
-    if (this.props.location.state.userInfo) {
-      const {
-        location: {
-          state: { userInfo },
-        },
-      } = this.props;
+    const {
+      location: { userInfo },
+    } = this.props;
+
+    if (userInfo) {
       this.setState({ userInfo });
     } else {
       const {
@@ -58,7 +57,7 @@ class Profile extends Component {
               <h1 className="profile__username">
                 {upperCase(userInfo.username)}
               </h1>
-              <Link to={`/channel/${userInfo.id}`}>
+              <Link to={`/channel/${userInfo.username}/${userInfo.id}`}>
                 <Button className="profile__chat-btn" text="Chat" />
               </Link>
               <div className="profile__lang--native">
@@ -99,37 +98,36 @@ class Profile extends Component {
 
 Profile.propTypes = {
   location: propTypes.shape({
-    state: propTypes.shape({
-      userInfo: propTypes.shape({
-        username: propTypes.string.isRequired,
+    userInfo: propTypes.shape({
+      username: propTypes.string.isRequired,
+      id: propTypes.number.isRequired,
+      email: propTypes.string.isRequired,
+      bio: propTypes.string,
+      avatar_path: propTypes.string,
+      nativeLang: propTypes.shape({
         id: propTypes.number.isRequired,
-        email: propTypes.string.isRequired,
-        bio: propTypes.string.isRequired,
-        avatar_path: propTypes.string.isRequired,
-        nativeLang: propTypes.shape({
+        name: propTypes.string.isRequired,
+      }).isRequired,
+      learningLang: propTypes.shape({
+        id: propTypes.number.isRequired,
+        name: propTypes.string.isRequired,
+      }).isRequired,
+      interests: propTypes.arrayOf(
+        propTypes.shape({
           id: propTypes.number.isRequired,
           name: propTypes.string.isRequired,
-        }).isRequired,
-        learningLang: propTypes.shape({
-          id: propTypes.number.isRequired,
-          name: propTypes.string.isRequired,
-        }).isRequired,
-        interests: propTypes.arrayOf(
-          propTypes.shape({
-            id: propTypes.number.isRequired,
-            name: propTypes.string.isRequired,
-          })
-        ),
-      }),
-    }).isRequired,
+        })
+      ),
+    }),
   }).isRequired,
   match: propTypes.shape({
     params: propTypes.shape({
-      username: propTypes.number.isRequired,
+      username: propTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   history: propTypes.shape({
     push: propTypes.func.isRequired,
+    goBack: propTypes.func.isRequired,
   }).isRequired,
 };
 export default Profile;

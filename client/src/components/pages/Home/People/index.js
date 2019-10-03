@@ -14,6 +14,7 @@ const People = ({ users }) => {
             to={{
               pathname: `/profile/${userInfo.username}`,
               state: { userInfo },
+              userInfo,
             }}
             style={{ textDecoration: 'none' }}
           >

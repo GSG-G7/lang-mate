@@ -44,9 +44,12 @@ class Home extends Component {
 
   handleLogout = () => {
     api.logout().then(() => {
+      const {
+        history: { push },
+      } = this.props;
       auth.logout();
       auth.isAuthenticated = false;
-      this.props.history.push('/login');
+      push('/login');
     });
   };
 
@@ -102,14 +105,17 @@ class Home extends Component {
             <Avatar
               width="35"
               height="35"
-              src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=296&q=80"
+              src="https://i.imgur.com/fLrnzVg.jpg"
               altText="user"
               className="main-feed__user"
             />
           </button>
         </header>
         {showMenu ? (
-          <UserMenu username="amoodaa" handleLogout={this.handleLogout} />
+          <UserMenu
+            username={userInfo.userName}
+            handleLogout={this.handleLogout}
+          />
         ) : (
           ''
         )}

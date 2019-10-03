@@ -5,25 +5,38 @@ import './index.css';
 
 const Messages = ({ messages: { user, channels, users } }) => {
   return (
-    <div>
-      {channels.map(channel => (
-        <MessageCard
-          key={channel.channelId}
-          channel={channel}
-          participant={
-            users.find(({ id }) => id === channel.participants[0]) || user
-          }
-          lastMessage={channel.messages[channel.messages.length - 1]}
-        />
-      ))}
+    <div style={{ textDecoration: 'none' }}>
+      {channels ? (
+        channels.map(channel => (
+          <MessageCard
+            key={channel.channelId}
+            channel={channel}
+            participant={
+              users.find(({ id }) => id === channel.participants[0]) || user
+            }
+            lastMessage={channel.messages[channel.messages.length - 1]}
+          />
+        ))
+      ) : (
+        <h3 style={{ textAlign: 'center' }}>
+          {' '}
+          You do not have any chat untill now{' '}
+        </h3>
+      )}
     </div>
   );
 };
 
+Messages.defaultProps = {
+  channels: [],
+  users: [],
+  messages: {},
+};
+
 Messages.propTypes = {
-  messages: PropTypes.objectOf().isRequired,
-  channels: PropTypes.arrayOf(Object).isRequired,
-  users: PropTypes.arrayOf(Object).isRequired,
+  messages: PropTypes.objectOf(Object),
+  channels: PropTypes.arrayOf(Object),
+  users: PropTypes.arrayOf(Object),
 };
 
 export default Messages;
