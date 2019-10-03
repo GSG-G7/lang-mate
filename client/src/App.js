@@ -10,6 +10,7 @@ import Home from './components/pages/Home';
 import Chat from './components/pages/Chat';
 import Settings from './components/pages/Settings';
 import auth from './components/Auth/auth';
+import PageNotFound from './components/common/pageNotFound';
 import PrivateRoute from './components/Auth/PrivateRoute';
 
 import './App.css';
@@ -71,9 +72,14 @@ class App extends React.Component {
               <Login {...props} setUserInfo={this.setUserInfo} />
             )}
           />
+
           <Route
+            exact
             path="/sign-up"
-            component={isLogged ? () => <Redirect to="/" /> : Signup}
+            setUserInfo={this.setUserInfo}
+            render={props => (
+              <Signup {...props} setUserInfo={this.setUserInfo} />
+            )}
           />
 
           <PrivateRoute path="/profile/:username" component={Profile} />
@@ -85,7 +91,7 @@ class App extends React.Component {
             component={Chat}
           />
           <Route path="/logout" />
-          <Route component={() => <h1>Error 404</h1>} />
+          <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>
     );

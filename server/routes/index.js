@@ -18,8 +18,9 @@ const {
   errors: { errors },
 } = require('../controllers');
 
-router.post('/login', login);
 router.post('/signup', signup);
+router.post('/login', login);
+
 router.get('/languages', getAllLanguages);
 router.get('/interests', getAllInterests);
 
