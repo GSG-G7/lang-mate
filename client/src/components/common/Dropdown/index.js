@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
@@ -24,10 +25,6 @@ const Dropdown = ({ labelText, name, languages, value, onChange, ...rest }) => {
       </select>
     </div>
   );
-};
-
-Dropdown.defaultProps = {
-  value: 1,
 };
 
 Dropdown.propTypes = {
